@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+  <title>RSS Feeeed</title>
+  <description>Dead Homies mayb</description>
+  <link>https://conkaeso.neocities.org</link>
+  <lastBuildDate>
+    Sat, 28 Sep 19 21:43:09 -0500
+  </lastBuildDate>
+  <ttl>20000</ttl>
+  
+  <item>
+  <title>Possible Girls</title>
+  <description>
+    An arbitrary extrapolation of parallel universes to get a gf
+  </description>
+  <link>https://conkaeso.neocities.org/papers/PossibleGirls.pdf</link>
+  <pubDate>
+    Sat, 28 Sep 19 21:43:09 -0500
+  </pubDate>
+  <enclosure url="https://conkaeso.neocities.org/papers/PossibleGirls.pdf" length="64575" type="application/pdf" />
+</item>
+  
+</channel>
+</rss>

@@ -1,0 +1,166 @@
+@font-face {
+   font-family: perfectDOS;
+   src: url(/FSEX300.ttf);
+}
+html {
+  -webkit-font-smoothing: none;
+}
+body {
+background-color:black;
+color:white;
+width:90%;
+max-width:1000px;
+margin:0 auto;
+font-family: "perfectDOS";
+font-size:12pt;
+}
+h1, h2, h3, h4 {
+  font-weight: normal;
+  color: #f37aed;
+  font-size: 32px;
+}
+b {
+  font-weight: normal;
+  color: #f37aed;
+}
+strong {
+  font-weight: normal;
+  color: #f37aed;
+}
+td {
+vertical-align:top;
+font-family: "perfectDOS";
+}
+th {
+  font-weight: normal;
+}
+a {
+color:#46eeff;
+}
+
+.btnClear {
+  border: none;
+  opacity: 0;
+  background-color: inherit;
+  padding: 7px 14px;
+  font-size: 12px;
+  display: inline-block;
+}
+.btn {
+  width: 105px;
+  height: 70px;
+  border: round;
+  border-radius: 1px;
+  background: #623CEA;
+  opacity: 100;
+  padding: 0px 0px;
+  font-size: 12px;
+  cursor: pointer;
+  display: inline-block;
+}
+/* On mouse-over */
+.btn:hover {background: #25CED1;}
+.btn2 {
+  border: round;
+  border-radius: 35px;
+  background: #623CEA;
+  opacity: 100;
+  padding: 60px 60px;
+  font-size: 25px;
+  cursor: pointer;
+  display: inline-block;
+}
+.btnBasic {
+  border: round;
+  border-radius: 4px;
+  background: #623CEA;
+  opacity: 100;
+  padding: 7px 14px;
+  font-size: 12px;
+  cursor: pointer;
+  display: inline-block;
+}
+/* On mouse-over */
+.btn:hover {background: #25CED1;}
+/* On mouse-over */
+.btn2:hover {background: #25CED1;}
+.urgent {
+	color:black;
+	background:white;
+}
+.buttons {
+	text-align:justify;
+}
+img {
+	image-rendering:pixelated;
+}
+.music {
+  background-color:#f37aed;
+  color:black;
+}
+.musicfront {
+  text-align:left;
+  background:#46eeff;
+  color:black;
+}
+.name {
+  background:#46eeff;
+  color:black;
+}
+.huerotate1 {-webkit-filter: hue-rotate(90deg);}
+.huerotate2 {-webkit-filter: hue-rotate(180deg);}
+.huerotate3 {-webkit-filter: hue-rotate(270deg);}
+.rss.opacity {-webkit-filter: opacity(50%);}
+img:hover{-webkit-filter:none;}
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #000000;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: url("https://gwtagacw.neocities.org/img/pixel.png");
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #46eeff;
+}
+hr {
+  border: 0;
+  border-top: 1px solid #25CED1;
+  height:2px;
+  border-bottom: 1px solid #623CEA;
+}
+hr.two {
+  border: 0;
+  border-top: 5px solid #25CED1;
+  height:3px;
+  border-bottom: 5px solid #623CEA;
+}
+::-moz-selection { /* Code for Firefox */
+    color: black;
+    background: #46EEFF;
+    opacity:1;
+}
+
+::selection {
+  color: black;
+    background: #46EEFF;
+    opacity:1;
+}
+@media (max-width: 600px){
+    body {max-width:100%;
+          font-size:24px;
+          margin:1em;}
+    h1, h2, h3, h4 {
+  font-weight: normal;
+  color: #f37aed;
+  font-size: 48px;
+}
+}
