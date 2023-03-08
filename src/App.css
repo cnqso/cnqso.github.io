@@ -1,3 +1,16 @@
+:root {
+  --background: #242424;
+  --paper: #2e2e2e;
+  --text: #fff;
+  --text-secondary: #aaa;
+  --accent: #646cff;
+  --accent-dark: #535bf2;
+  --accent-light: #7a7aff;
+  --accent-lighter: #b3b3ff;
+}
+
+
+
 #root {
   /* max-width: 1280px; */
   margin: 0 auto;
@@ -6,10 +19,34 @@
 }
 
 .card {
-  background-color: #2e2e2e;
+  background-color: var(--paper);
   width: 12em;
   display: inline-block;
   margin: 1em;
   padding: 1em;
   border-radius: 0.5em;
+}
+
+.NavButton {
+  background-color: var(--paper);
+  border: 2px solid var(--background);
+  cursor: pointer;
+}
+
+.NavButton:hover {
+  border-color: var(--accent);
+  animation: NavButtonHover 2s infinite;
+}
+
+/* Add animation for navbutton border */
+@keyframes NavButtonHover {
+  0% {
+    border-color: var(--accent-dark);
+  }
+  50% {
+    border-color: var(--accent-light);
+  }
+  100% {
+    border-color: var(--accent-dark);
+  }
 }

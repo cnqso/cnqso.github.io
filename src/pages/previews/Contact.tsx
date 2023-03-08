@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./styles/Contact.css";
 
 function Contact() {
 	const [count, setCount] = useState(0);
