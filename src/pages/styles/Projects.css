@@ -1,0 +1,16 @@
+.Projects {
+    
+}
+
+.projectCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: #fafafa;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+}

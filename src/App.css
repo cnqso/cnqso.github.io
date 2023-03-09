@@ -3,7 +3,7 @@
   --paper: #2e2e2e;
   --text: #fff;
   --text-secondary: #aaa;
-  --accent: #646cff;
+  --accent: #666eff;
   --accent-dark: #535bf2;
   --accent-light: #7a7aff;
   --accent-lighter: #b3b3ff;
@@ -25,6 +25,7 @@
   margin: 1em;
   padding: 1em;
   border-radius: 0.5em;
+  box-shadow: 0 0 1rem rgba(74, 0, 75, 0.79);
 }
 
 .NavButton {

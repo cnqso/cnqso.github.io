@@ -37,7 +37,9 @@ function App() {
 					<NavButton set={setSelected} destination='Contact' />
 					</PageContext.Provider>
 				</div>
-				<Home />
+				{selected === "Home" ? <Home /> : null}
+				{selected === "Projects" ? <Projects /> : null}
+
 				{/* <Projects selected={true} /> */}
 			
 		</div>
