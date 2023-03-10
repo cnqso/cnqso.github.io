@@ -51,18 +51,19 @@ function ProjectCard({
 	selected,
 	project,
 	handleClick,
+	mobile,
 }: {
 	selected: number;
 	project: Project;
 	handleClick: Function;
+	mobile: boolean;
 }) {
-	const mobile = useMediaQuery("(max-width:900px)");
 
 	const [show, setShow] = useState(true);
 	const [size, setSize] = useState(4);
 	const [description, setDescription] = useState(false);
 	const itemNumber = project.number;
-	// cool idea: give every card background a different nice color, that way we can remove the picture instead of shrinking
+
 	useEffect(() => {
 		if (selected === itemNumber) {
 			const newSize = mobile ? 12 : 10;
@@ -87,7 +88,6 @@ function ProjectCard({
 	return (
 		<Grid
 			xs={size}
-			zeroMinWidth={true}
 			style={{
 				transition: theme.transitions.create("all", {
 					easing: theme.transitions.easing.sharp,
@@ -133,7 +133,13 @@ function Projects() {
 	}
 
 	return (
-		<div className='Projects'>
+		<motion.div
+		className="container Projects"
+		 initial={{ x: 300, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      exit={{ x: -300, opacity: 0 }}
+		transition={{ duration: 0.25 }}
+	  >
 			<h1> MUI Projects </h1>
 			<ThemeProvider theme={theme}>
 				<Box sx={{ flexGrow: 1 }}>
@@ -144,13 +150,14 @@ function Projects() {
 									selected={selected}
 									project={projects[title]}
 									handleClick={onClick}
+									mobile={mobile}
 								/>
 							);
 						})}
 					</Grid>
 				</Box>
 			</ThemeProvider>
-		</div>
+		</motion.div>
 	);
 }
 

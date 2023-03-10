@@ -2,12 +2,15 @@
 
 import { useState, createContext } from "react";
 import NavButton from "./components/NavButton";
+import NavBar from "./components/NavBar";
 import reactLogo from "./assets/react.svg";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import Blog from "./pages/Blog";
 import HireMe from "./pages/HireMe";
-import Contact from "./pages/previews/Contact";
+import Contact from "./pages/previews/Contact"
+import { BrowserRouter as Router } from "react-router-dom";
+import AnimatedRoutes from "./AnimatedRoutes";
 import "./App.css";
 
 export type PageContextType = "Home" | "Projects" | "Blog" | "Hire Me" | "Contact";
@@ -26,22 +29,11 @@ function App() {
 	// useEffect for animations on select and deselect
 	return (
 		<div className='App'>
-			<h1>William Kelly</h1>
+		<Router>
+			<NavBar />
+			<AnimatedRoutes/>
 			
-				<div className='Nav'>
-				<PageContext.Provider value={selected}>
-					<NavButton set={setSelected} destination='Home' />
-					<NavButton set={setSelected} destination='Projects' />
-					<NavButton set={setSelected} destination='Blog' />
-					<NavButton set={setSelected} destination='Hire Me' />
-					<NavButton set={setSelected} destination='Contact' />
-					</PageContext.Provider>
-				</div>
-				{selected === "Home" ? <Home /> : null}
-				{selected === "Projects" ?<Projects /> : null}
-
-				{/* <Projects selected={true} /> */}
-			
+		</Router>
 		</div>
 	);
 }
