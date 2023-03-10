@@ -2,30 +2,39 @@
 
 }
 
+
+
+
 .projectDescription {
   margin-left: 30px;
   margin-top: 0;
 }
 
 .projectCard {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  height: 240px;
+
+  height: 235px;
   padding: 10px;
-  border-radius: 10px;
-  background-color: #fafafa;
-  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease-in-out;
 }
 
 .projectImg {
-  max-width: 100%;
-  max-height: 100%;
+  float: left;
+  max-width: min(256px, 100%);
+  max-height: min(256px, 100%);
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .projectCard {
-    height: 100px;
+    height: 92%; 
+    padding: 5px;
+  }
+  .projectDescription {
+    font-size: 0.75em;
+    margin: 0;
+  }
+  .projectImg {
+    float: none;
+    max-width: min(150px, 100%);
+    max-height: min(150px, 100%);
   }
 }

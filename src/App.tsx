@@ -38,7 +38,7 @@ function App() {
 					</PageContext.Provider>
 				</div>
 				{selected === "Home" ? <Home /> : null}
-				{selected === "Projects" ? <Projects /> : null}
+				{selected === "Projects" ?<Projects /> : null}
 
 				{/* <Projects selected={true} /> */}
 			

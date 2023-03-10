@@ -3,115 +3,152 @@
 import { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
+import Grid from "@mui/material/Unstable_Grid2";
+import { motion } from "framer-motion";
 import "./styles/Projects.css";
 import ProjectImage from "../assets/4n2.png";
-import { deepPurple } from '@mui/material/colors';
-import { styled, createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
-import GridLayout from "react-grid-layout";
+import { styled, createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
+import ThemeOptions from "../themes";
+import useMediaQuery from "@mui/material/useMediaQuery";
+declare module "@mui/material/styles" {
+	interface ThemeOptions {
+		themeName?: string; // optional
+	}
+}
+const theme = createTheme(ThemeOptions);
+const colors = [
+	theme.palette.success.main,
+	theme.palette.primary.main,
+	theme.palette.secondary.main,
+	theme.palette.error.main,
+	theme.palette.info.main,
+];
+const titles: string[] = ["Project1", "Project2", "Project3", "Project4", "Project5", "Project6", "Project7"];
+interface Project {
+	title: string;
+	number: number;
+	image: string;
+	description: string;
+}
+interface projectData {
+	[key: string]: Project;
+}
+const projects: projectData = {
+	Project1: { title: "Project 1dfsfsdfsdsfs", number: 1, image: ProjectImage, description: "Bla bla bla" },
+	Project2: { title: "Project 2", number: 2, image: ProjectImage, description: "Bla bla bla" },
+	Project3: { title: "Project 3", number: 3, image: ProjectImage, description: "Bla bla bla" },
+	Project4: { title: "Project 4", number: 4, image: ProjectImage, description: "Bla bla bla" },
+	Project5: { title: "Project 5", number: 5, image: ProjectImage, description: "Bla bla bla" },
+	Project6: { title: "Project 6", number: 6, image: ProjectImage, description: "Bla bla bla" },
+	Project7: { title: "Project 7", number: 7, image: ProjectImage, description: "Bla bla bla" },
+};
 
 //need some sort of alternative animated grid, will make a difference
 // This might work great https://github.com/mikemajara/react-spring-animated-grid
 // Alternatively I could just hide other elements on the same row? Could be equally good
 
-declare module '@mui/material/styles/createTheme' {
-    interface ThemeOptions {    
-        themeName?: string  // optional
-    }
-}
-
-  const customTheme = createTheme({
-	palette: {
-	  primary: {
-		main: deepPurple[500],
-	  },
-	},
-  });
-
-
 function ProjectCard({
 	selected,
-	itemNumber,
+	project,
 	handleClick,
 }: {
 	selected: number;
-	itemNumber: number;
+	project: Project;
 	handleClick: Function;
 }) {
+	const mobile = useMediaQuery("(max-width:900px)");
+
 	const [show, setShow] = useState(true);
 	const [size, setSize] = useState(4);
 	const [description, setDescription] = useState(false);
+	const itemNumber = project.number;
 	// cool idea: give every card background a different nice color, that way we can remove the picture instead of shrinking
 	useEffect(() => {
 		if (selected === itemNumber) {
-			setSize(10)
-			setTimeout(() => {setDescription(true)}, 300)
-		} else if (Math.floor((selected-1) / 3) === Math.floor((itemNumber-1) / 3) && selected !== 0) {
-			setSize(0.9);
-			setDescription(false)
+			const newSize = mobile ? 12 : 10;
+			setSize(newSize);
+			setTimeout(() => {
+				setDescription(true);
+			}, 150);
+		} else if (Math.floor((selected - 1) / 3) === Math.floor((itemNumber - 1) / 3) && selected !== 0) {
+			const newSize = mobile ? 4 : 1;
+			setSize(newSize);
+			setDescription(false);
 		} else {
 			setShow(true);
 			setSize(4);
-			setDescription(false)
+			setDescription(false);
 		}
 	}, [selected]);
 	function clicked() {
 		handleClick(itemNumber);
 	}
-	const theme = useTheme();
-
 
 	return (
-		<>
-		{show ?
-		<Grid item xs={size}  style={{transition: theme.transitions.create("all", {
-			easing: theme.transitions.easing.sharp, 
-			duration: theme.transitions.duration.leavingScreen,
-	})}}>			
-
-			<div onClick={clicked} className='projectCard'>
-				<img src={ProjectImage} alt='Project' className='projectImg'/>
-				{description ? 
-				<div className="projectDescription">
-					<div style={{fontSize: '3em'}}><b>Project {itemNumber}</b></div>
-					<div>Bla bla bla bla bla </div>
-				</div> : null}
-			</div>
-			</Grid>
-		: null}</>
+		<Grid
+			xs={size}
+			zeroMinWidth={true}
+			style={{
+				transition: theme.transitions.create("all", {
+					easing: theme.transitions.easing.sharp,
+					duration: theme.transitions.duration.leavingScreen,
+				}),
+			}}>
+			<Paper
+				elevation={2}
+				onClick={clicked}
+				className='projectCard'
+				style={{
+					background: colors[itemNumber % 5],
+				}}>
+				{show ? <img src={ProjectImage} alt='Project' className='projectImg' /> : null}
+				{description ? (
+					    <motion.div
+						className="projectDescription"
+						initial={{ x: -100, opacity: 0 }}
+						animate={{ x: 0, opacity: 1 }}
+					  >
+						<h1>
+							<b>{project.title}</b>
+						</h1>
+						<div>{project.description}</div>
+					</motion.div>
+				) : null}
+			</Paper>
+		</Grid>
 	);
 }
 
 function Projects() {
-	const [count, setCount] = useState(0);
 	const [selected, setSelected] = useState(0);
-	const [data, setData] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+	const mobile = useMediaQuery("(max-width:900px)");
 
 	//If selected == Projects, big mode. If selected !== projects, small mode.
 	function onClick(item: number) {
 		if (selected === item) {
 			setSelected(0);
 		} else {
-		selected === item ? setSelected(0) : setSelected(item);
+			selected === item ? setSelected(0) : setSelected(item);
 		}
 	}
 
 	return (
 		<div className='Projects'>
-			<h1> Projects </h1>
-			<ThemeProvider theme={customTheme}>
-				
-			<Box sx={{ flexGrow: 1 }}>
-				<Grid container spacing={5}>
-				
-					<ProjectCard selected={selected} itemNumber={1} handleClick={onClick} />
-					<ProjectCard selected={selected} itemNumber={2} handleClick={onClick} />
-					<ProjectCard selected={selected} itemNumber={3} handleClick={onClick} />
-					<ProjectCard selected={selected} itemNumber={4} handleClick={onClick} />
-					<ProjectCard selected={selected} itemNumber={5} handleClick={onClick} />
-					
-				</Grid>
-			</Box>
+			<h1> MUI Projects </h1>
+			<ThemeProvider theme={theme}>
+				<Box sx={{ flexGrow: 1 }}>
+					<Grid container spacing={mobile ? 2 : 5}>
+						{titles.map((title) => {
+							return (
+								<ProjectCard
+									selected={selected}
+									project={projects[title]}
+									handleClick={onClick}
+								/>
+							);
+						})}
+					</Grid>
+				</Box>
 			</ThemeProvider>
 		</div>
 	);
