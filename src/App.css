@@ -18,6 +18,11 @@
   text-align: center;
 }
 
+.App {
+  font-family: 'Roboto', sans-serif;
+  width: 850px;
+}
+
 .card {
   background-color: var(--paper);
   width: 12em;
@@ -49,5 +54,11 @@
   }
   100% {
     border-color: var(--accent-dark);
+  }
+}
+
+@media (max-width: 800px) {
+  .App {
+    width: 100%;
   }
 }
