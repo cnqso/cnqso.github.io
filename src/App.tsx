@@ -10,7 +10,7 @@ import Blog from "./pages/Blog";
 import HireMe from "./pages/HireMe";
 import Contact from "./pages/previews/Contact"
 import { BrowserRouter as Router } from "react-router-dom";
-import AnimatedRoutes from "./AnimatedRoutes";
+import {MainRoutes} from "./Routes";
 import "./App.css";
 
 export type PageContextType = "Home" | "Projects" | "Blog" | "Hire Me" | "Contact";
@@ -31,7 +31,7 @@ function App() {
 		<div className='App'>
 		<Router>
 			<NavBar />
-			<AnimatedRoutes/>
+			<MainRoutes/>
 			
 		</Router>
 		</div>
