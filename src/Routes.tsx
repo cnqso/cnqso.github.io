@@ -17,7 +17,7 @@ function Page({ node } : {node: React.ReactNode}) {
 				initial={{ x: 300, opacity: 0 }}
 				animate={{ x: 0, opacity: 1 }}
 				exit={{ x: -300, opacity: 0 }}
-				transition={{ ease: "easeOut", duration: 0.5 }}
+				transition={{ ease: "easeOut", duration: 0.4 }}
 			>
 				{node}
 			</motion.div>
