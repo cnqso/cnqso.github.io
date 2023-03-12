@@ -14,16 +14,11 @@ function Contact() {
 
 
 	return (
-		<motion.div
-		className="container Contact"
-		initial={{ x: 300, opacity: 0 }}
-		animate={{ x: 0, opacity: 1 }}
-		exit={{ x: -300, opacity: 0 }}
-		transition={{ duration: 0.25 }}	  >
+		<div className="container Contact">
 			<div></div>
 
 			<ProjectsPreview />
-		</motion.div>
+		</div>
 	);
 }
 

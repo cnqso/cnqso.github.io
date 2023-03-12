@@ -16,11 +16,17 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  width: 100vw;
+  overflow: hidden;
+  
 }
 
 .App {
+  overflow: visible;
   font-family: 'Roboto', sans-serif;
   width: 850px;
+  margin: 0 auto;
+  
 }
 
 .card {
@@ -29,17 +35,22 @@
   display: inline-block;
   margin: 1em;
   padding: 1em;
-  border-radius: 0.5em;
-  box-shadow: 0 0 1rem rgba(74, 0, 75, 0.79);
+  border-radius: 0.4em;
+  box-shadow: 0 0 0.5rem rgba(222, 145, 223, 0.182);
 }
 
 .NavButton {
+  font-size: 1.2em;
+  width: 7em;
+  margin: 0.4em;
+  padding: 0.4em;
   background-color: var(--paper);
   border: 2px solid var(--background);
   cursor: pointer;
 }
 
 .NavButton:hover {
+  
   border-color: var(--accent);
   animation: NavButtonHover 2s infinite;
 }

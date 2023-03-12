@@ -8,7 +8,7 @@ export type BlogPost = {title: string, path: string, post: () => JSX.Element}
 function BlogPost1() {
 	return (
 		<div className='BlogPost'>
-			<h1 className='postTitle'>Blog Post</h1>
+			<h1 className='postTitle'>Blog Post 1</h1>
 			<div className='textBlock'>
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
 				labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -43,7 +43,7 @@ function BlogPost1() {
 function BlogPost2() {
 	return (
 		<div className='BlogPost'>
-			<h1 className='postTitle'>Blog Post</h1>
+			<h1 className='postTitle'>Blog Post 2</h1>
 			<div className='textBlock'>
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
 				labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -93,7 +93,7 @@ function BlogHome() {
 	return (
 		<div className='BlogHome'>
             {BlogPosts.map((post) => {return(
-            <Link to={""+post.path} className='NavButton card'>
+            <Link to={""+post.path} key={post.title} className='NavButton card'>
 			    {post.title}
 		    </Link>)
             })}

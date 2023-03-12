@@ -15,16 +15,11 @@ function Home() {
 
 
 	return (
-		<motion.div
-		className="container Home"
-		initial={{ x: 300, opacity: 0 }}
-		animate={{ x: 0, opacity: 1 }}
-		exit={{ x: -300, opacity: 0 }}
-		transition={{ duration: 0.25 }}	  >
+		<div className="container Home">
 			<div></div>
 
 			<ProjectsPreview />
-		</motion.div>
+		</div>
 	);
 }
 

@@ -133,20 +133,16 @@ function Projects() {
 	}
 
 	return (
-		<motion.div
-		className="container Projects"
-		 initial={{ x: 300, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      exit={{ x: -300, opacity: 0 }}
-		transition={{ duration: 0.25 }}
-	  >
-			<h1> MUI Projects </h1>
+		<div
+		className="container Projects">
+			<h1> Projects </h1>
 			<ThemeProvider theme={theme}>
 				<Box sx={{ flexGrow: 1 }}>
 					<Grid container spacing={mobile ? 2 : 5}>
 						{titles.map((title) => {
 							return (
 								<ProjectCard
+									key={title}
 									selected={selected}
 									project={projects[title]}
 									handleClick={onClick}
@@ -157,7 +153,7 @@ function Projects() {
 					</Grid>
 				</Box>
 			</ThemeProvider>
-		</motion.div>
+		</div>
 	);
 }
 

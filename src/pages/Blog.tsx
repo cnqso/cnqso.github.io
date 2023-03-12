@@ -10,12 +10,7 @@ function Blog() {
 	const [count, setCount] = useState(0);
 
 	return (
-		<motion.div
-			className='container Blog'
-			initial={{ x: 300, opacity: 0 }}
-			animate={{ x: 0, opacity: 1 }}
-			exit={{ x: -300, opacity: 0 }}
-			transition={{ duration: 0.25 }}>
+		<div className='container Blog'>
 			<Link to={"/Blog/"}>
 				<h1>Blog</h1>
 			</Link>
@@ -27,7 +22,7 @@ function Blog() {
 				})}
 			</Routes>
 
-		</motion.div>
+		</div>
 	);
 }
 
