@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 
 
-export type BlogPost = {title: string, path: string, post: () => JSX.Element}
+export type BlogPost = {title: string, date: Date, path: string, post: () => JSX.Element}
 
 function BlogPost1() {
 	return (
@@ -79,7 +79,7 @@ function BlogPost2() {
 function BlogPost3() {
 	return (
 		<div>
-			<h1 className='postTitle'>Blog Post 1</h1>
+			<h1 className='postTitle'>Long name</h1>
 			<div className='textBlock'>
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
 				labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -114,7 +114,7 @@ function BlogPost3() {
 function BlogPost4() {
 	return (
 		<div>
-			<h1 className='postTitle'>Blog Post 2</h1>
+			<h1 className='postTitle'>Medium name</h1>
 			<div className='textBlock'>
 				
 			velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
@@ -147,18 +147,23 @@ function BlogPost4() {
 	);
 }
 
+function randomDate() {
+	return new Date(new Date(2022, 0, 1).getTime() + Math.random() * (new Date().getTime() - new Date(2022, 0, 1).getTime()));
+  }
+  
+  const d = randomDate();
+  console.log(d);
 
 
 
 
-
-
+const unix_timestamp = 1549312452;
 
 const BlogPosts : BlogPost[] = [
-    {title: "post1", path: "post1", post: BlogPost1},
-    {title: "post2", path: "post2", post: BlogPost2},
-	{title: "A longer name for a blog post", path: "post3", post: BlogPost3},
-	{title: "A medium name", path: "post4", post: BlogPost4}
+    {title: "post1", date: randomDate(), path: "post1", post: BlogPost1},
+    {title: "post2", date: randomDate(), path: "post2", post: BlogPost2},
+	{title: "A longer name for a blog post", date: randomDate(), path: "post3", post: BlogPost3},
+	{title: "A medium name", date: randomDate(), path: "post4", post: BlogPost4}
 ]
 
 
