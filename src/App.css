@@ -55,6 +55,12 @@
   animation: NavButtonHover 2s infinite;
 }
 
+.NavBar {
+  margin-bottom: 1em;
+  margin-inline: auto;
+  width: 100%;
+}
+
 /* Add animation for navbutton border */
 @keyframes NavButtonHover {
   0% {
@@ -71,5 +77,14 @@
 @media (max-width: 900px) {
   .App {
     width: 100%;
+  }
+  .NavBar {
+    max-width:650px;
+  }
+}
+
+@media (max-width: 572px) {
+  .NavBar {
+    max-width:300px;
   }
 }

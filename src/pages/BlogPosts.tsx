@@ -113,7 +113,7 @@ function BlogPost3() {
 
 function BlogPost4() {
 	return (
-		<div>
+		<div className="BlogBody">
 			<h1 className='postTitle'>Medium name</h1>
 			<div className='textBlock'>
 				

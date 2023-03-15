@@ -6,6 +6,7 @@ import "./styles/Blog.css";
 import { Routes, Route, useLocation, Link } from "react-router-dom";
 import { BlogPosts } from "./BlogPosts";
 import type { BlogPost } from "./BlogPosts";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 // Posts can be contained in a specific type of text block
 // BlogHome is a list of all posts followed by an infinite scroll of posts.
@@ -18,12 +19,14 @@ function BlogHome() {
 
 function BlogPost() {
 	return (
-		<Routes>
-			{BlogPosts.map((post) => {
-				return <Route path={post.path} element={post.post()} key={post.title} />;
-			})}
-			<Route path='*' element={<h1>I never wrote anything with that title</h1>} />
-		</Routes>
+		<div className='BlogBody'>
+			<Routes>
+				{BlogPosts.map((post) => {
+					return <Route path={post.path} element={post.post()} key={post.title} />;
+				})}
+				<Route path='*' element={<h1>I never wrote anything with that title</h1>} />
+			</Routes>
+		</div>
 	);
 }
 
@@ -61,11 +64,10 @@ function BlogNav() {
 		const posts = () => {
 			return (
 				<div className='monthBlock' key={month}>
-					<h2>{month}</h2>
+					<h3>{month}</h3>
 					{thisMonth.map((post: BlogPost) => {
 						return (
 							<Link
-								className='blogPostBtn'
 								to={"post/" + post.path}
 								key={post.title}
 								style={
@@ -73,7 +75,7 @@ function BlogNav() {
 										? { color: "#b3b3ff" }
 										: { color: "white" }
 								}>
-								{post.title}
+								<div className='blogPostBtn'>{post.title}</div>
 							</Link>
 						);
 					})}
@@ -88,15 +90,8 @@ function BlogNav() {
 		return b.month - a.month;
 	});
 
-	// The final result is a sorted latest-to-oldest list of posts seperated by month
-
 	return (
 		<div className={navCss}>
-			{location !== undefined ? (
-				<Link className='blogPostBtn' to={"/Blog/"} key={"Back"} style={{ color: "white" }}>
-					Back
-				</Link>
-			) : null}
 			{monthBlocks.map((monthBlock) => {
 				return monthBlock.block();
 			})}
@@ -105,16 +100,24 @@ function BlogNav() {
 }
 
 function Blog() {
-	const location = useLocation().pathname
+	const location = useLocation().pathname;
 	const css = location === "/Blog/" ? "BlogHome" : "BlogPost";
-	console.log(location);
+	const mobile = useMediaQuery("(max-width: 900px)");
+	const showNav = mobile && location !== "/Blog/" ? false : true;
+
 	return (
 		<div className={css}>
-			<BlogNav />
 			<Routes>
 				<Route index element={<BlogHome />} />
 				<Route path={"post/*"} element={<BlogPost />} />;
 			</Routes>
+			{showNav ? (
+				<BlogNav />
+			) : (
+				<Link className='blogPostBtn' to={"/Blog/"} key={"Back"} style={{ color: "white"}}>
+					Back
+				</Link>
+			)}
 		</div>
 	);
 }

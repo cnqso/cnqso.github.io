@@ -18,7 +18,7 @@ function NavBar() {
         <>
 		<h1>William Kelly</h1>
 			
-				<div className='Nav'>
+				<div className='NavBar'>
 				<PageContext.Provider value={selected}>
 					<NavButton key='Home' destination='Home' />
 					<NavButton key= 'Projects' destination='Projects' />
