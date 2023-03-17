@@ -4,35 +4,40 @@ import { useState } from "react";
 import "./styles/HireMe.css";
 import { motion } from "framer-motion";
 
-
 function Skills() {
-	
-	const skills: string[] = ["Javascript", "Python", "React", "Google Cloud Platform (GCP)", "OpenAI APIs", "NoSQL", "Firebase", "Node", "Material UI", "Natural Language Processing (NLP)"]
+	const skills: string[] = [
+		"Javascript",
+		"Python",
+		"React",
+		"Google Cloud Platform (GCP)",
+		"OpenAI APIs",
+		"NoSQL",
+		"Firebase",
+		"Node",
+		"Material UI",
+		"Natural Language Processing (NLP)",
+	];
 
 	function skillsList() {
-		return skills.map((skill : string) => {
+		return skills.map((skill: string) => {
 			return (
 				<span key={skill} className='skill'>
 					{skill}
 				</span>
-			)
-		})
+			);
+		});
 	}
 
 	return (
 		<div className='resumeSection'>
-		<h2 className='sectionTitle'>Skills</h2>
-		<div className='sectionContent'>
-			<div className='sectionContentTitle'>Languages</div>
-			<div className='skills'>
-{skillsList()}			</div>
+			<div className='sectionTitle'>Skills</div>
+			<div className='sectionContent'>
+				<div className='sectionContentTitle'>Languages</div>
+				<div className='skills'>{skillsList()} </div>
+			</div>
 		</div>
-	</div>
-	)
+	);
 }
-
-
-
 
 function HireMe() {
 	const [count, setCount] = useState(0);
@@ -41,9 +46,7 @@ function HireMe() {
 		<div className='container HireMe'>
 			<div className='blurb'>I am a programmer </div>
 
-
 			<div className='resumeLinks'>
-				<span className='resumeLink'>Projects</span>
 				<span className='resumeLink'>Github</span>
 				<span className='resumeLink'>LinkedIn</span>
 				<span className='resumeLink'>Contact</span>
@@ -51,45 +54,51 @@ function HireMe() {
 			<hr />
 
 			<div className='resumeSection'>
-				<h2 className='sectionTitle'>Projects</h2>
+				<div className='sectionTitle'>Projects</div>
+
 				<div className='sectionContent'>
-					<div className='sectionContentTitle'>Commons</div>
-					<div className='sectionContentSubtitle'>
-						Javascript, React, Google Cloud Platform (GCP), Firebase, Node, NoSQL, Material UI
-					</div>
-					<div className='sectionContentTime'>
+					
+					<div className='sectionContentTitle'>Commons<div className='sectionContentTime'>
 						<span className='resumeLink'>Live</span>
 						<span className='resumeLink'>Github</span>
 						<span className='resumeLink'>Writeup</span>
+					</div></div>
+					<div className='sectionContentSubtitle'>
+						Javascript, React, Google Cloud Platform (GCP), Firebase, Node, NoSQL, Material UI
 					</div>
 					<div className='sectionContentProse'>
 						A sim-city-like application in which many anonymous users must collaborate with each
 						other
 					</div>
 				</div>
+
 				<div className='sectionContent'>
-					<div className='sectionContentTitle'>Wordle Viewer</div>
-					<div className='sectionContentSubtitle'>
-						Javascript, React, Python, SQL, Natural Language Processing (NLP),
-					</div>
-					<div className='sectionContentTime'>
+				
+					<div className='sectionContentTitle'>Wordle Viewer<div className='sectionContentTime'>
 						<span className='resumeLink'>Live</span>
 						<span className='resumeLink'>Github</span>
 						<span className='resumeLink'>Writeup</span>
+					</div></div>
+				
+					<div className='sectionContentSubtitle'>
+						Javascript, React, Python, SQL, Natural Language Processing (NLP),
 					</div>
 					<div className='sectionContentProse'>
 						An app which extracts and displays a history of wordle scores from an iPhone backup
 						file
 					</div>
 				</div>
+
 				<div className='sectionContent'>
-					<div className='sectionContentTitle'>Spirals</div>
-					<div className='sectionContentSubtitle'>Javascript, React, Material UI</div>
-					<div className='sectionContentTime'>
+				
+					<div className='sectionContentTitle'>Spirals<div className='sectionContentTime'>
 						<span className='resumeLink'>Live</span>
 						<span className='resumeLink'>Github</span>
 						<span className='resumeLink'>Writeup</span>
-					</div>
+					</div></div>
+					
+					<div className='sectionContentSubtitle'>Javascript, React, Material UI</div>
+					
 					<div className='sectionContentProse'>
 						A visual presentation of novel algorithm optimizations for drawing square spirals
 					</div>
@@ -97,17 +106,17 @@ function HireMe() {
 			</div>
 			<hr />
 
-			<Skills/>
+			<Skills />
 			<hr />
 
 			<div className='resumeSection'>
-				<h2 className='sectionTitle'>Experience</h2>
+				<div className='sectionTitle'>Experience</div>
 				<div className='sectionContent'>
-					<div className='sectionContentTitle'>Program Manager</div>
+					<div className='sectionContentTitle'>Program Manager<div className='sectionContentTime'>September 2022 - Present</div></div>
 					<div className='sectionContentSubtitle'>
 						Wayne Metropolitan Community Action Agency – Hamtramck, MI
 					</div>
-					<div className='sectionContentTime'>September 2022 - Present</div>
+					
 					<ul className='sectionContentProse'>
 						<li>
 							Managed a nonprofit program teaching literacy to school-age children in a refugee
@@ -138,9 +147,9 @@ function HireMe() {
 					</ul>
 				</div>
 				<div className='sectionContent'>
-					<div className='sectionContentTitle'>Student Teacher</div>
+					<div className='sectionContentTitle'>Student Teacher<div className='sectionContentTime'>September 2021 - June 2022</div></div>
 					<div className='sectionContentSubtitle'>Wayne Memorial High School – Wayne, MI</div>
-					<div className='sectionContentTime'>September 2021 - June 2022</div>
+					
 					<ul className='sectionContentProse'>
 						<li>
 							Increased all benchmark scores compared to previous years by developing and
@@ -162,9 +171,9 @@ function HireMe() {
 					</ul>
 				</div>
 				<div className='sectionContent'>
-					<div className='sectionContentTitle'>Community Organizer</div>
+					<div className='sectionContentTitle'>Community Organizer<div className='sectionContentTime'>November 2019 - August 2021</div></div>
 					<div className='sectionContentSubtitle'>MSPN – Ypsilanti, MI</div>
-					<div className='sectionContentTime'>November 2019 - August 2021</div>
+					
 					<ul className='sectionContentProse'>
 						<li>
 							Led successful community organizing efforts, bringing together local stakeholders
@@ -189,37 +198,32 @@ function HireMe() {
 			<hr />
 
 			<div className='resumeSection'>
-				<h2 className='sectionTitle'>Education</h2>
+				<div className='sectionTitle'>Education</div>
 				<div className='sectionContent'>
-					<div className='sectionContentTitle'>University of Michigan – Ann Arbor, School of Education</div>
-					<div className='sectionContentSubtitle'>
-					Master of Arts in Education
-
+					<div className='sectionContentTitle'>
+						University of Michigan – Ann Arbor, School of Education<div className='sectionContentTime'>July 2022</div>
 					</div>
-					<div className='sectionContentTime'>
-						July 2022
-					</div>
+					<div className='sectionContentSubtitle'>Master of Arts in Education</div>
+					
 					<div className='sectionContentProse'>
-						Concentration in Educational technology and distance learning. University Honors Distinction.
+						Concentration in Educational technology and distance learning. University Honors
+						Distinction.
 					</div>
 				</div>
 				<div className='sectionContent'>
-					<div className='sectionContentTitle'>University of Michigan – Ann Arbor, School of Literature, Science, and the Arts</div>
-					<div className='sectionContentSubtitle'>
-					Bachelor of Arts in History
-
+					<div className='sectionContentTitle'>
+						University of Michigan – Ann Arbor, School of Literature, Science, and the Arts<div className='sectionContentTime'>May 2021</div>
 					</div>
-					<div className='sectionContentTime'>
-						May 2021
-					</div>
+					<div className='sectionContentSubtitle'>Bachelor of Arts in History</div>
+					
 					<div className='sectionContentProse'>
-						Concentration in economics and post-war US history. James B. Angell Scholar Distinction, University Honors Distinction. Attended on the full-tuition Jean Fairfax Scholarship.
+						Concentration in economics and post-war US history. James B. Angell Scholar
+						Distinction, University Honors Distinction. Attended on the full-tuition Jean Fairfax
+						Scholarship.
 					</div>
 				</div>
 			</div>
 			<hr />
-
-
 		</div>
 	);
 }

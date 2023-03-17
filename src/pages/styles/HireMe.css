@@ -1,0 +1,129 @@
+/**
+ * Style for the entire resume
+ *
+ * @format
+ */
+
+.HireMe {
+	font-family: Arial, sans-serif;
+
+	/* color: #333; */
+
+	margin: -20px auto;
+	text-align: left;
+}
+
+hr {
+    border-top: 2px solid #666eff;
+}
+
+.sectionTitle {
+    font-size: 1.65em;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+/* Style for the blurb section */
+.blurb {
+	margin-bottom: 20px;
+    font-size: 1.25em;
+	text-align: center;
+}
+
+
+
+/* Style for the section content */
+.sectionContent {
+	margin-bottom: 20px;
+}
+
+/* Style for the section content title */
+.sectionContentTitle {
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 10px;
+	/* color: #333; */
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+/* Style for the section content subtitle */
+.sectionContentSubtitle {
+	font-size: 16px;
+	margin-bottom: 10px;
+	/* color: #555; */
+}
+
+/* Style for the section content links */
+.sectionContentTime {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	float: right;
+}
+
+.githubLink {
+	font-size: 14px;
+	margin-right: 10px;
+	/* color: #333; */
+}
+
+/* Style for the section content prose */
+.sectionContentProse {
+	font-size: 16px;
+	/* color: #333; */
+	line-height: 1.5;
+}
+.resumeLinks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.resumeLink {
+	color: #666eff;
+	margin: 0 1em;
+	font-size: 1em;
+	cursor: pointer;
+}
+
+.sectionContentTime{
+    font-size: 0.9em;
+    margin-right: 10px;
+    /* color: #333; */
+}
+
+.resumeSection{
+    display: grid;
+    grid-template-columns: auto;
+}
+
+@media (min-width: 1200px) {
+    .resumeSection {
+        grid-template-columns: 15% auto 15%;
+        grid-template-rows: 1fr;
+        grid-gap: 20px;
+        width: 140%;
+        margin-left: -20%;
+
+    }
+    .sectionContent {
+        grid-column: 2;
+        margin-block: 7px;
+        padding-inline: 20px;
+    }
+
+    .sectionTitle {
+        margin-top: 0;
+        
+text-align: right;
+    }
+
+    hr {
+        border: 15px solid var(--background);
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+}
