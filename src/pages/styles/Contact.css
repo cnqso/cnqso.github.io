@@ -1,0 +1,34 @@
+ul {
+    padding-left:0;
+    list-style-type: none;
+    height: 100px;
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  li {
+    cursor: grab;
+    border: 1px solid rgba(255, 255, 255, 0.411);
+    border-radius: 5px;
+    background-color: var(--paper);
+    padding-inline: 15px;
+    padding-block: 5px;
+    margin-inline: 7px;
+    float: left;
+  }
+
+    li:active {
+        cursor: grabbing;
+    }
+
+  @media (max-width: 600px) {
+    ul {
+        width: 300px;
+    }
+    li {
+        padding-inline: 7px;
+        padding-block: 0px;
+        margin-inline: 1px;
+    }
+}
