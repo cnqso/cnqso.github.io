@@ -11,7 +11,7 @@ import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
-
+import { useReward } from 'react-rewards';
 import CheckIcon from "@mui/icons-material/Check";
 import ErrorIcon from "@mui/icons-material/Error";
 import { styled, createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
@@ -31,9 +31,25 @@ interface IFormInput {
 
 function PhoneNumber() {
 	const [items, setItems] = useState([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+	const [confettied, setConfettied] = useState<boolean>(false);
 	const itemKeys = [0, 1, 3, 3, 5, 6, 6, 6, 6, 8];
+	// No cheating
 	const answer = [0, 5, 8, 6, 3, 3, 6, 6, 1, 6];
+	const { reward, isAnimating } = useReward('rewardId', 'confetti');
+	for (let i = 0; i < 10; i++) {
+		if (itemKeys[items[i]] !== answer[9-i]) {
+			if (confettied) {
+			setConfettied(false)
+			}
+			break;
+		}
+		if (i === 9 && !confettied) {
+			setConfettied(true);
+			reward();
+		}
+	}
 	return (
+		<>
 		<Reorder.Group axis='x' values={items} onReorder={setItems}>
 			{items.map((item, index) =>{ 
 				let color = "white";
@@ -46,7 +62,10 @@ function PhoneNumber() {
 					<span style={{color:color}}>{itemKeys[item]}</span>
 				</Reorder.Item>
 			)})}
+			
 		</Reorder.Group>
+		<span id="rewardId" />
+		</>
 	);
 }
 
@@ -101,7 +120,7 @@ function Contact() {
 	};
 
 	return (
-		<div>
+		<div className="container Contact">
 			<ThemeProvider theme={theme}>
 				<h1>Contact</h1>
 				<div className='blurb'>

@@ -7,9 +7,9 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { motion } from "framer-motion";
 import "./styles/Projects.css";
 import ProjectImage from "../assets/4n2.png";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { styled, createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
 import ThemeOptions from "../themes";
-import useMediaQuery from "@mui/material/useMediaQuery";
 declare module "@mui/material/styles" {
 	interface ThemeOptions {
 		themeName?: string; // optional
