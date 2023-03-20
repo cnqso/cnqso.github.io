@@ -23,6 +23,21 @@
   max-height: min(256px, 100%);
 }
 
+
+
+.sortOptions {
+  display: block;
+  margin-block: 1.2em;
+}
+
+.sortOption {
+  cursor: pointer;
+  border: 2px solid var(--background);
+  border-radius: 1em;
+  margin: 5px;
+  padding: 3px;
+}
+
 @media (max-width: 900px) {
   .projectCard {
     height: auto;

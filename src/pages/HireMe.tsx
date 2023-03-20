@@ -9,6 +9,7 @@ function Skills() {
 		"Javascript",
 		"Python",
 		"React",
+		"Typescript",
 		"Google Cloud Platform (GCP)",
 		"OpenAI APIs",
 		"NoSQL",

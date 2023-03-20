@@ -43,9 +43,72 @@ const projects: projectData = {
 	Project7: { title: "Project 7", number: 7, image: ProjectImage, description: "Bla bla bla" },
 };
 
+const technologies: string[] = [
+	"Javascript",
+	"Python",
+	"React",
+	"Typescript",
+	"GCP",
+	"OpenAI APIs",
+	"NoSQL",
+	"Firebase",
+	"Node",
+	"Material UI",
+	"NLP",
+];
+
 //need some sort of alternative animated grid, will make a difference
 // This might work great https://github.com/mikemajara/react-spring-animated-grid
 // Alternatively I could just hide other elements on the same row? Could be equally good
+
+function SortBox() {
+
+	const [filter, setFilter] = useState<number[]>([]);
+	const [sort, setSort] = useState<string>("Pride");
+	const sortOptions: string[] = ["Pride", "New", "Old", "Alphabetical"];
+
+	function handleFilterClick(index: number) {
+		const newFilter = [...filter];
+		if (newFilter.includes(index)) {
+			const indexToRemove = newFilter.indexOf(index);
+			newFilter.splice(indexToRemove, 1);
+		} else {
+			newFilter.push(index);
+		}
+		setFilter(newFilter);
+	}
+
+	function handleSortClick(option: string) {
+		setSort(option);
+	}
+
+	
+
+	return (
+		<div className='sortBox'>
+			<h3>Filter:</h3>
+			<div className='sortOptions'>
+				{technologies.map((option, index) => {
+					let color = "#2e2e2e"
+					if (filter.includes(index)){
+						color = "#666eff"
+					}
+					return <span onClick={()=>handleFilterClick(index)}style={{background: color}} className='sortOption' >{option}</span>;
+				})}
+			</div>
+			<h3>Sort by:</h3>
+			<div className='sortOptions'>
+				{sortOptions.map((option) => {
+					let color = "#2e2e2e"
+					if (sort === option){
+						color = "#666eff"
+					}
+					return <span onClick={()=>handleSortClick(option)}style={{background: color}} className='sortOption' >{option}</span>;
+				})}
+			</div>
+		</div>
+	);
+}
 
 function ProjectCard({
 	selected,
@@ -58,7 +121,6 @@ function ProjectCard({
 	handleClick: Function;
 	mobile: boolean;
 }) {
-
 	const [show, setShow] = useState(true);
 	const [size, setSize] = useState(4);
 	const [description, setDescription] = useState(false);
@@ -103,11 +165,10 @@ function ProjectCard({
 				}}>
 				{show ? <img src={ProjectImage} alt='Project' className='projectImg' /> : null}
 				{description ? (
-					    <motion.div
-						className="projectDescription"
+					<motion.div
+						className='projectDescription'
 						initial={{ x: -100, opacity: 0 }}
-						animate={{ x: 0, opacity: 1 }}
-					  >
+						animate={{ x: 0, opacity: 1 }}>
 						<h1>
 							<b>{project.title}</b>
 						</h1>
@@ -122,7 +183,7 @@ function ProjectCard({
 function Projects() {
 	const [selected, setSelected] = useState(0);
 	const mobile = useMediaQuery("(max-width:900px)");
-
+	const sortOptions = [];
 	//If selected == Projects, big mode. If selected !== projects, small mode.
 	function onClick(item: number) {
 		if (selected === item) {
@@ -132,10 +193,16 @@ function Projects() {
 		}
 	}
 
+	// SORT COMPONENT:
+	// Start small, "Sort by:" and then a dropdown cabinet
+	// Give a list of all the technologies. When each is clicked, it gets highlighted and it sorts. Allow sorting by multiple
+	// Maybe also organize order: personal favorite, newest, oldest, name
+
 	return (
-		<div
-		className="container Projects">
+		<div className='container Projects'>
 			<h1> Projects </h1>
+			
+				<SortBox />
 			<ThemeProvider theme={theme}>
 				<Box sx={{ flexGrow: 1 }}>
 					<Grid container spacing={mobile ? 2 : 5}>
@@ -156,5 +223,6 @@ function Projects() {
 		</div>
 	);
 }
+
 
 export default Projects;

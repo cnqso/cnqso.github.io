@@ -11,7 +11,11 @@ import NavButton from "../components/NavButton";
 
 function Home() {
 
+// Intro blurb (I'm a programmer bla bla bla)
+// Links (maybe all of this can be shared with Hire Me, make it stay in place on that change)
 
+// Projects - basic list
+// Blog - basic list
 
 
 	return (
