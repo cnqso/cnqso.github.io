@@ -196,16 +196,21 @@ function ProjectCard({
 	const [description, setDescription] = useState(false);
 	const project = projects[projectName];
 	const itemNumber = project.number;
-	const widths = ["5%", "31%", "83%"]
-
+	const widths = ["thin", "normal", "wide"]
+	const className = `projectCard ${widths[size]}`
 	function clicked() {
-		handleClick(itemNumber);
+		if (size === 2) {
+			handleClick("")
+		} else {
+		handleClick(projectName);
+		}
 	}
 
 	return (
 		<motion.li
-			className='projectCard2'
-			style={{ background: colors[project.number % 5], width: widths[size] }}
+			className={className}
+			style={{ background: colors[project.number % 5] }}
+			onClick={() => clicked()}
 			key={project.title}
 			initial={{ scale: 0 }}
 			animate={{
@@ -213,12 +218,12 @@ function ProjectCard({
 			}}
 			exit={{
 				opacity: 0,
-				transition: { delay: 0.5 },
+				transition: {},
 			}}
 			layout>
 
 
-				<img src={ProjectImage} alt='Project' className='projectImg' />
+				{size === 0 ? null : <img src={ProjectImage} alt='Project' className='projectImg' />}
 				{size === 2 ? 
 				<div className='details'>
 					<span className='name'>Name: {project.title}</span>
@@ -233,57 +238,43 @@ function ProjectCard({
 }
 
 function ProjectGrid({ titles }: { titles: string[] }) {
-	const [items, setItems] = useState<string[]>(titles);
 	const [selected, setSelected] = useState<string>("Project2");
 
-	const shuffle = () => {
-		const shuffled = [];
-		while (items.length > 0) {
-			let i = (Math.random() * items.length) | 0;
-			shuffled.push(items[i]);
-			items.splice(i, 1);
-		}
-		setItems([...shuffled]);
 
-		console.log("shuffle");
-	};
 
 	// When an item is clicked, set it to the selected item
 	// On every render, find the row of the selected item
 	// On that row, make the selected item big and all others small
 	// We can do this by manually generating the CSS styling for each item on render
-	const itemsSize: number[] = [];
+	const titlesSize: number[] = [];
 
 	//Set up every one
-	for (let i = 0; i < items.length; i++) {
-		const item = items[i];
+	for (let i = 0; i < titles.length; i++) {
+		const item = titles[i];
 		if (item === selected) {
-			itemsSize.push(2);
+			titlesSize.push(2);
 			//This is the selected item
 			//Make it big
 			//Make the rest small
-		} else if (Math.floor(i / 3) === Math.floor(items.indexOf(selected) / 3)) {
-			itemsSize.push(0);
+		} else if (Math.floor(i / 3) === Math.floor(titles.indexOf(selected) / 3)) {
+			titlesSize.push(0);
 			//This is on the same row as the selected item
 			//Make it small
 		} else {
-			itemsSize.push(1);
+			titlesSize.push(1);
 		}
 	}
 
 	return (
 		<div>
-			<div className='blurb'>
-				<button onClick={shuffle}>shuffle</button>
-			</div>
 
 			<ul className='wrapper'>
 				<AnimatePresence>
-					{items.map((item, index) => (
+					{titles.map((item, index) => (
 						<ProjectCard
 							key={item}
 							projectName={item}
-							size={itemsSize[index]}
+							size={titlesSize[index]}
 							handleClick={setSelected}
 						/>
 					))}
