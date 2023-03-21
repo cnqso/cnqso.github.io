@@ -4,11 +4,12 @@ import { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Unstable_Grid2";
-import { motion } from "framer-motion";
+import { motion, Reorder, AnimatePresence } from "framer-motion";
 import "./styles/Projects.css";
 import ProjectImage from "../assets/4n2.png";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { styled, createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
+import type { technologies } from "../App";
 import ThemeOptions from "../themes";
 declare module "@mui/material/styles" {
 	interface ThemeOptions {
@@ -23,27 +24,78 @@ const colors = [
 	theme.palette.error.main,
 	theme.palette.info.main,
 ];
-const titles: string[] = ["Project1", "Project2", "Project3", "Project4", "Project5", "Project6", "Project7"];
+
 interface Project {
 	title: string;
 	number: number;
 	image: string;
 	description: string;
+	technologies: technologies[];
+	date: Date;
 }
 interface projectData {
 	[key: string]: Project;
 }
 const projects: projectData = {
-	Project1: { title: "Project 1dfsfsdfsdsfs", number: 1, image: ProjectImage, description: "Bla bla bla" },
-	Project2: { title: "Project 2", number: 2, image: ProjectImage, description: "Bla bla bla" },
-	Project3: { title: "Project 3", number: 3, image: ProjectImage, description: "Bla bla bla" },
-	Project4: { title: "Project 4", number: 4, image: ProjectImage, description: "Bla bla bla" },
-	Project5: { title: "Project 5", number: 5, image: ProjectImage, description: "Bla bla bla" },
-	Project6: { title: "Project 6", number: 6, image: ProjectImage, description: "Bla bla bla" },
-	Project7: { title: "Project 7", number: 7, image: ProjectImage, description: "Bla bla bla" },
+	Project1: {
+		title: "Project 1dfsfsdfsdsfs",
+		number: 1,
+		image: ProjectImage,
+		description: "Bla bla bla",
+		technologies: ["Javascript", "React", "NLP"],
+		date: new Date(2022, 0, 1),
+	},
+	Project2: {
+		title: "Project 2",
+		number: 2,
+		image: ProjectImage,
+		description: "Bla bla bla",
+		technologies: ["Javascript"],
+		date: new Date(2022, 0, 2),
+	},
+	Project3: {
+		title: "Project 3",
+		number: 3,
+		image: ProjectImage,
+		description: "Bla bla bla",
+		technologies: ["Javascript", "Python"],
+		date: new Date(2022, 0, 3),
+	},
+	Project4: {
+		title: "Project 4",
+		number: 4,
+		image: ProjectImage,
+		description: "Bla bla bla",
+		technologies: ["Javascript", "React", "GCP"],
+		date: new Date(2022, 0, 4),
+	},
+	Project5: {
+		title: "Project 5",
+		number: 5,
+		image: ProjectImage,
+		description: "Bla bla bla",
+		technologies: ["Javascript", "React", "GCP"],
+		date: new Date(2022, 0, 5),
+	},
+	Project6: {
+		title: "Project 6",
+		number: 6,
+		image: ProjectImage,
+		description: "Bla bla bla",
+		technologies: ["Javascript", "React", "GCP"],
+		date: new Date(2022, 0, 6),
+	},
+	Project7: {
+		title: "Project 7",
+		number: 7,
+		image: ProjectImage,
+		description: "Bla bla bla",
+		technologies: ["Python", "GCP"],
+		date: new Date(2022, 0, 7),
+	},
 };
 
-const technologies: string[] = [
+const allTechnologies: technologies[] = [
 	"Javascript",
 	"Python",
 	"React",
@@ -61,19 +113,26 @@ const technologies: string[] = [
 // This might work great https://github.com/mikemajara/react-spring-animated-grid
 // Alternatively I could just hide other elements on the same row? Could be equally good
 
-function SortBox() {
-
-	const [filter, setFilter] = useState<number[]>([]);
-	const [sort, setSort] = useState<string>("Pride");
+function SortBox({
+	filter,
+	setFilter,
+	sort,
+	setSort,
+}: {
+	filter: technologies[];
+	setFilter: (filter: technologies[]) => void;
+	sort: string;
+	setSort: (sort: string) => void;
+}) {
 	const sortOptions: string[] = ["Pride", "New", "Old", "Alphabetical"];
 
-	function handleFilterClick(index: number) {
+	function handleFilterClick(option: technologies) {
 		const newFilter = [...filter];
-		if (newFilter.includes(index)) {
-			const indexToRemove = newFilter.indexOf(index);
+		if (newFilter.includes(option)) {
+			const indexToRemove = newFilter.indexOf(option);
 			newFilter.splice(indexToRemove, 1);
 		} else {
-			newFilter.push(index);
+			newFilter.push(option);
 		}
 		setFilter(newFilter);
 	}
@@ -82,28 +141,42 @@ function SortBox() {
 		setSort(option);
 	}
 
-	
-
 	return (
 		<div className='sortBox'>
 			<h3>Filter:</h3>
 			<div className='sortOptions'>
-				{technologies.map((option, index) => {
-					let color = "#2e2e2e"
-					if (filter.includes(index)){
-						color = "#666eff"
+				{allTechnologies.map((option, index) => {
+					let color = "#2e2e2e";
+					if (filter.includes(option)) {
+						color = "#666eff";
 					}
-					return <span onClick={()=>handleFilterClick(index)}style={{background: color}} className='sortOption' >{option}</span>;
+					return (
+						<span
+							key={option}
+							onClick={() => handleFilterClick(option)}
+							style={{ background: color }}
+							className='sortOption'>
+							{option}
+						</span>
+					);
 				})}
 			</div>
 			<h3>Sort by:</h3>
 			<div className='sortOptions'>
 				{sortOptions.map((option) => {
-					let color = "#2e2e2e"
-					if (sort === option){
-						color = "#666eff"
+					let color = "#2e2e2e";
+					if (sort === option) {
+						color = "#666eff";
 					}
-					return <span onClick={()=>handleSortClick(option)}style={{background: color}} className='sortOption' >{option}</span>;
+					return (
+						<span
+							key={option}
+							onClick={() => handleSortClick(option)}
+							style={{ background: color }}
+							className='sortOption'>
+							{option}
+						</span>
+					);
 				})}
 			</div>
 		</div>
@@ -111,80 +184,120 @@ function SortBox() {
 }
 
 function ProjectCard({
-	selected,
-	project,
+	projectName,
 	handleClick,
-	mobile,
+	size,
 }: {
-	selected: number;
-	project: Project;
+	projectName: string;
 	handleClick: Function;
-	mobile: boolean;
+	size: number;
 }) {
 	const [show, setShow] = useState(true);
-	const [size, setSize] = useState(4);
 	const [description, setDescription] = useState(false);
+	const project = projects[projectName];
 	const itemNumber = project.number;
+	const widths = ["5%", "31%", "83%"]
 
-	useEffect(() => {
-		if (selected === itemNumber) {
-			const newSize = mobile ? 12 : 10;
-			setSize(newSize);
-			setTimeout(() => {
-				setDescription(true);
-			}, 150);
-		} else if (Math.floor((selected - 1) / 3) === Math.floor((itemNumber - 1) / 3) && selected !== 0) {
-			const newSize = mobile ? 4 : 1;
-			setSize(newSize);
-			setDescription(false);
-		} else {
-			setShow(true);
-			setSize(4);
-			setDescription(false);
-		}
-	}, [selected]);
 	function clicked() {
 		handleClick(itemNumber);
 	}
 
 	return (
-		<Grid
-			xs={size}
-			style={{
-				transition: theme.transitions.create("all", {
-					easing: theme.transitions.easing.sharp,
-					duration: theme.transitions.duration.leavingScreen,
-				}),
-			}}>
-			<Paper
-				elevation={2}
-				onClick={clicked}
-				className='projectCard'
-				style={{
-					background: colors[itemNumber % 5],
-				}}>
-				{show ? <img src={ProjectImage} alt='Project' className='projectImg' /> : null}
-				{description ? (
-					<motion.div
-						className='projectDescription'
-						initial={{ x: -100, opacity: 0 }}
-						animate={{ x: 0, opacity: 1 }}>
-						<h1>
-							<b>{project.title}</b>
-						</h1>
-						<div>{project.description}</div>
-					</motion.div>
-				) : null}
-			</Paper>
-		</Grid>
+		<motion.li
+			className='projectCard2'
+			style={{ background: colors[project.number % 5], width: widths[size] }}
+			key={project.title}
+			initial={{ scale: 0 }}
+			animate={{
+				scale: 1,
+			}}
+			exit={{
+				opacity: 0,
+				transition: { delay: 0.5 },
+			}}
+			layout>
+
+
+				<img src={ProjectImage} alt='Project' className='projectImg' />
+				{size === 2 ? 
+				<div className='details'>
+					<span className='name'>Name: {project.title}</span>
+					<span className='email'>Email: {project.description}</span>
+				</div> : null}
+
+
+
+
+		</motion.li>
+	);
+}
+
+function ProjectGrid({ titles }: { titles: string[] }) {
+	const [items, setItems] = useState<string[]>(titles);
+	const [selected, setSelected] = useState<string>("Project2");
+
+	const shuffle = () => {
+		const shuffled = [];
+		while (items.length > 0) {
+			let i = (Math.random() * items.length) | 0;
+			shuffled.push(items[i]);
+			items.splice(i, 1);
+		}
+		setItems([...shuffled]);
+
+		console.log("shuffle");
+	};
+
+	// When an item is clicked, set it to the selected item
+	// On every render, find the row of the selected item
+	// On that row, make the selected item big and all others small
+	// We can do this by manually generating the CSS styling for each item on render
+	const itemsSize: number[] = [];
+
+	//Set up every one
+	for (let i = 0; i < items.length; i++) {
+		const item = items[i];
+		if (item === selected) {
+			itemsSize.push(2);
+			//This is the selected item
+			//Make it big
+			//Make the rest small
+		} else if (Math.floor(i / 3) === Math.floor(items.indexOf(selected) / 3)) {
+			itemsSize.push(0);
+			//This is on the same row as the selected item
+			//Make it small
+		} else {
+			itemsSize.push(1);
+		}
+	}
+
+	return (
+		<div>
+			<div className='blurb'>
+				<button onClick={shuffle}>shuffle</button>
+			</div>
+
+			<ul className='wrapper'>
+				<AnimatePresence>
+					{items.map((item, index) => (
+						<ProjectCard
+							key={item}
+							projectName={item}
+							size={itemsSize[index]}
+							handleClick={setSelected}
+						/>
+					))}
+				</AnimatePresence>
+			</ul>
+		</div>
 	);
 }
 
 function Projects() {
+	const [filter, setFilter] = useState<technologies[]>([]);
+	const [sort, setSort] = useState<string>("Pride");
 	const [selected, setSelected] = useState(0);
 	const mobile = useMediaQuery("(max-width:900px)");
-	const sortOptions = [];
-	//If selected == Projects, big mode. If selected !== projects, small mode.
 	function onClick(item: number) {
 		if (selected === item) {
 			setSelected(0);
@@ -192,6 +305,35 @@ function Projects() {
 			selected === item ? setSelected(0) : setSelected(item);
 		}
 	}
+	const allTitles = Object.keys(projects);
+	let titles: string[] = [];
+
+	if (filter.length === 0) {
+		titles = allTitles;
+	} else {
+		titles = allTitles.filter((title) => {
+			const project = projects[title];
+			const technologies = project.technologies;
+			for (let i = 0; i < filter.length; i++) {
+				if (!technologies.includes(filter[i])) {
+					return false;
+				}
+			}
+			return true;
+		});
+	}
+
+	titles.sort((a: string, b: string): number => {
+		const projectA = projects[a];
+		const projectB = projects[b];
+		if (sort === "New") {
+			return projectB.number - projectA.number;
+		} else if (sort === "Old") {
+			return projectA.number - projectB.number;
+		} else {
+			return 0;
+		}
+	});
 
 	// SORT COMPONENT:
 	// Start small, "Sort by:" and then a dropdown cabinet
@@ -201,28 +343,13 @@ function Projects() {
 	return (
 		<div className='container Projects'>
 			<h1> Projects </h1>
-			
-				<SortBox />
+
+			<SortBox filter={filter} setFilter={setFilter} sort={sort} setSort={setSort} />
 			<ThemeProvider theme={theme}>
-				<Box sx={{ flexGrow: 1 }}>
-					<Grid container spacing={mobile ? 2 : 5}>
-						{titles.map((title) => {
-							return (
-								<ProjectCard
-									key={title}
-									selected={selected}
-									project={projects[title]}
-									handleClick={onClick}
-									mobile={mobile}
-								/>
-							);
-						})}
-					</Grid>
-				</Box>
+				<ProjectGrid titles={titles} />
 			</ThemeProvider>
 		</div>
 	);
 }
-
 
 export default Projects;

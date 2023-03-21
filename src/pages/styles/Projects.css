@@ -4,6 +4,59 @@
 
 
 
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+}
+
+
+
+
+
+.projectCard2 img {
+  display: block;
+  object-fit: cover;
+
+  float: left;
+  max-width: min(256px, 100%);
+  max-height: min(256px, 100%);
+}
+
+.projectCard2 .details {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.projectCard2 {
+  display: block;
+  margin-top: 8px;
+  width: 100%;
+  height: 235px;
+  position: relative;
+  overflow: hidden;
+  border: 8px solid #bbdefb;
+  border-radius: 5px;
+}
 
 .projectDescription {
   margin-left: 30px;
@@ -11,9 +64,10 @@
 }
 
 .projectCard {
-
-  height: 235px;
+  display: block;
+  
   padding: 10px;
+  margin: 10px;
   transition: all 0.3s ease-in-out;
 }
 
