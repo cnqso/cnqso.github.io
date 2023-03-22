@@ -51,7 +51,7 @@
   display: block;
   margin-top: 8px;
   width: 100%;
-  height: 235px;
+  
   position: relative;
   overflow: hidden;
   border: 8px solid #bbdefb;
@@ -59,15 +59,15 @@
 }
 
 .wide {
-  width: 75%;
+  width: 650px;
 }
 
 .normal {
-  width: 30%;
+  width: 235px;
 }
 
 .thin {
-  width: 5%;
+  width: 30px;
 }
 
 .projectDescription {
@@ -77,24 +77,64 @@
 
 .projectCard {
   display: block;
+  height: 235px;
+  
   /* border: 7px solid #fff; */
   border-radius: 5px;
   padding: 5px;
-  margin-inline: 5px;
-  margin-block: 10px;
+  margin: 5px;
+
+  margin-block: 15px;
 }
 
 .projectImg {
+  cursor: pointer;
   float: left;
   max-width: min(256px, 100%);
   max-height: min(256px, 100%);
 }
 
+.projectLinks {
+    max-width: 200px;
+    margin-inline: auto;
+    margin-block: 9px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
+.projectLinks a {
+    background-color: #fff;
+    padding: 4px;
+    border: 2px solid var(--background);
+    border-radius: 1em;
+    color: #666eff;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.Projects h1 {
+  margin-block: 10px;
+  font-size: 3em;
+}
+
+.Projects ul {
+  margin: 0 !important;
+  padding: 0;
+}
+
+.sortBox {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+}
 
 .sortOptions {
-  display: block;
-  margin-block: 1.2em;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .sortOption {
@@ -107,9 +147,27 @@
 
 @media (max-width: 900px) {
   .projectCard {
-    height: auto;
+    margin:0;
+    
     padding: 5px;
   }
+  .wide {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .normal {
+    width: 29%;
+    height: 29%;
+    margin-block: 15px;
+  }
+  
+  .thin {
+    width: 100%;
+    height: 25%;
+  }
+
+
   .projectDescription {
     font-size: 0.75em;
     margin: 0;

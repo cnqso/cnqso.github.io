@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Unstable_Grid2";
 import { motion, Reorder, AnimatePresence } from "framer-motion";
+import { Collapse } from '@mui/material';
 import "./styles/Projects.css";
 import ProjectImage from "../assets/4n2.png";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -32,6 +33,9 @@ interface Project {
 	description: string;
 	technologies: technologies[];
 	date: Date;
+	liveLink: string;
+	githubLink: string;
+	blogLink: string;
 }
 interface projectData {
 	[key: string]: Project;
@@ -44,6 +48,9 @@ const projects: projectData = {
 		description: "Bla bla bla",
 		technologies: ["Javascript", "React", "NLP"],
 		date: new Date(2022, 0, 1),
+		liveLink: "https://www.google.com",
+		githubLink: "https://www.google.com",
+		blogLink: "https://www.google.com",
 	},
 	Project2: {
 		title: "Project 2",
@@ -52,6 +59,9 @@ const projects: projectData = {
 		description: "Bla bla bla",
 		technologies: ["Javascript"],
 		date: new Date(2022, 0, 2),
+		liveLink: "https://www.google.com",
+		githubLink: "https://www.google.com",
+		blogLink: "https://www.google.com",
 	},
 	Project3: {
 		title: "Project 3",
@@ -60,6 +70,9 @@ const projects: projectData = {
 		description: "Bla bla bla",
 		technologies: ["Javascript", "Python"],
 		date: new Date(2022, 0, 3),
+		liveLink: "https://www.google.com",
+		githubLink: "https://www.google.com",
+		blogLink: "https://www.google.com",
 	},
 	Project4: {
 		title: "Project 4",
@@ -68,6 +81,9 @@ const projects: projectData = {
 		description: "Bla bla bla",
 		technologies: ["Javascript", "React", "GCP"],
 		date: new Date(2022, 0, 4),
+		liveLink: "https://www.google.com",
+		githubLink: "https://www.google.com",
+		blogLink: "https://www.google.com",
 	},
 	Project5: {
 		title: "Project 5",
@@ -76,6 +92,9 @@ const projects: projectData = {
 		description: "Bla bla bla",
 		technologies: ["Javascript", "React", "GCP"],
 		date: new Date(2022, 0, 5),
+		liveLink: "https://www.google.com",
+		githubLink: "https://www.google.com",
+		blogLink: "https://www.google.com",
 	},
 	Project6: {
 		title: "Project 6",
@@ -84,6 +103,9 @@ const projects: projectData = {
 		description: "Bla bla bla",
 		technologies: ["Javascript", "React", "GCP"],
 		date: new Date(2022, 0, 6),
+		liveLink: "https://www.google.com",
+		githubLink: "https://www.google.com",
+		blogLink: "https://www.google.com",
 	},
 	Project7: {
 		title: "Project 7",
@@ -92,6 +114,9 @@ const projects: projectData = {
 		description: "Bla bla bla",
 		technologies: ["Python", "GCP"],
 		date: new Date(2022, 0, 7),
+		liveLink: "https://www.google.com",
+		githubLink: "https://www.google.com",
+		blogLink: "https://www.google.com",
 	},
 };
 
@@ -125,6 +150,7 @@ function SortBox({
 	setSort: (sort: string) => void;
 }) {
 	const sortOptions: string[] = ["Pride", "New", "Old", "Alphabetical"];
+	const [show, setShow] = useState<boolean>(false);
 
 	function handleFilterClick(option: technologies) {
 		const newFilter = [...filter];
@@ -141,9 +167,18 @@ function SortBox({
 		setSort(option);
 	}
 
+	function showButton(){
+		setShow(!show);
+	}
+
 	return (
-		<div className='sortBox'>
-			<h3>Filter:</h3>
+		<>
+			<button onClick={showButton}>Filter projects</button>
+			
+			<Collapse in={show} timeout='auto' unmountOnExit>
+			<div className='sortBox'>
+				<div>
+			<h3>Filter by:</h3>
 			<div className='sortOptions'>
 				{allTechnologies.map((option, index) => {
 					let color = "#2e2e2e";
@@ -161,6 +196,8 @@ function SortBox({
 					);
 				})}
 			</div>
+			</div>
+			<div>
 			<h3>Sort by:</h3>
 			<div className='sortOptions'>
 				{sortOptions.map((option) => {
@@ -179,7 +216,11 @@ function SortBox({
 					);
 				})}
 			</div>
-		</div>
+			</div>
+			</div>
+			</Collapse>
+		
+		</>
 	);
 }
 
@@ -196,13 +237,13 @@ function ProjectCard({
 	const [description, setDescription] = useState(false);
 	const project = projects[projectName];
 	const itemNumber = project.number;
-	const widths = ["thin", "normal", "wide"]
-	const className = `projectCard ${widths[size]}`
+	const widths = ["thin", "normal", "wide"];
+	const className = `projectCard ${widths[size]}`;
 	function clicked() {
 		if (size === 2) {
-			handleClick("")
+			handleClick("");
 		} else {
-		handleClick(projectName);
+			handleClick(projectName);
 		}
 	}
 
@@ -210,37 +251,48 @@ function ProjectCard({
 		<motion.li
 			className={className}
 			style={{ background: colors[project.number % 5] }}
-			onClick={() => clicked()}
 			key={project.title}
 			initial={{ scale: 0 }}
 			animate={{
 				scale: 1,
 			}}
 			exit={{
-				opacity: 0,
-				transition: {},
+				scale: 0,
+				transition: { duration: 0.1 },
 			}}
 			layout>
-
-
-				{size === 0 ? null : <img src={ProjectImage} alt='Project' className='projectImg' />}
-				{size === 2 ? 
-				<div className='details'>
-					<span className='name'>Name: {project.title}</span>
-					<span className='email'>Email: {project.description}</span>
-				</div> : null}
-
-
-
-
+			{size === 0 ? (
+				<div style={{ height: "100%", cursor: "pointer" }} onClick={() => clicked()} />
+			) : (
+				<img src={ProjectImage} onClick={() => clicked()} alt='Project' className='projectImg' />
+			)}
+			{size === 2 ? (
+				<motion.div
+					className='projectDescription'
+					initial={{ x: -300, opacity: 0 }}
+					animate={{ x: 0, opacity: 1 }}
+					exit={{
+						opacity: 0,
+						transition: {},
+					}}>
+					<h1>
+						<b>{project.title}</b>
+					</h1>
+					<div>{project.description}</div>
+					<div className="projectLinks">
+						<span><a href={project.liveLink}>Live</a>  </span>
+						<span> <a href={project.githubLink}>Github</a> </span>
+						<span> <a href={project.blogLink}>Writeup</a> </span>
+					</div>
+				</motion.div>
+			) : null}
 		</motion.li>
 	);
 }
+//Github, Live, Writeup
 
 function ProjectGrid({ titles }: { titles: string[] }) {
-	const [selected, setSelected] = useState<string>("Project2");
-
-
+	const [selected, setSelected] = useState<string>("");
 
 	// When an item is clicked, set it to the selected item
 	// On every render, find the row of the selected item
@@ -267,9 +319,8 @@ function ProjectGrid({ titles }: { titles: string[] }) {
 
 	return (
 		<div>
-
 			<ul className='wrapper'>
-				<AnimatePresence>
+				<AnimatePresence initial={false} mode={"popLayout"}>
 					{titles.map((item, index) => (
 						<ProjectCard
 							key={item}
