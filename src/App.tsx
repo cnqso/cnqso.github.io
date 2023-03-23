@@ -9,8 +9,9 @@ import Projects from "./pages/Projects";
 import Blog from "./pages/Blog";
 import HireMe from "./pages/HireMe";
 import Contact from "./pages/previews/Contact"
-import { BrowserRouter as Router } from "react-router-dom";
+import { useLocation, BrowserRouter as Router } from "react-router-dom";
 import {MainRoutes} from "./Routes";
+import { motion } from "framer-motion";
 import "./App.css";
 
 export type PageContextType = "Home" | "Projects" | "Blog" | "Hire Me" | "Contact";
@@ -20,7 +21,6 @@ export const PageContext = createContext<PageContextType>("Home");
 
 function App() {
 
-	const [selected, setSelected] = useState<PageContextType>("Home");
 
 	//React router might be needed
 	
@@ -33,6 +33,7 @@ function App() {
 		<div className='App'>
 		<Router>
 			<NavBar />
+
 			<MainRoutes/>
 			
 		</Router>

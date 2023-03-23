@@ -40,7 +40,7 @@ interface Project {
 interface projectData {
 	[key: string]: Project;
 }
-const projects: projectData = {
+export const projectObject: projectData = {
 	Project1: {
 		title: "Project 1dfsfsdfsdsfs",
 		number: 1,
@@ -173,7 +173,7 @@ function SortBox({
 
 	return (
 		<>
-			<button onClick={showButton}>Filter projects</button>
+			<button onClick={showButton}>Filter and Sort</button>
 			
 			<Collapse in={show} timeout='auto' unmountOnExit>
 			<div className='sortBox'>
@@ -235,7 +235,7 @@ function ProjectCard({
 }) {
 	const [show, setShow] = useState(true);
 	const [description, setDescription] = useState(false);
-	const project = projects[projectName];
+	const project = projectObject[projectName];
 	const itemNumber = project.number;
 	const widths = ["thin", "normal", "wide"];
 	const className = `projectCard ${widths[size]}`;
@@ -347,14 +347,14 @@ function Projects() {
 			selected === item ? setSelected(0) : setSelected(item);
 		}
 	}
-	const allTitles = Object.keys(projects);
+	const allTitles = Object.keys(projectObject);
 	let titles: string[] = [];
 
 	if (filter.length === 0) {
 		titles = allTitles;
 	} else {
 		titles = allTitles.filter((title) => {
-			const project = projects[title];
+			const project = projectObject[title];
 			const technologies = project.technologies;
 			for (let i = 0; i < filter.length; i++) {
 				if (!technologies.includes(filter[i])) {
@@ -366,8 +366,8 @@ function Projects() {
 	}
 
 	titles.sort((a: string, b: string): number => {
-		const projectA = projects[a];
-		const projectB = projects[b];
+		const projectA = projectObject[a];
+		const projectB = projectObject[b];
 		if (sort === "New") {
 			return projectB.number - projectA.number;
 		} else if (sort === "Old") {

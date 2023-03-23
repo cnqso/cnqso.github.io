@@ -13,6 +13,20 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 // These might be best as snippets. Maybe show top comments
 // BlogPost is a single post with comments and a comment box. Sidebar with list of posts
 
+const datedPosts: any = {};
+	for (let i = 0; i < BlogPosts.length; i++) {
+		const yyyy_mm = BlogPosts[i].date.toLocaleString("default", {
+			month: "short",
+			year: "numeric",
+		});
+		if (datedPosts[yyyy_mm] === undefined) {
+			datedPosts[yyyy_mm] = [BlogPosts[i]];
+		} else {
+			datedPosts[yyyy_mm].push(BlogPosts[i]);
+		}
+	}
+
+
 function BlogHome() {
 	return <h1>Blog</h1>;
 }
@@ -38,18 +52,8 @@ function BlogNav() {
 	const navCss: "blogNavPost" | "blogNavHome" = location !== undefined ? "blogNavPost" : "blogNavHome";
 
 	//Sort posts into month cohorts
-	const datedPosts: any = {};
-	for (let i = 0; i < BlogPosts.length; i++) {
-		const yyyy_mm = BlogPosts[i].date.toLocaleString("default", {
-			month: "short",
-			year: "numeric",
-		});
-		if (datedPosts[yyyy_mm] === undefined) {
-			datedPosts[yyyy_mm] = [BlogPosts[i]];
-		} else {
-			datedPosts[yyyy_mm].push(BlogPosts[i]);
-		}
-	}
+	
+
 
 	// Create the HTML for each month cohort
 	const monthBlocks = [];
@@ -123,3 +127,4 @@ function Blog() {
 }
 
 export default Blog;
+export {datedPosts};
