@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 import "./App.css";
 
 export type PageContextType = "Home" | "Projects" | "Blog" | "Hire Me" | "Contact";
-export type technologies = "Javascript" | "Python" | "React" | "Typescript" | "GCP" | "OpenAI APIs" | "NoSQL" | "Firebase" | "Node" | "Material UI" | "NLP";
+export type technologies = "Javascript" | "Python" | "React" | "Typescript" | "GCP" | "OpenAI APIs" | "NoSQL" | "Firebase" | "Node" | "Material UI" | "NLP" | "SQL";
 
 export const PageContext = createContext<PageContextType>("Home");
 
