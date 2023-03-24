@@ -3,12 +3,6 @@
 import { useState, createContext } from "react";
 import NavButton from "./components/NavButton";
 import NavBar from "./components/NavBar";
-import reactLogo from "./assets/react.svg";
-import Home from "./pages/Home";
-import Projects from "./pages/Projects";
-import Blog from "./pages/Blog";
-import HireMe from "./pages/HireMe";
-import Contact from "./pages/previews/Contact"
 import { useLocation, BrowserRouter as Router } from "react-router-dom";
 import {MainRoutes} from "./Routes";
 import { motion } from "framer-motion";

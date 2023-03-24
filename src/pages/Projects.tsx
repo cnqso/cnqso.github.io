@@ -320,7 +320,7 @@ function ProjectGrid({ titles }: { titles: string[] }) {
 	return (
 		<div>
 			<ul className='wrapper'>
-				<AnimatePresence initial={false} mode={"popLayout"}>
+				<AnimatePresence initial={false} mode={"sync"}>
 					{titles.map((item, index) => (
 						<ProjectCard
 							key={item}

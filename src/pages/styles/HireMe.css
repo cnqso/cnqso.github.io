@@ -13,12 +13,8 @@
 	text-align: left;
 }
 
-hr {
-    border-top: 2px solid #666eff;
-}
-
 .sectionTitle {
-    font-size: 1.65em;
+	font-size: 1.65em;
 	font-weight: bold;
 	margin-bottom: 10px;
 }
@@ -26,11 +22,9 @@ hr {
 /* Style for the blurb section */
 .blurb {
 	margin-bottom: 20px;
-    font-size: 1.25em;
+	font-size: 1.25em;
 	text-align: center;
 }
-
-
 
 /* Style for the section content */
 .sectionContent {
@@ -76,10 +70,10 @@ hr {
 	line-height: 1.5;
 }
 .resumeLinks {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 20px 0;
 }
 
 .resumeLink {
@@ -89,41 +83,38 @@ hr {
 	cursor: pointer;
 }
 
-.sectionContentTime{
-    font-size: 0.9em;
-    margin-right: 10px;
-    /* color: #333; */
+.sectionContentTime {
+	font-size: 0.9em;
+	margin-right: 10px;
+	/* color: #333; */
 }
 
-.resumeSection{
-    display: grid;
-    grid-template-columns: auto;
+.resumeSection {
+	display: grid;
+	grid-template-columns: auto;
 }
 
 @media (min-width: 1200px) {
-    .resumeSection {
-        grid-template-columns: 15% auto 15%;
-        grid-template-rows: 1fr;
-        grid-gap: 20px;
-        width: 140%;
-        margin-left: -15%;
+	.resumeSection {
+		grid-template-columns: 15% auto 15%;
+		grid-template-rows: 1fr;
+		grid-gap: 20px;
+		width: 140%;
+		margin-left: -15%;
+	}
+	.sectionContent {
+		grid-column: 2;
+		margin-block: 7px;
+	}
 
-    }
-    .sectionContent {
-        grid-column: 2;
-        margin-block: 7px;
+	.sectionTitle {
+		margin-top: 0;
+		text-align: right;
+	}
 
-    }
-
-    .sectionTitle {
-        margin-top: 0;
-        
-text-align: right;
-    }
-
-    hr {
-        border: 15px solid var(--background);
-        margin-left: 20%;
-        margin-right: 20%;
-    }
+	.HireMe hr {
+		border: 15px solid var(--background);
+		margin-left: 20%;
+		margin-right: 20%;
+	}
 }
