@@ -14,18 +14,17 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 // BlogPost is a single post with comments and a comment box. Sidebar with list of posts
 
 const datedPosts: any = {};
-	for (let i = 0; i < BlogPosts.length; i++) {
-		const yyyy_mm = BlogPosts[i].date.toLocaleString("default", {
-			month: "short",
-			year: "numeric",
-		});
-		if (datedPosts[yyyy_mm] === undefined) {
-			datedPosts[yyyy_mm] = [BlogPosts[i]];
-		} else {
-			datedPosts[yyyy_mm].push(BlogPosts[i]);
-		}
+for (let i = 0; i < BlogPosts.length; i++) {
+	const yyyy_mm = BlogPosts[i].date.toLocaleString("default", {
+		month: "short",
+		year: "numeric",
+	});
+	if (datedPosts[yyyy_mm] === undefined) {
+		datedPosts[yyyy_mm] = [BlogPosts[i]];
+	} else {
+		datedPosts[yyyy_mm].push(BlogPosts[i]);
 	}
-
+}
 
 function BlogHome() {
 	return <h1>Blog</h1>;
@@ -33,14 +32,24 @@ function BlogHome() {
 
 function BlogPost() {
 	return (
-		<div className='BlogBody'>
-			<Routes>
-				{BlogPosts.map((post) => {
-					return <Route path={post.path} element={post.post()} key={post.title} />;
-				})}
-				<Route path='*' element={<h1>I never wrote anything with that title</h1>} />
-			</Routes>
-		</div>
+		<Routes>
+			{BlogPosts.map((post) => {
+				return (
+					<Route
+						path={post.path}
+						element={
+							<div className='BlogBody'>
+								<h1 className="postTitle">{post.title}</h1>
+								<div className="postDate">{post.date.toLocaleString("default", { month: "long", day: "numeric", year: "numeric" })}</div>
+								{post.post()}
+							</div>
+						}
+						key={post.title}
+					/>
+				);
+			})}
+			<Route path='*' element={<h1>I never wrote anything with that title</h1>} />
+		</Routes>
 	);
 }
 
@@ -52,8 +61,6 @@ function BlogNav() {
 	const navCss: "blogNavPost" | "blogNavHome" = location !== undefined ? "blogNavPost" : "blogNavHome";
 
 	//Sort posts into month cohorts
-	
-
 
 	// Create the HTML for each month cohort
 	const monthBlocks = [];
@@ -118,7 +125,7 @@ function Blog() {
 			{showNav ? (
 				<BlogNav />
 			) : (
-				<Link className='blogPostBtn' to={"/Blog/"} key={"Back"} style={{ color: "white"}}>
+				<Link className='blogPostBtn' to={"/Blog/"} key={"Back"} style={{ color: "white" }}>
 					Back
 				</Link>
 			)}
@@ -127,4 +134,4 @@ function Blog() {
 }
 
 export default Blog;
-export {datedPosts};
+export { datedPosts };

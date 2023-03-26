@@ -1,6 +1,51 @@
 /** @format */
 
 
+
+
+
+/** imported */
+
+
+.textBlock {
+	font-size: 1.35em;
+	text-align: justify;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.textBlock p > ol > li {
+    margin-bottom:1em;
+}
+
+.textBlock p > ol > li > ol > li {
+    margin-bottom:0.5em;
+}
+.textBlock p > ol > li > ol > li > ol > li {
+    margin-bottom:0.3em;
+}
+
+.footnote {
+	font-size: 0.95em;
+	padding-left: 5%;
+	padding-right: 5%;
+	max-width: 100%;
+	max-height: 100%;
+}
+.footnoteButton {
+	cursor: pointer;
+}
+
+
+
+
+
+
+
+/** Otherwise */
+
+
+
 .BlogHome {
     display: grid;
     grid-template-columns: 1fr;
@@ -48,6 +93,15 @@
     background-color: none;
     padding-block: 15px;
     padding-inline: 5px;
+}
+
+.postTitle {
+    margin-bottom: 10px;
+}
+.postDate {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    font-style: italic;
 }
 
 .blogNavPost > .blogPostBtn {
