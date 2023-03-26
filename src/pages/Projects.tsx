@@ -251,6 +251,11 @@ function ProjectCard({
 
 	return (
 		<motion.li
+		transition={{
+			ease: "easeOut",
+			duration: 0.25,
+
+		  }}
 			className={className}
 			style={{ background: colors[project.number % 5] }}
 			key={project.title}
@@ -270,8 +275,9 @@ function ProjectCard({
 			)}
 			{size === 2 ? (
 				<motion.div
+				transition={{ type: "spring", bounce: 0.25 }}
 					className='projectDescription'
-					initial={{ x: -300, opacity: 0 }}
+					initial={{ x: -50, opacity: 0 }}
 					animate={{ x: 0, opacity: 1 }}
 					exit={{
 						opacity: 0,
