@@ -34,7 +34,7 @@ function App() {
 	// If a page's name AND home are not selected, they are not shown
 	// useEffect for animations on select and deselect
 	return (
-		<div style={{width: '100vw'}}>
+		<div className="fullWidth">
 			<div className='App'>
 				<Router>
 					<NavBar />

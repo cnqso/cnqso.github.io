@@ -21,7 +21,9 @@
   
 }
 
-
+.fullWidth {
+  width: 100vw;
+}
 
 .App {
   overflow: visible;
@@ -83,10 +85,14 @@
   .NavBar {
     max-width:650px;
   }
+  .fullWidth {
+    width: 100%;
+  }
 }
 
 @media (max-width: 572px) {
   .NavBar {
     max-width:300px;
   }
+
 }

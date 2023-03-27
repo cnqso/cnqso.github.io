@@ -10,7 +10,6 @@
 .textBlock {
 	font-size: 1.35em;
 	text-align: justify;
-    max-width: 100%;
     max-height: 100%;
 }
 
@@ -53,7 +52,7 @@
 
 .BlogPost {
     display: grid;
-    grid-template-columns: 15% auto 15%;
+    grid-template-columns: 15% 70% 15%;
     grid-template-rows: 1fr;
     grid-gap: 20px;
     width: 140%;
@@ -73,6 +72,12 @@
     grid-column: 2;
     margin-bottom: 20px;
     padding-inline: 20px;
+}
+
+.BlogPost img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
@@ -110,8 +115,9 @@
 
 @media (max-width: 1200px) {
     .BlogPost {
-        grid-template-columns: 20% auto;
         width: 100%;
+        grid-template-columns: 20% 77%;
+        
         margin-left: 0;
     
     }
@@ -141,6 +147,14 @@
         border-radius: 5px;
         background-color: var(--paper);
      }
+
+     .BlogBody {
+        grid-column: 2;
+        margin-bottom: 20px;
+        padding-inline: 0px;
+    }
+
+
 
      h1 {
         margin-top: 10px;
