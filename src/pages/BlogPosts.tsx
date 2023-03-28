@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Collapse from "@mui/material/Collapse";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import theme from "prism-react-renderer/themes/nightOwl";
-import "highlight.js/styles/github.css";
+import "highlight.js/styles/shades-of-purple.css";
 import hljs from "highlight.js";
 import { marked } from "marked";
 
@@ -153,8 +153,7 @@ const SimCity: BlogPost = {
 	date: new Date(2023, 0, 3),
 	path: "post3",
 	post: function () {
-		const code1 = `
-/* comefrom: doEditWindow scoreDoer doMapInFront graphDoer doNilEvent */
+		const code1 = `/* comefrom: doEditWindow scoreDoer doMapInFront graphDoer doNilEvent */
 SimFrame(void)
 {
     short i;
@@ -176,8 +175,7 @@ SimFrame(void)
     Simulate(Fcycle & 15);
 }
 `;
-		const code2 = `
-results = {}
+		const code2 = `results = {}
 for x in range(1024):
     mod16 = str(x & 15)
     if (results.get(mod16)):
@@ -186,8 +184,7 @@ for x in range(1024):
         results[mod16] = 1
 print(results)
 `;
-		const code3 = `
-/* comefrom: SimFrame */
+		const code3 = `/* comefrom: SimFrame */
 Simulate(int mod16)
 {
     static short SpdPwr[4] = { 1,  2,  4,  5 };
@@ -284,8 +281,7 @@ Simulate(int mod16)
 }
 `;
 
-		const code4 = `
-Simulate(int mod16)
+		const code4 = `Simulate(int mod16)
 {
     static short SpdPwr[4] = { 1,  2,  4,  5 };
     static short SpdPtl[4] = { 1,  2,  7, 17 };
@@ -298,8 +294,7 @@ Simulate(int mod16)
     x = SimSpeed;
     if (x > 3) x = 3;
 `;
-		const code5 = `
-MapScan(int x1, int x2)
+		const code5 = `MapScan(int x1, int x2)
 {
     register short x, y;
 
@@ -354,8 +349,7 @@ MapScan(int x1, int x2)
     }
 }
 `;
-		const code6 = `
-MapScan(0, 1 * WORLD_X / 8);
+		const code6 = `MapScan(0, 1 * WORLD_X / 8);
 MapScan(1 * WORLD_X / 8, 2 * WORLD_X / 8);
 MapScan(2 * WORLD_X / 8, 3 * WORLD_X / 8);
 MapScan(3 * WORLD_X / 8, 4 * WORLD_X / 8);
@@ -364,8 +358,27 @@ MapScan(5 * WORLD_X / 8, 6 * WORLD_X / 8);
 MapScan(6 * WORLD_X / 8, 7 * WORLD_X / 8);
 MapScan(7 * WORLD_X / 8, WORLD_X);
 `;
-		const code7 = `
-/* comefrom: DoIndustrial DoCommercial DoResidential */
+
+const code7 = `learMap(void)
+{
+  register short x, y;
+
+
+  for (x = 0; x < WORLD_X; x++)
+    for (y = 0; y < WORLD_Y; y++)
+      Map[x][y] = DIRT;
+}
+`
+const code8 = `MapScan(0, 15);
+MapScan(15, 30);
+MapScan(30, 45);
+MapScan(45, 60);
+MapScan(60, 75);
+MapScan(75, 90);
+MapScan(90, 105);
+MapScan(105, 120);`
+
+	const code9 = `/* comefrom: DoIndustrial DoCommercial DoResidential */
 MakeTraf(int Zt)
 {
     short xtem, ytem;
@@ -399,8 +412,7 @@ MakeTraf(int Zt)
     else return (-1);   /* no road found */
 }
 `;
-		const code8 = `
-/* comefrom: DoSPZone MakeTraf */
+		const code10 = `/* comefrom: DoSPZone MakeTraf */
 FindPRoad(void)   /* look for road on edges of zone   */
 {
     static short PerimX[12] = {-1, 0, 1, 2, 2, 2, 1, 0,-1,-2,-2,-2};
@@ -423,8 +435,7 @@ FindPRoad(void)   /* look for road on edges of zone   */
 }
 `;
 
-		const code9 = `
-/* comefrom: MakeTraf */
+		const code11 = `/* comefrom: MakeTraf */
 TryDrive(void)
 {
     short z;
@@ -446,8 +457,7 @@ TryDrive(void)
     return (FALSE);     /* gone maxdis */
 }
 `;
-		const code10 = `
-DoResidential(int ZonePwrFlg)
+		const code12 = `DoResidential(int ZonePwrFlg)
 {
     short tpop, zscore, locvalve, value, TrfGood;
 
@@ -494,8 +504,7 @@ DoResidential(int ZonePwrFlg)
 }
 `;
 
-		const code11 = `
-#define HOSPITAL    409
+		const code13 = `#define HOSPITAL    409
 #define CHURCH      418
 #define COMBASE     423
 #define COMCLR      427
@@ -518,8 +527,7 @@ DoResidential(int ZonePwrFlg)
 #define LASTPORT    708
 `;
 
-		const code12 = `
-CChr9 = CChr & LOMASK; /* Mask off status bits  */ 
+		const code14 = `CChr9 = CChr & LOMASK; /* Mask off status bits  */ 
 if (CChr9 >= FLOOD) {
     SMapX = x;
     SMapY = y;
@@ -530,13 +538,11 @@ if (CChr9 >= FLOOD) {
         continue;
 `;
 
-		const code13 = `
-if (map[y][x].color === buildings.road.color) {
+		const code15 = `if (map[y][x].color === buildings.road.color) {
     localBuildings[map[y][x].buildingId].heatMap[buildingCode] = ((1+thisBuilding.level)/(traveled+1));
     }
 `;
-		const code14 = `
-localBuildings[map[y][x].buildingId]
+		const code16 = `localBuildings[map[y][x].buildingId]
 “The building object located at this tile”
 
 
@@ -556,7 +562,9 @@ localBuildings[map[y][x].buildingId]
 					The license was relinquished 15 years ago in an apparent collaboration with something
 					called the One Laptop Per Child program. The source code is disorganized and filled with
 					quirks. The simulation itself was written in C, but was framed TCL/TK, which I know
-					basically nothing about. Let's take a look at the code and see what we can glean.
+					basically nothing about. I'm working on a city building web app right now, and I wanted
+					to see how the original Sim City dealt with some of the systems theory problems that
+					are inherent to the genre. Modern 
 				</p>
 				<p>
 					There are plenty of nested initialization steps, but let’s start off with SimFrame. Many
@@ -1158,7 +1166,7 @@ const BotsWillAlwaysWin: BlogPost = {
 const Commons: BlogPost = {
 	title: "Commons",
 	date: new Date(2023, 1, 15),
-	path: "post5",
+	path: "commons",
 	post: function () {
 		return (
 			<div className='textBlock'>
@@ -1199,31 +1207,95 @@ const Spirals: BlogPost = {
 	post: function () {
 		return (
 			<div className='textBlock'>
-				velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-				proident, sunt in culpa qui officia deserunt mollit anim id est laborum." "Lorem ipsum dolor
-				sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-				borum." "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-				incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-				exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-				reprehenderit in voluptate "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-				eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-				nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-				dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-				Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
-				id est laborum." "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-				exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-				reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-				occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-				laborum."magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-				ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-				esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-				sunt in culpa qui officia deserunt mollit anim id est laborum." "Lorem ipsum dolor sit amet,
-				consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-				aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-				ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-				dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-				qui officia deserunt mollit anim id est la
+				<p>
+					I just finished up with a cool project that you can check out{" "}
+					<a href='https://cnqso.github.io/spirals/' target='_blank'>
+						here
+					</a>
+					. It&rsquo;s sort of like an interactive blog post detailing an algorithm rabbit hole
+					I&rsquo;ve been in lately. Since a lot of the details are in the project itself,
+					I&rsquo;ll try to keep this post brief.
+				</p>
+
+				<p>
+					This project expanded gradually and organically as I learned more about the subject area.
+					It started as just a codepen showing off an algorithm that I couldn&rsquo;t find anywhere
+					else on the internet, and expanded from there as I learned more about the problem and
+					thought of new potential solutions. The end result is 3 different algorithms, all
+					original, which solve the &ldquo;problem&rdquo; of square spirals optimized for different
+					use cases (run a function on each step, run a function on each turn, and no function at
+					all). While all are original, some are disappointingly a parallel invention. The second
+					algorithm, running a function on each turn, has been solved before. Previous solutions are
+					a little bit different and often follow different specifications (for example, maintaining
+					a space between each line) or use different approaches (like{" "}
+					<a
+						href='https://jonseymour.medium.com/investigating-the-properties-of-a-square-spiral-6aa635a4d803'
+						target='_blank'>
+						this incredible but complicated solution
+					</a> 
+					). The final algorithm, which finds the coordinates of the nth square in the sequence,
+					ended up being more-or-less mathematically identical to the more convoluted solutions I
+					was able to find. My version is significantly faster and more compact, but doesn&rsquo;t
+					do anything to revolutionary. It was a bit prideful to assume I could barge into a field I
+					know nothing about and invent something groundbreaking, as niche as the particular problem
+					may be.
+				</p>
+
+				<p>
+					The project is built with React and let me tell you, I feel like I have <em>mastered</em>{" "}
+					useEffect now. I got some experience with HTMLCanvas + useEffect in my previous project{" "}
+						<a href='http://cnqso.github.io/Blog/post/commons' target='_blank'>
+							Commons{" "}
+						</a> 
+					but this project involved iteration upon iteration of the combination in different
+					configurations and use cases. My pure javascript experience was also pretty basic, so the
+					untamed imperative jungle of useEffect made me learn quickly.
+				</p>
+
+				<p>
+					This was also the first time I firmly followed a style from beginning to end. I knew from
+					the outset that I wanted a simple, hard-edges design with empty spaces and a earth-tone,
+					1970&rsquo;s color scheme. This brought many challenges that I didn&rsquo;t foresee in
+					speed and usability. In speed, it conflicted with many pre-built React solutions which
+					usually follow the modern design ethos of rounded edges and lava lamp physicality. I split
+					the conflicts between long component customization sessions and compromises I wasn&rsquo;t
+					quite happy with (I can&rsquo;t believe I kept the round-edge buttons in. Maybe I&rsquo;ll
+					go back and fix that). In usability, it made me keep having to add colors and design
+					exceptions. The red, black, and brown colors that you can see in the final color palette
+					were added mid-process because the palette I had was insufficient for distinguishing
+					features and reading text. I&rsquo;m not too disappointed by the changes I had to make for
+					usability, these didn&rsquo;t like compromises as much as adaptations. I&rsquo;m happy
+					with the final design for the most part.
+				</p>
+
+				<p>
+					The footnotes were something I had in my mind for a while for a potential blog format.
+					[3/27/2023:{" "}
+					<a href='http://cnqso.github.io/Blog/post/thiswebsite' target='_blank'>
+						you&rsquo;re reading it on that format now!
+					</a>
+					] I can get bogged down in details, but this is because details are often important and
+					usually interesting. I like the idea of highly extensive footnotes because it lets you
+					have the best of both worlds: you can develop a &ldquo;tight&rdquo; writing style without
+					sacrificing depth. In print it would be annoying to constantly flip to an appendix, but
+					the dropdown style of footnotes you see in places like 538 elevates it to an optional
+					drawer of additional information. It empowers the user to choose the level of depth they
+					want at any given time, and helps them trust that you won&rsquo;t waste too much of their
+					time<Footnote num={1}>Though to be fair, I say this while in the 6th paragraph of what is
+					effectively a reflective appendix to an already lengthy post</Footnote> I&rsquo;m excited to
+					iterate on this more in the future.
+				</p>
+				<p>
+					I&rsquo;m really glad I had an excuse to use the Victory library. Not much to say about
+					victory other than that it&rsquo;s awesome. It was a bit of a performance bottleneck, but
+					this is just my particular weird use case. I can&rsquo;t recommend it enough. Few
+					libraries are beautiful out of the box.
+				</p>
+				<p>
+					I said I would keep it brief but look at me now. To quickly summarize, this was a fun
+					little project that took a little bit too long to make. I went in trying to make a small,
+					super polished product and came out with a moderately sized, solidly polished product.
+				</p>
 			</div>
 		);
 	},
@@ -1393,28 +1465,28 @@ function Footnote({
 }
 
 function CodeBlock({ code }: { code: string }) {
-    let borderColor = "0ff";
+	let borderColor = "0ff";
 
-    let styles = {
-      padding: 10,
-      margin: 0,
-      borderRadius: '0 0 2px 2px',
-      borderTop: 'solid 1px ' + borderColor,
-	  whiteSpace: "pre-wrap",
-	  backgroundColor: "#222",
-    };
-		useEffect(() => {
-		  hljs.highlightAll();
-		});
-	  
-		return (
-		  <div>
+	let styles = {
+		padding: 10,
+		margin: 0,
+		borderRadius: "0 0 2px 2px",
+		borderTop: "solid 1px " + borderColor,
+		whiteSpace: "pre-wrap",
+		backgroundColor: "#222",
+	};
+	useEffect(() => {
+		hljs.highlightAll();
+	});
+
+	return (
+		<div>
 			<pre>
-			  <code className="language-typescript">{code}</code>
+				<code className='language-typescript'>{code}</code>
 			</pre>
-		  </div>
-		);
-	  }
+		</div>
+	);
+}
 
 const BlogPosts: BlogPost[] = [
 	WordleViewer,
