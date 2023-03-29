@@ -1,8 +1,5 @@
 /** @format */
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import ProjectsPreview from "./previews/ProjectsPreview";
-import BlogPreview from "./previews/BlogPreview";
-import HireMePreview from "./previews/HireMePreview";
 import { motion, Reorder, AnimatePresence, LayoutGroup } from "framer-motion";
 import "./styles/Contact.css";
 import Typography from "@mui/material/Typography";
