@@ -64,7 +64,7 @@ export function Footnote({
 	);
 }
 
-export function CodeBlock({ code }: { code: string }) {
+export function CodeBlock({ code, language = "C" }: { code: string, language?: string }) {
 	let borderColor = "0ff";
 
 	let styles = {
@@ -82,7 +82,7 @@ export function CodeBlock({ code }: { code: string }) {
 	return (
 		<div>
 			<pre>
-				<code className='language-typescript'>{code}</code>
+				<code className={language.toLowerCase()}>{code}</code>
 			</pre>
 		</div>
 	);
