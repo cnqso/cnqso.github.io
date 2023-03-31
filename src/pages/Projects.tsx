@@ -70,7 +70,7 @@ export const projectObject: projectData = {
 		image: ProjectImage,
 		description: "A sim-city-like application in which many anonymous users must collaborate with each other",
 		technologies: ["Javascript", "React", "GCP", "Firebase", "NoSQL", "Node", "Material UI"],
-		date: new Date(2023, 1, 30),
+		date: new Date(2023, 1, 10),
 		liveLink: "https://www.commons.cnqso.com",
 		githubLink: "https://github.com/cnqso/webcommons",
 		blogLink: "https://www.google.com",
