@@ -948,8 +948,7 @@ const SimCity: BlogPost = {
 					However, it is a good starting point for a simulation that can be scaled up to a theoretically
 					infinite number of zones. The modularity also means that additional features, like power or water,
 					can be added without too much trouble. Of course, this is an untested system and system theory problems
-					are notoriously unpredictable. The only way to know for sure is to try it out. I’ll start working on 
-					this and see how it goes. Stay tuned!
+					are notoriously unpredictable. The only way to know for sure is to try it out.
 				</p>
 			</div>
 		);

@@ -2,6 +2,9 @@
 
 import type { BlogPost } from "../../types";
 import { CodeBlock, Footnote } from "../../components/BlogComponents";
+import desmos from "./assets/Commons/desmos.png";
+import objects from "./assets/Commons/objects.png";
+import draftGraphics from "./assets/Commons/draftGraphics.png";
 
 const code1 = `if (map[y][x].color === buildings.road.color) {
     localBuildings[map[y][x].buildingId].heatMap[buildingCode] = ((1+thisBuilding.level)/(traveled+1));
@@ -43,9 +46,9 @@ const Commons: BlogPost = {
 					project. I started my project adhering to these principles pretty closely. About halfway
 					through week 2 I had a working prototype of the game with a basic implementation of the
 					economic simulation. At this time it looked like this:
-					<img src='https://lh5.googleusercontent.com/w6Hy3qyq59l257TcCEIyjbkxDECG1MYBPiCd6i4nKE3s_77RQgr9lxWZixkVg7ccFIFluYMIrGlkc8uc5zsKAA-teq4Cl2OSGRKS1AbKzw694684t0i4DQI6DiWrXv9yljwisvxN8p03n12urO2QJ6k' />
+					<img src={draftGraphics} />
 					The building objects looked like this under the hood:
-					<img src='https://lh4.googleusercontent.com/ajEVMnftIcwB5_LbpOJDZzjHAA0P11r9T1-Dt3zYzgIu4xkVgaDvx903YDjJGOoloTW8kr9_UDqMVsOKECH3r1o9XOWeyUAwrqcIvLJuNnp_6MPHg9jlD0-txsfh_Z_9cMzIlKpz2DEvRaB7hdt6MVM' />
+					<img src={objects} />
 					This design didn't end up working out, and I lost a good amount of time pursuing it. It's
 					not fully clear at this point whether this was a failure of my design or a failure of my
 					implementation. I think that it's maybe a bit of both -- if the point of choosing a
@@ -146,7 +149,7 @@ const Commons: BlogPost = {
 					10%
 				</p>
 
-				<img src='https://lh4.googleusercontent.com/mohPv-1a2UziDtx4a-pIzqGlP1j19ba6qe4c3S7eAqWMBcuZOZoml1ViKnSVJvVHqXmXNrl8g08iMPzmNJD69Z_4CyhH_vg2My6in92FPYHJZUPfntLFoJ_bA51_WfdQ_cQRFfdSzvj6K8whhmz3xZc' />
+				<img src={desmos} />
 
 				<p>
 					This algorithm continues reasonably after x=30, so we can allow for larger max distances
