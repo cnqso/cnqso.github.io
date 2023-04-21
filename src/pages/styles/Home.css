@@ -16,10 +16,7 @@
     align-content: center;
 }
 
-.Home .homeCard:hover {
-    font-style: oblique;
-    background-color: #393939;
-}
+
 
 .Home .BlogPreview {
     display: flex;

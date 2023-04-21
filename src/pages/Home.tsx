@@ -55,7 +55,7 @@ function Home() {
 							<Link
 								to={"/Blog/post/" + post.path}
 								className='homeCard'>
-								<li style={{color: "#ccd"}} className='postTitle'>{post.title}</li>
+								<li className='postTitle'>{post.title}</li>
 							</Link>
 
 					);
@@ -67,28 +67,28 @@ function Home() {
 			<Link
 				to="https://www.google.com"
 				className='homeCard'>
-				<li style={{color: "#ccd"}} className='postTitle'>
+				<li className='postTitle'>
 					Rhizome page
 				</li>
 			</Link>
 			<Link
 				to="https://www.google.com"
 				className='homeCard'>
-				<li style={{color: "#ccd"}} className='postTitle'>
+				<li className='postTitle'>
 					Twitter
 				</li>
 			</Link>
 			<Link
 				to="https://www.google.com"
 				className='homeCard'>
-				<li style={{color: "#ccd"}} className='postTitle'>
+				<li className='postTitle'>
 					Letterboxd
 				</li>
 			</Link>
 			<Link
 				to="https://www.google.com"
 				className='homeCard'>
-				<li style={{color: "#ccd"}} className='postTitle'>
+				<li className='postTitle'>
 					Personal website
 				</li>
 			</Link>
@@ -96,14 +96,14 @@ function Home() {
 			<Link
 				to="https://www.google.com"
 				className='homeCard'>
-				<li style={{color: "#ccd"}} className='postTitle'>
+				<li className='postTitle'>
 					I have an unproduced podcast about economics and politics
 				</li>
 			</Link>
 			<Link
 				to="https://www.google.com"
 				className='homeCard'>
-				<li style={{color: "#ccd"}} className='postTitle'>
+				<li className='postTitle'>
 					I also have a produced podcast about soda
 				</li>
 			</Link>

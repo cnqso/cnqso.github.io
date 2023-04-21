@@ -113,7 +113,7 @@
 	}
 
 	.HireMe hr {
-		border: 15px solid var(--background);
+		border: 15px solid transparent;
 		margin-left: 20%;
 		margin-right: 20%;
 	}

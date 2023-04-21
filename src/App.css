@@ -9,7 +9,11 @@
   --accent-lighter: #b3b3ff;
 }
 
-
+.MuiTextField-root {
+  background-color: #fff !important;
+  border-radius: 4px;
+  
+}
 
 #root {
   /* max-width: 1280px; */
@@ -31,68 +35,4 @@
   width: 850px;
   margin: 0 auto;
   
-}
-
-.card {
-  background-color: var(--paper);
-  width: 12em;
-  display: inline-block;
-  margin: 1em;
-  padding: 1em;
-  border-radius: 0.4em;
-  box-shadow: 0 0 0.5rem rgba(222, 145, 223, 0.182);
-}
-
-.NavButton {
-  font-size: 1.2em;
-  width: 7em;
-  margin: 0.4em;
-  padding: 0.4em;
-  background-color: var(--paper);
-  border: 2px solid var(--background);
-  cursor: pointer;
-}
-
-.NavButton:hover {
-  
-  border-color: var(--accent);
-  animation: NavButtonHover 2s infinite;
-}
-
-.NavBar {
-  margin-bottom: 1em;
-  margin-inline: auto;
-  width: 100%;
-}
-
-/* Add animation for navbutton border */
-@keyframes NavButtonHover {
-  0% {
-    border-color: var(--accent-dark);
-  }
-  50% {
-    border-color: var(--accent-light);
-  }
-  100% {
-    border-color: var(--accent-dark);
-  }
-}
-
-@media (max-width: 900px) {
-  .App {
-    width: 100%;
-  }
-  .NavBar {
-    max-width:650px;
-  }
-  .fullWidth {
-    width: 100%;
-  }
-}
-
-@media (max-width: 572px) {
-  .NavBar {
-    max-width:300px;
-  }
-
 }

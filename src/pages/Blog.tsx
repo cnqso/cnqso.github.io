@@ -84,7 +84,7 @@ function BlogNav() {
 								style={
 									`${location}` === `${post.path}`
 										? { color: "#b3b3ff" }
-										: { color: "white" }
+										: {}
 								}>
 								<div className='blogPostBtn'>{post.title}</div>
 							</Link>
@@ -125,7 +125,7 @@ function Blog() {
 			{showNav ? (
 				<BlogNav />
 			) : (
-				<Link className='blogPostBtn' to={"/Blog/"} key={"Back"} style={{ color: "white" }}>
+				<Link className='blogPostBtn' to={"/Blog/"} key={"Back"}>
 					Back
 				</Link>
 			)}

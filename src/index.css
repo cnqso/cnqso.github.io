@@ -4,8 +4,6 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -37,7 +35,7 @@ h1 {
 hr {
   border-top: 2px solid #666eff;
 }
-button {
+/* button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.3em 0.8em;
@@ -47,7 +45,7 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
-}
+} */
 button:hover {
   border-color: #646cff;
 }

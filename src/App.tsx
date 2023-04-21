@@ -1,6 +1,8 @@
 /** @format */
 
 import { useState, createContext } from "react";
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyle, lightTheme, darkTheme } from './assets/theme';
 import NavButton from "./components/NavButton";
 import NavBar from "./components/NavBar";
 import { useLocation, BrowserRouter as Router } from "react-router-dom";
@@ -26,6 +28,12 @@ export type technologies =
 export const PageContext = createContext<PageContextType>("Home");
 
 function App() {
+
+	const [theme, setTheme] = useState(lightTheme);
+
+	const toggleTheme = () => {
+		setTheme(theme === lightTheme ? darkTheme : lightTheme);
+	  };
 	//React router might be needed
 
 	//Reintegrate home into App.jsx
@@ -34,15 +42,18 @@ function App() {
 	// If a page's name AND home are not selected, they are not shown
 	// useEffect for animations on select and deselect
 	return (
+		<ThemeProvider theme={theme}>
+      <GlobalStyle />
 		<div className="fullWidth">
 			<div className='App'>
 				<Router>
-					<NavBar />
+					<NavBar toggleTheme={toggleTheme}/>
 
 					<MainRoutes />
 				</Router>
 			</div>
 		</div>
+		</ThemeProvider>
 	);
 }
 

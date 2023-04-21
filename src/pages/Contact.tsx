@@ -12,13 +12,6 @@ import { useReward } from 'react-rewards';
 import CheckIcon from "@mui/icons-material/Check";
 import ErrorIcon from "@mui/icons-material/Error";
 import { styled, createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
-import ThemeOptions from "../themes";
-declare module "@mui/material/styles" {
-	interface ThemeOptions {
-		themeName?: string; // optional
-	}
-}
-const theme = createTheme(ThemeOptions);
 
 interface IFormInput {
 	name: string;
@@ -118,7 +111,6 @@ function Contact() {
 
 	return (
 		<div className="container Contact">
-			<ThemeProvider theme={theme}>
 				<h1>Contact</h1>
 				<div className='blurb'>
 					You can email me at my gmail address, <code>WiMiKelly</code>
@@ -137,6 +129,7 @@ function Contact() {
 							value={formInput.name}
 							onChange={handleInputChange}
 							required
+							
 						/>
 						<TextField
 							name='email'
@@ -261,7 +254,7 @@ function Contact() {
 					You can also text me at my personal number:
 					<PhoneNumber />
 				</div>
-			</ThemeProvider>
+
 		</div>
 	);
 }

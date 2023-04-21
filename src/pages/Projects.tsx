@@ -11,19 +11,13 @@ import ProjectImage from "../assets/4n2.png";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { styled, createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
 import type { technologies } from "../App";
-import ThemeOptions from "../themes";
-declare module "@mui/material/styles" {
-	interface ThemeOptions {
-		themeName?: string; // optional
-	}
-}
-const theme = createTheme(ThemeOptions);
+
 const colors = [
-	theme.palette.success.main,
-	theme.palette.primary.main,
-	theme.palette.secondary.main,
-	theme.palette.error.main,
-	theme.palette.info.main,
+	"rgb(102, 110, 255)",
+	"rgb(255, 102, 110)",
+	"rgb(245, 0, 87)",
+	"rgb(102, 186, 255)",
+	"rgb(120, 230, 180)",
 ];
 
 interface Project {
@@ -395,9 +389,9 @@ function Projects() {
 			<h1> Projects </h1>
 
 			<SortBox filter={filter} setFilter={setFilter} sort={sort} setSort={setSort} />
-			<ThemeProvider theme={theme}>
+
 				<ProjectGrid titles={titles} />
-			</ThemeProvider>
+
 		</div>
 	);
 }
