@@ -6,7 +6,7 @@ import "./styles/Home.css";
 import { projectObject } from "./Projects";
 import { datedPosts } from "./Blog";
 import { BlogPosts } from "./BlogPosts";
-import type { BlogPost } from "./BlogPosts";
+import type { BlogPost } from "../types";
 import NavButton from "../components/NavButton";
 
 function Home() {

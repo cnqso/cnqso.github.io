@@ -1,7 +1,7 @@
 // theme.ts
 import { createGlobalStyle } from 'styled-components';
 
-export const lightTheme = {
+export const lightTheme: any = {
   body: '#FFFFFF',
   text: '#242424',
   background: "#fff",
@@ -13,7 +13,7 @@ export const lightTheme = {
   accentLighter: "#b3b3ff",
 };
 
-export const darkTheme = {
+export const darkTheme: any = {
     body: '#242424',
     text: '#fff',
     background: "#242424",
@@ -25,7 +25,7 @@ export const darkTheme = {
     accentLighter: "#b3b3ff",
 };
 
-export const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle<any>`
   body {
     background-color: ${(props) => props.theme.body};
     color: ${(props) => props.theme.text};

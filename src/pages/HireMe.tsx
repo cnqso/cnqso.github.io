@@ -48,9 +48,9 @@ function HireMe() {
 			<div className='blurb'>I am a programmer </div>
 
 			<div className='resumeLinks'>
-				<span className='resumeLink'>Github</span>
-				<span className='resumeLink'>LinkedIn</span>
-				<span className='resumeLink'>Contact</span>
+				<span className='resumeLink'><a href="github.com/cnqso" target="_blank">Github</a></span>
+				<span className='resumeLink'><a href="github.com/cnqso" target="_blank">LinkedIn</a></span>
+				<span className='resumeLink'><a href="github.com/cnqso" target="_blank">Contact</a></span>
 			</div>
 			<hr />
 

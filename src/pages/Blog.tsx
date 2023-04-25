@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import "./styles/Blog.css";
 import { Routes, Route, useLocation, Link } from "react-router-dom";
 import { BlogPosts } from "./BlogPosts";
-import type { BlogPost } from "./BlogPosts";
+import type { BlogPost } from "../types";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 // Posts can be contained in a specific type of text block
