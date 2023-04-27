@@ -1,11 +1,14 @@
 {
   "name": "professionalsite",
+  "homepage": "https://github.com/cnqso/cnqso.github.io",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build", 
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -15,6 +18,7 @@
     "@mui/material": "^5.11.13",
     "@types/styled-components": "^5.1.26",
     "framer-motion": "^10.2.4",
+    "gh-pages": "^5.0.0",
     "highlight.js": "^11.7.0",
     "lodash.shuffle": "^4.2.0",
     "marked": "^4.3.0",

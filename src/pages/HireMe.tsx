@@ -48,9 +48,9 @@ function HireMe() {
 			<div className='blurb'>I am a programmer </div>
 
 			<div className='resumeLinks'>
-				<span className='resumeLink'><a href="github.com/cnqso" target="_blank">Github</a></span>
-				<span className='resumeLink'><a href="github.com/cnqso" target="_blank">LinkedIn</a></span>
-				<span className='resumeLink'><a href="github.com/cnqso" target="_blank">Contact</a></span>
+				<span className='resumeLink'><a href="https://github.com/cnqso" target="_blank">Github</a></span>
+				<span className='resumeLink'><a href="https://www.linkedin.com/in/william-kelly-715756242/" target="_blank">LinkedIn</a></span>
+				<span className='resumeLink'><a href="/#/Contact" target="_blank">Contact</a></span>
 			</div>
 			<hr />
 
@@ -60,9 +60,9 @@ function HireMe() {
 				<div className='sectionContent'>
 					
 					<div className='sectionContentTitle'>Commons<div className='sectionContentTime'>
-						<span className='resumeLink'>Live</span>
-						<span className='resumeLink'>Github</span>
-						<span className='resumeLink'>Writeup</span>
+					<span className='resumeLink'><a href="https://commons.cnqso.com" target="_blank">Live</a></span>
+						<span className='resumeLink'><a href="https://github.com/cnqso/webcommons" target="_blank">Github</a></span>
+						<span className='resumeLink'><a href="https://cnqso.github.io/#/Blog/post/commons" target="_blank">Writeup</a></span>
 					</div></div>
 					<div className='sectionContentSubtitle'>
 						Javascript, React, Google Cloud Platform (GCP), Firebase, Node, NoSQL, Material UI
@@ -76,9 +76,9 @@ function HireMe() {
 				<div className='sectionContent'>
 				
 					<div className='sectionContentTitle'>Wordle Viewer<div className='sectionContentTime'>
-						<span className='resumeLink'>Live</span>
-						<span className='resumeLink'>Github</span>
-						<span className='resumeLink'>Writeup</span>
+					<span className='resumeLink'><a href="https://cnqso.github.io/wordleviewer" target="_blank">Live</a></span>
+						<span className='resumeLink'><a href="https://github.com/cnqso/wordleviewer" target="_blank">Github</a></span>
+						<span className='resumeLink'><a href="https://cnqso.github.io/#/Blog/post/wordleviewer" target="_blank">Writeup</a></span>
 					</div></div>
 				
 					<div className='sectionContentSubtitle'>
@@ -93,9 +93,9 @@ function HireMe() {
 				<div className='sectionContent'>
 				
 					<div className='sectionContentTitle'>Spirals<div className='sectionContentTime'>
-						<span className='resumeLink'>Live</span>
-						<span className='resumeLink'>Github</span>
-						<span className='resumeLink'>Writeup</span>
+					<span className='resumeLink'><a href="https://cnqso.github.io/spirals" target="_blank">Live</a></span>
+						<span className='resumeLink'><a href="https://github.com/cnqso/spirals" target="_blank">Github</a></span>
+						<span className='resumeLink'><a href="https://cnqso.github.io/#/Blog/post/spirals" target="_blank">Writeup</a></span>
 					</div></div>
 					
 					<div className='sectionContentSubtitle'>Javascript, React, Material UI</div>
@@ -110,6 +110,33 @@ function HireMe() {
 			<Skills />
 			<hr />
 
+			<div className='resumeSection'>
+				<div className='sectionTitle'>Education</div>
+				<div className='sectionContent'>
+					<div className='sectionContentTitle'>
+						University of Michigan – Ann Arbor, School of Education<div className='sectionContentTime'>July 2022</div>
+					</div>
+					<div className='sectionContentSubtitle'>Master of Arts in Education</div>
+					
+					<div className='sectionContentProse'>
+						Concentration in Educational technology and distance learning. University Honors
+						Distinction.
+					</div>
+				</div>
+				<div className='sectionContent'>
+					<div className='sectionContentTitle'>
+						University of Michigan – Ann Arbor, School of Literature, Science, and the Arts<div className='sectionContentTime'>May 2021</div>
+					</div>
+					<div className='sectionContentSubtitle'>Bachelor of Arts in History</div>
+					
+					<div className='sectionContentProse'>
+						Concentration in economics and post-war US history. James B. Angell Scholar
+						Distinction, University Honors Distinction. Attended on the full-tuition Jean Fairfax
+						Scholarship.
+					</div>
+				</div>
+			</div>
+			<hr />
 			<div className='resumeSection'>
 				<div className='sectionTitle'>Experience</div>
 				<div className='sectionContent'>
@@ -147,7 +174,7 @@ function HireMe() {
 						</li>
 					</ul>
 				</div>
-				<div className='sectionContent'>
+				{/* <div className='sectionContent'>
 					<div className='sectionContentTitle'>Student Teacher<div className='sectionContentTime'>September 2021 - June 2022</div></div>
 					<div className='sectionContentSubtitle'>Wayne Memorial High School – Wayne, MI</div>
 					
@@ -170,7 +197,7 @@ function HireMe() {
 							support student success.
 						</li>
 					</ul>
-				</div>
+				</div> */}
 				<div className='sectionContent'>
 					<div className='sectionContentTitle'>Community Organizer<div className='sectionContentTime'>November 2019 - August 2021</div></div>
 					<div className='sectionContentSubtitle'>MSPN – Ypsilanti, MI</div>
@@ -196,35 +223,6 @@ function HireMe() {
 					</ul>
 				</div>
 			</div>
-			<hr />
-
-			<div className='resumeSection'>
-				<div className='sectionTitle'>Education</div>
-				<div className='sectionContent'>
-					<div className='sectionContentTitle'>
-						University of Michigan – Ann Arbor, School of Education<div className='sectionContentTime'>July 2022</div>
-					</div>
-					<div className='sectionContentSubtitle'>Master of Arts in Education</div>
-					
-					<div className='sectionContentProse'>
-						Concentration in Educational technology and distance learning. University Honors
-						Distinction.
-					</div>
-				</div>
-				<div className='sectionContent'>
-					<div className='sectionContentTitle'>
-						University of Michigan – Ann Arbor, School of Literature, Science, and the Arts<div className='sectionContentTime'>May 2021</div>
-					</div>
-					<div className='sectionContentSubtitle'>Bachelor of Arts in History</div>
-					
-					<div className='sectionContentProse'>
-						Concentration in economics and post-war US history. James B. Angell Scholar
-						Distinction, University Honors Distinction. Attended on the full-tuition Jean Fairfax
-						Scholarship.
-					</div>
-				</div>
-			</div>
-			<hr />
 		</div>
 	);
 }

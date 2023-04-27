@@ -22,7 +22,7 @@ function NestedFootnote() {
 const ThisWebsite: BlogPost = {
 	title: "This Website",
 	date: new Date(2023, 2, 26),
-	path: "post7",
+	path: "thiswebsite",
 	post: function () {
 		return (
 			<div className='textBlock'>

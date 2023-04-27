@@ -4,7 +4,7 @@ import {CodeBlock, Footnote} from "../../components/BlogComponents";
 const WordleViewer: BlogPost = {
 	title: "Wordle Viewer",
 	date: new Date(2022, 11, 21),
-	path: "post1",
+	path: "wordleviewer",
 	post: function () {
 		return (
 			<div className='textBlock'>

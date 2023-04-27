@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyle, lightTheme, darkTheme } from './assets/theme';
 import NavButton from "./components/NavButton";
 import NavBar from "./components/NavBar";
-import { useLocation, BrowserRouter as Router } from "react-router-dom";
+import { useLocation, HashRouter as Router } from "react-router-dom";
 import { MainRoutes } from "./Routes";
 import { motion } from "framer-motion";
 import "./App.css";

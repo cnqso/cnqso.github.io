@@ -7,17 +7,26 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { motion, Reorder, AnimatePresence } from "framer-motion";
 import { Collapse } from '@mui/material';
 import "./styles/Projects.css";
-import ProjectImage from "../assets/4n2.png";
+
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { styled, createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
 import type { technologies } from "../App";
+import ProjectImage from "../assets/4n2.png";
+import ReadabilityImage from "../assets/ReadabilityImage.png";
+import SpiralsImage from "../assets/SpiralsImage.png";
+import CommonsImage from "../assets/CommonsImage.png";
+import WordleViewerImage from "../assets/WordleViewerImage.png";
+import ThisWebsiteImage from "../assets/ThisWebsiteImage.png";
+import ReverseWordleImage from "../assets/4n2.png";
+import OldSiteImage from "../assets/OldSiteImage.png";
+
 
 const colors = [
 	"rgb(102, 110, 255)",
 	"rgb(255, 102, 110)",
 	"rgb(245, 0, 87)",
 	"rgb(102, 186, 255)",
-	"rgb(120, 230, 180)",
+	"rgb(120, 200, 180)",
 ];
 
 interface Project {
@@ -39,51 +48,51 @@ export const projectObject: projectData = {
 	Project1: {
 		title: "Readability",
 		number: 1,
-		image: ProjectImage,
+		image: ReadabilityImage,
 		description: "My current project - an LLM powered tool to analyze and adjust the readability of texts for education and busines.",
 		technologies: ["Typescript", "React", "NLP", "GCP", "Firebase", "OpenAI APIs", "NoSQL", "Python"],
 		date: new Date(2023, 4, 24),
 		liveLink: "https://www.google.com",
-		githubLink: "https://www.google.com",
-		blogLink: "https://www.google.com",
+		githubLink: "https://github.com/cnqso/greenshift-site",
+		blogLink: "https://cnqso.github.io/#/Blog/post/llmeducation",
 	},
 	Project2: {
 		title: "Spirals",
 		number: 2,
-		image: ProjectImage,
+		image: SpiralsImage,
 		description: "An interactive blog post and collection of visualizers for several novel algorithms",
 		technologies: ["Javascript", "React", "Material UI"],
 		date: new Date(2023, 2, 3),
 		liveLink: "https://cnqso.github.io/spirals/",
 		githubLink: "https://github.com/cnqso/spirals",
-		blogLink: "https://www.google.com",
+		blogLink: "https://cnqso.github.io/#/Blog/post/spirals",
 	},
 	Project3: {
 		title: "Commons",
 		number: 3,
-		image: ProjectImage,
+		image: CommonsImage,
 		description: "A sim-city-like application in which many anonymous users must collaborate with each other",
 		technologies: ["Javascript", "React", "GCP", "Firebase", "NoSQL", "Node", "Material UI"],
 		date: new Date(2023, 1, 10),
 		liveLink: "https://www.commons.cnqso.com",
 		githubLink: "https://github.com/cnqso/webcommons",
-		blogLink: "https://www.google.com",
+		blogLink: "https://cnqso.github.io/#/Blog/post/commons",
 	},
 	Project4: {
 		title: "Wordle Viewer",
 		number: 4,
-		image: ProjectImage,
+		image: WordleViewerImage,
 		description: "A gallery and collection of tools which turns an iPhone backup into a visual representation of all wordles sent in a text conversation",
 		technologies: ["Javascript", "React", "SQL", "Python", "NLP"],
 		date: new Date(2022, 11, 25),
 		liveLink: "https://cnqso.github.io/wordleviewer/",
 		githubLink: "https://github.com/cnqso/wordleviewer",
-		blogLink: "https://www.google.com",
+		blogLink: "https://cnqso.github.io/#/Blog/post/wordleviewer",
 	},
 	Project5: {
 		title: "This website!",
 		number: 5,
-		image: ProjectImage,
+		image: ThisWebsiteImage,
 		description: "Here you are! A small, hopefully polished website to house my projects and writing",
 		technologies: ["Typescript", "React"],
 		date: new Date(2023, 2, 24),
@@ -94,7 +103,7 @@ export const projectObject: projectData = {
 	Project6: {
 		title: "Reverse Wordle Solver",
 		number: 6,
-		image: ProjectImage,
+		image: ReverseWordleImage,
 		description: "A tool that can generate the most likely paths to a given wordle from a result string",
 		technologies: ["Python", "NLP"],
 		date: new Date(2023, 3, 6),
@@ -105,7 +114,7 @@ export const projectObject: projectData = {
 	Project7: {
 		title: "cnqso.com",
 		number: 7,
-		image: ProjectImage,
+		image: OldSiteImage,
 		description: "Bla bla bla",
 		technologies: ["Javascript"],
 		date: new Date(2022, 0, 7),
@@ -265,7 +274,7 @@ function ProjectCard({
 			{size === 0 ? (
 				<div style={{ height: "100%", cursor: "pointer" }} onClick={() => clicked()} />
 			) : (
-				<img src={ProjectImage} onClick={() => clicked()} alt='Project' className='projectImg' />
+				<img src={project.image} onClick={() => clicked()} alt='Project' className='projectImg' />
 			)}
 			{size === 2 ? (
 				<motion.div

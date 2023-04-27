@@ -5,7 +5,7 @@ import {CodeBlock, Footnote} from "../../components/BlogComponents";
 const Spirals: BlogPost = {
 	title: "Square Spirals",
 	date: new Date(2023, 2, 3),
-	path: "post6",
+	path: "spirals",
 	post: function () {
 		return (
 			<div className='textBlock'>

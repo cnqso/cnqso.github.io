@@ -4,7 +4,7 @@ import {CodeBlock, Footnote} from "../../components/BlogComponents";
 const LLMApplications: BlogPost = {
 	title: "LLM Applications in the Literacy Crisis",
 	date: new Date(2023, 2, 28),
-	path: "post9",
+	path: "llmapplications",
 	post: function () {
 		return (
 			<div className='textBlock'>
