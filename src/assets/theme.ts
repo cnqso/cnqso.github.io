@@ -88,17 +88,14 @@ export const GlobalStyle = createGlobalStyle<any>`
     .App {
       width: 100%;
     }
-    .NavBar {
-      max-width:650px;
-    }
     .fullWidth {
       width: 100%;
     }
   }
   
-  @media (max-width: 572px) {
+  @media (max-width: 740px) {
     .NavBar {
-      max-width:300px;
+      max-width:400px;
     }
   }
 
@@ -135,8 +132,9 @@ export const GlobalStyle = createGlobalStyle<any>`
 .Home .homeCard:hover {
     font-style: oblique;
     background-color: ${(props) => props.theme.paper};
-    color: "black";
+    transition: background-color 0.3s ease-out;
 }
+
 
 .BlogPost img {
     max-width: 100%;

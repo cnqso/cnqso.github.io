@@ -2,9 +2,11 @@
 	font-size: 2em;
 	margin-bottom: 0px;
     color: "#fff";
+
 }
 .Home .homeTitle:hover {
     color: "#000";
+
 }
 
 .Home .ProjectsPreview {
@@ -14,19 +16,24 @@
     justify-content: space-between;
     align-items: center;
     align-content: center;
+
 }
 
-
+.Home .homeCard {
+    font-size: 1.1em;
+}
 
 .Home .BlogPreview {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: flex-start;
+
 }
 
 .Home .postTitle {
     float: left;
     font-size: 1.35em;
     margin-bottom: 5px;
+
 }

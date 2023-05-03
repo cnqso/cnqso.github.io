@@ -3,7 +3,7 @@
 import type { BlogPost } from "../types";
 import WordleViewer from "./BlogPosts/WordleViewer";
 import SimCity from "./BlogPosts/SimCity";
-// import ReverseWordleSolver from "./BlogPosts/ReverseWordleSolver";
+import ReverseWordleSolver from "./BlogPosts/ReverseWordleSolver";
 import BotsWillAlwaysWin from "./BlogPosts/BotsWillAlwaysWin";
 import Commons from "./BlogPosts/Commons";
 import Spirals from "./BlogPosts/Spirals";
@@ -93,7 +93,7 @@ import LLMApplications from "./BlogPosts/LLMApplications"
 
 const BlogPosts: BlogPost[] = [
 	WordleViewer,
-	// ReverseWordleSolver,
+	ReverseWordleSolver,
 	SimCity,
 	BotsWillAlwaysWin,
 	Commons,

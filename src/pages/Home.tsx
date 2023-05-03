@@ -25,9 +25,9 @@ function Home() {
 			<div className='blurb'>I am a programmer </div>
 
 			<div className='resumeLinks'>
-				<span className='resumeLink'>Github</span>
-				<span className='resumeLink'>LinkedIn</span>
-				<span className='resumeLink'>Contact</span>
+			<span className='resumeLink'><a href="https://github.com/cnqso" target="_blank">Github</a></span>
+				<span className='resumeLink'><a href="https://www.linkedin.com/in/william-kelly-715756242/" target="_blank">LinkedIn</a></span>
+				<span className='resumeLink'><a href="/#/Contact" target="_blank">Contact</a></span>
 			</div>
 			<hr />
 			<div className='homeTitle'>Recent projects</div>
@@ -61,7 +61,7 @@ function Home() {
 					);
 				})}
 			</div>
-			<br />
+			{/* <br />
 			<div className='homeTitle'>Links out of here</div>
 			<div className='BlogPreview'>
 			<Link
@@ -107,7 +107,7 @@ function Home() {
 					I also have a produced podcast about soda
 				</li>
 			</Link>
-			</div>
+			</div> */}
 		</div>
 	);
 }

@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Unstable_Grid2";
 import { motion, Reorder, AnimatePresence } from "framer-motion";
-import { Collapse } from '@mui/material';
+import { Collapse } from "@mui/material";
 import "./styles/Projects.css";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -17,9 +17,8 @@ import SpiralsImage from "../assets/SpiralsImage.png";
 import CommonsImage from "../assets/CommonsImage.png";
 import WordleViewerImage from "../assets/WordleViewerImage.png";
 import ThisWebsiteImage from "../assets/ThisWebsiteImage.png";
-import ReverseWordleImage from "../assets/4n2.png";
+import ReverseWordleImage from "../assets/ReverseWordleImage.png";
 import OldSiteImage from "../assets/OldSiteImage.png";
-
 
 const colors = [
 	"rgb(102, 110, 255)",
@@ -49,10 +48,11 @@ export const projectObject: projectData = {
 		title: "Readability",
 		number: 1,
 		image: ReadabilityImage,
-		description: "My current project - an LLM powered tool to analyze and adjust the readability of texts for education and busines.",
+		description:
+			"My current project - an LLM powered tool to analyze and adjust the readability of texts for education and busines.",
 		technologies: ["Typescript", "React", "NLP", "GCP", "Firebase", "OpenAI APIs", "NoSQL", "Python"],
 		date: new Date(2023, 4, 24),
-		liveLink: "https://www.google.com",
+		liveLink: "",
 		githubLink: "https://github.com/cnqso/greenshift-site",
 		blogLink: "https://cnqso.github.io/#/Blog/post/llmeducation",
 	},
@@ -71,7 +71,8 @@ export const projectObject: projectData = {
 		title: "Commons",
 		number: 3,
 		image: CommonsImage,
-		description: "A sim-city-like application in which many anonymous users must collaborate with each other",
+		description:
+			"A sim-city-like application in which many anonymous users must collaborate with each other",
 		technologies: ["Javascript", "React", "GCP", "Firebase", "NoSQL", "Node", "Material UI"],
 		date: new Date(2023, 1, 10),
 		liveLink: "https://www.commons.cnqso.com",
@@ -82,7 +83,8 @@ export const projectObject: projectData = {
 		title: "Wordle Viewer",
 		number: 4,
 		image: WordleViewerImage,
-		description: "A gallery and collection of tools which turns an iPhone backup into a visual representation of all wordles sent in a text conversation",
+		description:
+			"A gallery and collection of tools which turns an iPhone backup into a visual representation of all wordles sent in a text conversation",
 		technologies: ["Javascript", "React", "SQL", "Python", "NLP"],
 		date: new Date(2022, 11, 25),
 		liveLink: "https://cnqso.github.io/wordleviewer/",
@@ -96,9 +98,9 @@ export const projectObject: projectData = {
 		description: "Here you are! A small, hopefully polished website to house my projects and writing",
 		technologies: ["Typescript", "React"],
 		date: new Date(2023, 2, 24),
-		liveLink: "https://www.cnqso.com",
-		githubLink: "https://github.com/cnqso/profsite",
-		blogLink: "https://www.google.com",
+		liveLink: "https://cnqso.github.io/",
+		githubLink: "https://github.com/cnqso/cnqso.github.io",
+		blogLink: "https://cnqso.github.io/#/Blog/post/thiswebsite",
 	},
 	Project6: {
 		title: "Reverse Wordle Solver",
@@ -106,22 +108,22 @@ export const projectObject: projectData = {
 		image: ReverseWordleImage,
 		description: "A tool that can generate the most likely paths to a given wordle from a result string",
 		technologies: ["Python", "NLP"],
-		date: new Date(2023, 3, 6),
-		liveLink: "https://www.google.com",
+		date: new Date(2023, 3, 30),
+		liveLink: "https://cnqso.github.io/reverseWordleSolver/",
 		githubLink: "https://github.com/cnqso/reverseWordleSolver",
-		blogLink: "https://www.google.com",
+		blogLink: "https://cnqso.github.io/#/Blog/post/reversewordlesolver",
 	},
-	Project7: {
-		title: "cnqso.com",
-		number: 7,
-		image: OldSiteImage,
-		description: "Bla bla bla",
-		technologies: ["Javascript"],
-		date: new Date(2022, 0, 7),
-		liveLink: "https://www.cnqso.github.io",
-		githubLink: "https://github.com/cnqso/cnqso.github.io",
-		blogLink: "https://www.google.com",
-	},
+	// Project7: {
+	// 	title: "cnqso.com",
+	// 	number: 7,
+	// 	image: OldSiteImage,
+	// 	description: "An old hobbyist website I made in 2019, which I'm keeping around for posterity",
+	// 	technologies: ["Javascript"],
+	// 	date: new Date(2022, 0, 7),
+	// 	liveLink: "",
+	// 	githubLink: "",
+	// 	blogLink: "",
+	// },
 };
 
 const allTechnologies: technologies[] = [
@@ -138,10 +140,6 @@ const allTechnologies: technologies[] = [
 	"NLP",
 	"SQL",
 ];
-
-//need some sort of alternative animated grid, will make a difference
-// This might work great https://github.com/mikemajara/react-spring-animated-grid
-// Alternatively I could just hide other elements on the same row? Could be equally good
 
 function SortBox({
 	filter,
@@ -172,59 +170,58 @@ function SortBox({
 		setSort(option);
 	}
 
-	function showButton(){
+	function showButton() {
 		setShow(!show);
 	}
 
 	return (
 		<>
 			<button onClick={showButton}>Filter and Sort</button>
-			
+
 			<Collapse in={show} timeout='auto' unmountOnExit>
-			<div className='sortBox'>
-				<div>
-			<h3>Filter by:</h3>
-			<div className='sortOptions'>
-				{allTechnologies.map((option, index) => {
-					let color = "#2e2e2e";
-					if (filter.includes(option)) {
-						color = "#666eff";
-					}
-					return (
-						<span
-							key={option}
-							onClick={() => handleFilterClick(option)}
-							style={{ background: color }}
-							className='sortOption'>
-							{option}
-						</span>
-					);
-				})}
-			</div>
-			</div>
-			<div>
-			<h3>Sort by:</h3>
-			<div className='sortOptions'>
-				{sortOptions.map((option) => {
-					let color = "#2e2e2e";
-					if (sort === option) {
-						color = "#666eff";
-					}
-					return (
-						<span
-							key={option}
-							onClick={() => handleSortClick(option)}
-							style={{ background: color }}
-							className='sortOption'>
-							{option}
-						</span>
-					);
-				})}
-			</div>
-			</div>
-			</div>
+				<div className='sortBox'>
+					<div>
+						<h3>Filter by:</h3>
+						<div className='sortOptions'>
+							{allTechnologies.map((option, index) => {
+								let color = document.body.style.backgroundColor;
+								if (filter.includes(option)) {
+									color = "#666eff";
+								}
+								return (
+									<span
+										key={option}
+										onClick={() => handleFilterClick(option)}
+										style={{ background: color }}
+										className='sortOption'>
+										{option}
+									</span>
+								);
+							})}
+						</div>
+					</div>
+					<div>
+						<h3>Sort by:</h3>
+						<div className='sortOptions'>
+							{sortOptions.map((option) => {
+								let color = document.body.style.backgroundColor;
+								if (sort === option) {
+									color = "#666eff";
+								}
+								return (
+									<span
+										key={option}
+										onClick={() => handleSortClick(option)}
+										style={{ background: color }}
+										className='sortOption'>
+										{option}
+									</span>
+								);
+							})}
+						</div>
+					</div>
+				</div>
 			</Collapse>
-		
 		</>
 	);
 }
@@ -243,7 +240,7 @@ function ProjectCard({
 	const project = projectObject[projectName];
 	const itemNumber = project.number;
 	const widths = ["thin", "normal", "wide"];
-	const className = `projectCard ${widths[size]}`;
+	const widthClass = `projectCard ${widths[size]}`;
 	function clicked() {
 		if (size === 2) {
 			handleClick("");
@@ -254,12 +251,11 @@ function ProjectCard({
 
 	return (
 		<motion.li
-		transition={{
-			ease: "easeOut",
-			duration: 0.25,
-
-		  }}
-			className={className}
+			transition={{
+				ease: "easeOut",
+				duration: 0.25,
+			}}
+			className={widthClass}
 			style={{ background: colors[project.number % 5] }}
 			key={project.title}
 			initial={{ scale: 0 }}
@@ -270,15 +266,17 @@ function ProjectCard({
 				scale: 0,
 				transition: { duration: 0.1 },
 			}}
+			onClick={() => widthClass === "projectCard thin" && clicked() }
 			layout>
 			{size === 0 ? (
-				<div style={{ height: "100%", cursor: "pointer" }} onClick={() => clicked()} />
+				// <div style={{ height: "105%", width: "150%", cursor: "pointer" }} onClick={() => clicked()} />
+				null
 			) : (
 				<img src={project.image} onClick={() => clicked()} alt='Project' className='projectImg' />
 			)}
 			{size === 2 ? (
 				<motion.div
-				transition={{ type: "spring", bounce: 0.25 }}
+					transition={{ type: "spring", bounce: 0.25 }}
 					className='projectDescription'
 					initial={{ x: -50, opacity: 0 }}
 					animate={{ x: 0, opacity: 1 }}
@@ -290,17 +288,29 @@ function ProjectCard({
 						<b>{project.title}</b>
 					</h1>
 					<div>{project.description}</div>
-					<div className="projectLinks">
-						<span><a href={project.liveLink}>Live</a>  </span>
-						<span> <a href={project.githubLink}>Github</a> </span>
-						<span> <a href={project.blogLink}>Writeup</a> </span>
+					<div className='projectLinks'>
+						{project.liveLink ? (
+							<span className="resumeLink">
+								<a href={project.liveLink}>Live</a>{" "}
+							</span>
+						) : null}
+						{project.githubLink ? (
+						<span className="resumeLink">
+							{" "}
+							<a href={project.githubLink}>Github</a>{" "}
+						</span>) : null }
+						{project.blogLink ? (
+						<span className="resumeLink">
+							{" "}
+							<a href={project.blogLink}>Writeup</a>{" "}
+						</span>):null}
 					</div>
 				</motion.div>
 			) : null}
 		</motion.li>
 	);
 }
-//Github, Live, Writeup
+
 
 function ProjectGrid({ titles }: { titles: string[] }) {
 	const [selected, setSelected] = useState<string>("");
@@ -379,10 +389,14 @@ function Projects() {
 	titles.sort((a: string, b: string): number => {
 		const projectA = projectObject[a];
 		const projectB = projectObject[b];
-		if (sort === "New") {
-			return projectB.number - projectA.number;
-		} else if (sort === "Old") {
+		if (sort === "Pride") {
 			return projectA.number - projectB.number;
+		} else if (sort === "New") {
+			return projectB.date.getTime() - projectA.date.getTime();
+		} else if (sort === "Old") {
+			return projectA.date.getTime() - projectB.date.getTime();
+		} else if (sort === "Alphabetical") {
+			return projectA.title > projectB.title ? 1 : -1;
 		} else {
 			return 0;
 		}
@@ -399,8 +413,7 @@ function Projects() {
 
 			<SortBox filter={filter} setFilter={setFilter} sort={sort} setSort={setSort} />
 
-				<ProjectGrid titles={titles} />
-
+			<ProjectGrid titles={titles} />
 		</div>
 	);
 }

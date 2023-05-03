@@ -3,7 +3,7 @@ import {CodeBlock, Footnote} from "../../components/BlogComponents";
 
 const LLMApplications: BlogPost = {
 	title: "LLM Applications in the Literacy Crisis",
-	date: new Date(2023, 2, 28),
+	date: new Date(2023, 3, 15),
 	path: "llmapplications",
 	post: function () {
 		return (

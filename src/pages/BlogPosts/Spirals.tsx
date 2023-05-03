@@ -46,7 +46,7 @@ const Spirals: BlogPost = {
 				<p>
 					The project is built with React and let me tell you, I feel like I have <em>mastered</em>{" "}
 					useEffect now. I got some experience with HTMLCanvas + useEffect in my previous project{" "}
-						<a href='http://cnqso.github.io/Blog/post/commons' target='_blank'>
+						<a href='http://cnqso.github.io/#/Blog/post/commons' target='_blank'>
 							Commons{" "}
 						</a> 
 					but this project involved iteration upon iteration of the combination in different
@@ -73,7 +73,7 @@ const Spirals: BlogPost = {
 				<p>
 					The footnotes were something I had in my mind for a while for a potential blog format.
 					[3/27/2023:{" "}
-					<a href='http://cnqso.github.io/Blog/post/thiswebsite' target='_blank'>
+					<a href='http://cnqso.github.io/#/Blog/post/thiswebsite' target='_blank'>
 						you&rsquo;re reading it on that format now!
 					</a>
 					] I can get bogged down in details, but this is because details are often important and
@@ -147,7 +147,7 @@ const Spirals2: BlogPost = {
 				<p>
 					The project is built with React and let me tell you, I feel like I have <em>mastered</em>{" "}
 					useEffect now. I got some experience with HTMLCanvas + useEffect in my previous project{" "}
-						<a href='http://cnqso.github.io/Blog/post/commons' target='_blank'>
+						<a href='http://cnqso.github.io/#/Blog/post/commons' target='_blank'>
 							Commons{" "}
 						</a> 
 					but this project involved iteration upon iteration of the combination in different
@@ -174,7 +174,7 @@ const Spirals2: BlogPost = {
 				<p>
 					The footnotes were something I had in my mind for a while for a potential blog format.
 					[3/27/2023:{" "}
-					<a href='http://cnqso.github.io/Blog/post/thiswebsite' target='_blank'>
+					<a href='http://cnqso.github.io/#/Blog/post/thiswebsite' target='_blank'>
 						you&rsquo;re reading it on that format now!
 					</a>
 					] I can get bogged down in details, but this is because details are often important and

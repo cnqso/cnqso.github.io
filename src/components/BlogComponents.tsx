@@ -2,13 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import Collapse from "@mui/material/Collapse";
 import "highlight.js/styles/shades-of-purple.css";
 import hljs from "highlight.js";
-import systemDiagram1 from "./images/systemDiagram1.png";
-import systemDiagram2 from "./images/systemDiagram2.png";
-import systemDiagram3 from "./images/systemDiagram3.png";
-import systemDiagram4 from "./images/systemDiagram4.png";
-import systemDiagram5 from "./images/systemDiagram5.png";
-import codeImg1 from "./images/codeImg1.png";
-import codeImg2 from "./images/codeImg2.png";
 
 
 
