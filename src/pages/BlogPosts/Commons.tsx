@@ -20,7 +20,7 @@ const code2 = `localBuildings[map[y][x].buildingId]
 “Higher levels add more to the heat map and further distanced add less”
 `;
 
-const Commons: BlogPost = {
+const Commons: any = {
 	title: "Commons",
 	date: new Date(2023, 1, 10),
 	path: "commons",

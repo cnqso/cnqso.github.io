@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build", 
+    "build": "tsc && vite build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "preview": "vite preview"
@@ -16,6 +16,9 @@
     "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.13",
+    "@portabletext/react": "^3.0.4",
+    "@portabletext/types": "^2.0.5",
+    "@sanity/client": "^6.4.0",
     "@types/styled-components": "^5.1.26",
     "framer-motion": "^10.2.4",
     "gh-pages": "^5.0.0",

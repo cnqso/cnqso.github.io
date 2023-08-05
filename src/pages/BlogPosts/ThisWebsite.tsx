@@ -19,7 +19,7 @@ function NestedFootnote() {
 	);
 }
 
-const ThisWebsite: BlogPost = {
+const ThisWebsite: any = {
 	title: "This Website",
 	date: new Date(2023, 2, 26),
 	path: "thiswebsite",

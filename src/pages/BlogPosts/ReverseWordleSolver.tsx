@@ -2,7 +2,7 @@ import type {BlogPost} from "../../types";
 import {CodeBlock, Footnote} from "../../components/BlogComponents";
 import image1 from "./assets/ReverseWordleSolver/image1.png";
 
-const ReverseWordleSolver: BlogPost = {
+const ReverseWordleSolver: any = {
 	title: "Reverse Wordle Solver",
 	date: new Date(2023, 3, 28),
 	path: "reversewordlesolver",

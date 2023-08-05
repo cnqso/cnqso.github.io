@@ -1,7 +1,7 @@
 import type {BlogPost} from "../../types";
 import {CodeBlock, Footnote} from "../../components/BlogComponents";
 
-const BotsWillAlwaysWin: BlogPost = {
+const BotsWillAlwaysWin: any = {
 	title: "Bots Will Always Win",
 	date: new Date(2023, 1, 3),
 	path: "botswillalwayswin",

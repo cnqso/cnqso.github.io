@@ -1,7 +1,7 @@
 import type {BlogPost} from "../../types";
 import {CodeBlock, Footnote} from "../../components/BlogComponents";
 
-const WordleViewer: BlogPost = {
+const WordleViewer: any = {
 	title: "Wordle Viewer",
 	date: new Date(2022, 11, 21),
 	path: "wordleviewer",

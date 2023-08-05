@@ -411,7 +411,7 @@ const code16 = `localBuildings[map[y][x].buildingId]
 “Higher levels add more to the heat map and further distanced add less”
 `;
 
-const SimCity: BlogPost = {
+const SimCity: any = {
 	title: "How Did SimCity Work?",
 	date: new Date(2023, 0, 3),
 	path: "simcity",

@@ -2,7 +2,7 @@ import type {BlogPost} from "../../types";
 import {CodeBlock, Footnote} from "../../components/BlogComponents";
 
 
-const Spirals: BlogPost = {
+const Spirals: any = {
 	title: "Square Spirals",
 	date: new Date(2023, 2, 3),
 	path: "spirals",
@@ -103,7 +103,7 @@ const Spirals: BlogPost = {
 	},
 };
 
-const Spirals2: BlogPost = {
+const Spirals2: any = {
 	title: "Square Spirals",
 	date: new Date(2023, 2, 3),
 	path: "post6",

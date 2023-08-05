@@ -1,19 +1,24 @@
 /** @format */
-
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import "./styles/Home.css";
 import { projectObject } from "./Projects";
-import { datedPosts } from "./Blog";
-import { BlogPosts } from "./BlogPosts";
-import type { BlogPost } from "../types";
+import type { PostPreview } from "../types";
 import NavButton from "../components/NavButton";
+import sanityClient from "../client";
 
 function Home() {
 	const projectKeys = Object.keys(projectObject).slice(0, 3);
-	const sortedBlog = BlogPosts.sort(function (a: BlogPost, b: BlogPost) {
-		return b.date.getTime() - a.date.getTime();
-	}).slice(0, 5);
+	const [titles, setTitles] = useState<PostPreview[]>([]);
+	
+	useEffect(() => {
+		console.log("fetching");
+		sanityClient
+			.fetch(`*[_type == "post"] | order(_createdAt desc)[0..2]`)
+			.then((data) => setTitles(data))
+			.catch(console.error);
+	}, []);
 	// Intro blurb (I'm a programmer bla bla bla)
 	// Links (maybe all of this can be shared with Hire Me, make it stay in place on that change)
 
@@ -25,9 +30,21 @@ function Home() {
 			<div className='blurb'>I am a programmer </div>
 
 			<div className='resumeLinks'>
-			<span className='resumeLink'><a href="https://github.com/cnqso" target="_blank">Github</a></span>
-				<span className='resumeLink'><a href="https://www.linkedin.com/in/william-kelly-715756242/" target="_blank">LinkedIn</a></span>
-				<span className='resumeLink'><a href="/#/Contact" target="_blank">Contact</a></span>
+				<span className='resumeLink'>
+					<a href='https://github.com/cnqso' target='_blank'>
+						Github
+					</a>
+				</span>
+				<span className='resumeLink'>
+					<a href='https://www.linkedin.com/in/william-kelly-715756242/' target='_blank'>
+						LinkedIn
+					</a>
+				</span>
+				<span className='resumeLink'>
+					<a href='/#/Contact' target='_blank'>
+						Contact
+					</a>
+				</span>
 			</div>
 			<hr />
 			<div className='homeTitle'>Recent projects</div>
@@ -49,15 +66,11 @@ function Home() {
 			<br />
 			<div className='homeTitle'>Recent posts</div>
 			<div className='BlogPreview'>
-				{sortedBlog.map((post: BlogPost) => {
+				{titles.map((post: PostPreview) => {
 					return (
-
-							<Link
-								to={"/Blog/post/" + post.path}
-								className='homeCard'>
-								<li className='postTitle'>{post.title}</li>
-							</Link>
-
+						<Link to={"/Blog/post/" + post.slug.current} className='homeCard'>
+							<li className='postTitle'>{post.title}</li>
+						</Link>
 					);
 				})}
 			</div>
