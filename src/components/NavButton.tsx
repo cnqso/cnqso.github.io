@@ -10,7 +10,7 @@ function NavButton({ destination }: { destination: PageContextType }) {
 
 	return (
 		<Link to={`${destination}/`} className='NavButton card' style={{color: fontColor}}>
-			 {destination}
+			 {destination ? destination : "Home"}
 		</Link>
 	);
 }

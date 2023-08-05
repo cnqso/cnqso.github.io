@@ -10,7 +10,7 @@ import { MainRoutes } from "./Routes";
 import { motion } from "framer-motion";
 import "./App.css";
 
-export type PageContextType = "Home" | "Projects" | "Blog" | "Hire Me" | "Contact";
+export type PageContextType = "" | "Projects" | "Blog" | "Hire Me" | "Contact";
 export type technologies =
 	| "Javascript"
 	| "Python"
@@ -25,7 +25,7 @@ export type technologies =
 	| "NLP"
 	| "SQL";
 
-export const PageContext = createContext<PageContextType>("Home");
+export const PageContext = createContext<PageContextType>("");
 
 function App() {
 

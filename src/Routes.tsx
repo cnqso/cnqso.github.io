@@ -10,7 +10,7 @@ import Contact from "./pages/Contact";
 import { motion, AnimatePresence } from "framer-motion";
 
 
-function Page({ node } : {node: React.ReactNode}) {
+function Page({ Node } : {Node: React.ComponentType<any>}) {
 		return (
 			<motion.div
 				className="container"
@@ -19,7 +19,7 @@ function Page({ node } : {node: React.ReactNode}) {
 				exit={{ x: -300, opacity: 0 }}
 				transition={{ ease: "easeOut", duration: 0.4 }}
 			>
-				{node}
+				<Node/>
 			</motion.div>
 		);
 }
@@ -31,12 +31,12 @@ function MainRoutes() {
 	return (
 		<AnimatePresence initial={false} mode='wait'>
 			<Routes location={location} key={broadLocation}>
-				<Route  path='/' element={<Page node={Home()} />} />
-				<Route  path='/home' element={<Page node={Home()} />} />
-				<Route  path='/projects' element={<Page node={Projects()} />} />
-				<Route  path='/Blog/*' element={<Page node={Blog()} />}/>
-				<Route  path='/Hire Me' element={<Page node={HireMe()} />} />
-				<Route  path='/Contact' element={<Page node={Contact()} />} />
+				<Route  path='/' element={<Page Node={Home}/>} />
+
+				<Route  path='/projects' element={<Page Node={Projects} />} />
+				<Route  path='/Blog/*' element={<Page Node={Blog} />}/>
+				<Route  path='/Hire Me' element={<Page Node={HireMe} />} />
+				<Route  path='/Contact' element={<Page Node={Contact} />} />
 			</Routes>
 		</AnimatePresence>
 	);

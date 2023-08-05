@@ -1,14 +1,16 @@
 /** @format */
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import "./styles/Blog.css";
 import { Routes, Route, useLocation, Link } from "react-router-dom";
 import type { BlogPost, PostPreview } from "../types";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import sanityClient from "../client";
-import {PortableText} from '@portabletext/react'
-import {createClient} from '@sanity/client'
+import { PortableText } from "@portabletext/react";
+import { createClient } from "@sanity/client";
+import CustomPortableText from "../components/BlogComponents";
+import { Collapse } from "@mui/material";
 
 // Posts can be contained in a specific type of text block
 // BlogHome is a list of all posts followed by an infinite scroll of posts.
@@ -19,11 +21,14 @@ function BlogHome() {
 	return <h1>Blog</h1>;
 }
 
+
 function BlogPost() {
 	const location = useLocation().pathname.replace("%20", " ").split("/")[3];
 
 	const [blogPost, setBlogPost] = useState<BlogPost | null>(null);
+	const [loading, setLoading] = useState<boolean>(true);
 	useEffect(() => {
+		setLoading(true);
 		console.log("fetching");
 		sanityClient
 			.fetch(
@@ -36,50 +41,52 @@ function BlogPost() {
 			)
 			.then((data) => setBlogPost(data[0]))
 			.catch(console.error);
-	}, []);
+		setLoading(false);
+	}, [location]);
 
-	const components = {
-		types: {
-		  code: (props: any) => (
-			<pre data-language={props.node.language}>
-			  <code>{props.node.code}</code>
-			</pre>
-		  )
-		}
-	  }
+	
 
-	return (
-		blogPost !== null ? (
+	return blogPost && !loading ? (
 		<Routes>
-					<Route
-						path={blogPost?.slug?.current}
-						element={
-							<div className='BlogBody'>
-								<h1 className='postTitle'>{blogPost.title}</h1>
-								<div className='postDate'>
-									{new Date(blogPost.publishedAt).toLocaleString("default", {
-										month: "long",
-										day: "numeric",
-										year: "numeric",
-									})}
-								</div>
-								<PortableText value={blogPost.body} components={components} />
-							</div>
-						}
-						key={blogPost?.slug?.current}
-					/>
+			<Route
+				path={blogPost.slug.current}
+				element={
+					<div className='BlogBody'>
+						<h1 className='postTitle'>{blogPost.title}</h1>
+						<div className='postDate'>
+							{new Date(blogPost.publishedAt).toLocaleString("default", {
+								month: "long",
+								day: "numeric",
+								year: "numeric",
+							})}
+						</div>
+						<CustomPortableText body={blogPost.body}/>
+					</div>
+				}
+				key={blogPost?.slug?.current}
+			/>
 			<Route path='*' element={<h1>I never wrote anything with that title</h1>} />
-		</Routes>) : (<h1>Loading...</h1>)
+		</Routes>
+	) : (
+		<h1>Loading...</h1>
 	);
 }
 
-function BlogNav({titles}: {titles: PostPreview[]}) {
+function BlogNav({ titles }: { titles: PostPreview[] }) {
 	// We do a lot of sorting by time here so that we don't have to do it elsewhere.
 	// Posts are sorted in navigation but are hashed everywhere else.
 	const location = useLocation().pathname.replace("%20", " ").split("/")[3];
 	const navCss: "blogNavPost" | "blogNavHome" = location !== undefined ? "blogNavPost" : "blogNavHome";
 	if (titles.length === 0) {
-		return <div className={navCss}><br/><br/>...<br/><br/></div>
+		return (
+			<div className={navCss}>
+				<br />
+				<br />
+				...
+				<br />
+				<br />
+			</div>
+		);
 	}
 	const datedPosts: any = {};
 	for (let i = 0; i < titles.length; i++) {
@@ -94,8 +101,6 @@ function BlogNav({titles}: {titles: PostPreview[]}) {
 		}
 	}
 
-	
-
 	//Sort posts into month cohorts
 
 	// Create the HTML for each month cohort
@@ -106,7 +111,6 @@ function BlogNav({titles}: {titles: PostPreview[]}) {
 		thisMonth.sort(function (a: PostPreview, b: PostPreview) {
 			return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
 		});
-
 
 		const posts = () => {
 			return (
@@ -125,7 +129,7 @@ function BlogNav({titles}: {titles: PostPreview[]}) {
 				</div>
 			);
 		};
-		monthBlocks.push({ month: new Date(thisMonth[0].date).getTime(), block: posts });
+		monthBlocks.push({ month: new Date(thisMonth[0].publishedAt).getTime(), block: posts });
 	}
 
 	// Sort the array of month cohorts
@@ -150,7 +154,7 @@ function Blog() {
 
 	const [titles, setTitles] = useState<PostPreview[]>([]);
 	useEffect(() => {
-		console.log("fetching")
+		console.log("fetching");
 		sanityClient
 			.fetch(
 				`*[_type == "post"]{
@@ -159,8 +163,6 @@ function Blog() {
 			.then((data) => setTitles(data))
 			.catch(console.error);
 	}, []);
-
-
 
 	return (
 		<div className={css}>

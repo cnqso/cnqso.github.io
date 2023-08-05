@@ -5,10 +5,10 @@ import NavButton from "./NavButton";
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 
-export type PageContextType = "Home" | "Projects" | "Blog" | "Hire Me" | "Contact";
-export const PageContext = createContext<PageContextType>("Home");
+export type PageContextType = "" | "Projects" | "Blog" | "Hire Me" | "Contact";
+export const PageContext = createContext<PageContextType>("");
 function NavBar({toggleTheme}: {toggleTheme: () => void}) {
-	const [selected, setSelected] = useState<PageContextType>("Home");
+	const [selected, setSelected] = useState<PageContextType>("");
 	const location = useLocation().pathname.replace("%20", " ");
 	const resumeTitle = location === "/Hire Me/" ? true : false;
 	return (
@@ -17,7 +17,7 @@ function NavBar({toggleTheme}: {toggleTheme: () => void}) {
 
 			<motion.div layout className='NavBar'>
 				<PageContext.Provider value={selected}>
-					<NavButton key='Home' destination='Home' />
+					<NavButton key='' destination='' />
 					<NavButton key='Projects' destination='Projects' />
 					<NavButton key='Blog' destination='Blog' />
 					<NavButton key='Hire Me' destination='Hire Me' />

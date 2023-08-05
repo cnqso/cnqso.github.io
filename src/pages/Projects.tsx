@@ -272,7 +272,7 @@ function ProjectCard({
 				// <div style={{ height: "105%", width: "150%", cursor: "pointer" }} onClick={() => clicked()} />
 				null
 			) : (
-				<img src={project.image} onClick={() => clicked()} alt='Project' className='projectImg' />
+				<motion.img src={project.image} onClick={() => clicked()} alt='Project' className='projectImg' layout/>
 			)}
 			{size === 2 ? (
 				<motion.div
@@ -283,7 +283,7 @@ function ProjectCard({
 					exit={{
 						opacity: 0,
 						transition: {},
-					}}>
+					}} >
 					<h1>
 						<b>{project.title}</b>
 					</h1>

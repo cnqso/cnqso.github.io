@@ -51,8 +51,9 @@ function Home() {
 			<div className='ProjectsPreview'>
 				{projectKeys.map((key: string) => {
 					return (
-						<div>
+						<div key={key}>
 							<Link
+							
 								to={projectObject[key].blogLink}
 								className='card homeCard'
 								style={{ padding: 5, textAlign: "center" }}>
@@ -68,7 +69,7 @@ function Home() {
 			<div className='BlogPreview'>
 				{titles.map((post: PostPreview) => {
 					return (
-						<Link to={"/Blog/post/" + post.slug.current} className='homeCard'>
+						<Link key={post.title} to={"/Blog/post/" + post.slug.current} className='homeCard'>
 							<li className='postTitle'>{post.title}</li>
 						</Link>
 					);

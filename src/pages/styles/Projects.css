@@ -86,8 +86,8 @@
 .projectImg {
   cursor: pointer;
   float: left;
-  max-width: min(256px, 100%);
-  max-height: min(256px, 100%);
+  max-width: min(256px, 99%);
+  max-height: min(256px, 99%);
 }
 
 .projectLinks {
