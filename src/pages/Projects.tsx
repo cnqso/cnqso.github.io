@@ -1,6 +1,6 @@
 /** @format */
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Unstable_Grid2";
@@ -10,7 +10,6 @@ import "./styles/Projects.css";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { styled, createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
-import type { technologies } from "../App";
 import ProjectImage from "../assets/4n2.png";
 import ReadabilityImage from "../assets/ReadabilityImage.png";
 import SpiralsImage from "../assets/SpiralsImage.png";
@@ -19,6 +18,12 @@ import WordleViewerImage from "../assets/WordleViewerImage.png";
 import ThisWebsiteImage from "../assets/ThisWebsiteImage.png";
 import ReverseWordleImage from "../assets/ReverseWordleImage.png";
 import OldSiteImage from "../assets/OldSiteImage.png";
+import type {Project, Projects, Technologies} from "../types";
+import {TECHNOLOGIES} from "../types";
+import {urlFor} from "../client";
+import {SanityContext} from "../App";
+
+
 
 const colors = [
 	"rgb(102, 110, 255)",
@@ -28,118 +33,16 @@ const colors = [
 	"rgb(120, 200, 180)",
 ];
 
-interface Project {
-	title: string;
-	number: number;
-	image: string;
-	description: string;
-	technologies: technologies[];
-	date: Date;
-	liveLink: string;
-	githubLink: string;
-	blogLink: string;
-}
-interface projectData {
-	[key: string]: Project;
-}
-
-export const projectObject: projectData = {
-	Project1: {
-		title: "Readability",
-		number: 1,
-		image: ReadabilityImage,
-		description:
-			"My current project - an LLM powered tool to analyze and adjust the readability of texts for education and busines.",
-		technologies: ["Typescript", "React", "NLP", "GCP", "Firebase", "OpenAI APIs", "NoSQL", "Python"],
-		date: new Date(2023, 4, 24),
-		liveLink: "",
-		githubLink: "https://github.com/cnqso/greenshift-site",
-		blogLink: "https://cnqso.github.io/#/Blog/post/llmeducation",
-	},
-	Project2: {
-		title: "Spirals",
-		number: 2,
-		image: SpiralsImage,
-		description: "An interactive blog post and collection of visualizers for several novel algorithms",
-		technologies: ["Javascript", "React", "Material UI"],
-		date: new Date(2023, 2, 3),
-		liveLink: "https://cnqso.github.io/spirals/",
-		githubLink: "https://github.com/cnqso/spirals",
-		blogLink: "https://cnqso.github.io/#/Blog/post/spirals",
-	},
-	Project3: {
-		title: "Commons",
-		number: 3,
-		image: CommonsImage,
-		description:
-			"A sim-city-like application in which many anonymous users must collaborate with each other",
-		technologies: ["Javascript", "React", "GCP", "Firebase", "NoSQL", "Node", "Material UI"],
-		date: new Date(2023, 1, 10),
-		liveLink: "https://www.commons.cnqso.com",
-		githubLink: "https://github.com/cnqso/webcommons",
-		blogLink: "https://cnqso.github.io/#/Blog/post/commons",
-	},
-	Project4: {
-		title: "Wordle Viewer",
-		number: 4,
-		image: WordleViewerImage,
-		description:
-			"A gallery and collection of tools which turns an iPhone backup into a visual representation of all wordles sent in a text conversation",
-		technologies: ["Javascript", "React", "SQL", "Python", "NLP"],
-		date: new Date(2022, 11, 25),
-		liveLink: "https://cnqso.github.io/wordleviewer/",
-		githubLink: "https://github.com/cnqso/wordleviewer",
-		blogLink: "https://cnqso.github.io/#/Blog/post/wordleviewer",
-	},
-	Project5: {
-		title: "This website!",
-		number: 5,
-		image: ThisWebsiteImage,
-		description: "Here you are! A small, hopefully polished website to house my projects and writing",
-		technologies: ["Typescript", "React"],
-		date: new Date(2023, 2, 24),
-		liveLink: "https://cnqso.github.io/",
-		githubLink: "https://github.com/cnqso/cnqso.github.io",
-		blogLink: "https://cnqso.github.io/#/Blog/post/thiswebsite",
-	},
-	Project6: {
-		title: "Reverse Wordle Solver",
-		number: 6,
-		image: ReverseWordleImage,
-		description: "A tool that can generate the most likely paths to a given wordle from a result string",
-		technologies: ["Python", "NLP"],
-		date: new Date(2023, 3, 30),
-		liveLink: "https://cnqso.github.io/reverseWordleSolver/",
-		githubLink: "https://github.com/cnqso/reverseWordleSolver",
-		blogLink: "https://cnqso.github.io/#/Blog/post/reversewordlesolver",
-	},
-	// Project7: {
-	// 	title: "cnqso.com",
-	// 	number: 7,
-	// 	image: OldSiteImage,
-	// 	description: "An old hobbyist website I made in 2019, which I'm keeping around for posterity",
-	// 	technologies: ["Javascript"],
-	// 	date: new Date(2022, 0, 7),
-	// 	liveLink: "",
-	// 	githubLink: "",
-	// 	blogLink: "",
-	// },
-};
-
-const allTechnologies: technologies[] = [
-	"Javascript",
-	"Python",
-	"React",
-	"Typescript",
-	"GCP",
-	"OpenAI APIs",
-	"NoSQL",
-	"Firebase",
-	"Node",
-	"Material UI",
-	"NLP",
-	"SQL",
-];
+function convertArrayToObject(projects: Project[]): Record<string, Project> {
+	const result: Record<string, Project> = {};
+  
+	projects.forEach(project => {
+	  const key = `Project${project.number}`;
+	  result[key] = project;
+	});
+  
+	return result;
+  }
 
 function SortBox({
 	filter,
@@ -147,15 +50,15 @@ function SortBox({
 	sort,
 	setSort,
 }: {
-	filter: technologies[];
-	setFilter: (filter: technologies[]) => void;
+	filter: Technologies[];
+	setFilter: (filter: Technologies[]) => void;
 	sort: string;
 	setSort: (sort: string) => void;
 }) {
 	const sortOptions: string[] = ["Pride", "New", "Old", "Alphabetical"];
 	const [show, setShow] = useState<boolean>(false);
 
-	function handleFilterClick(option: technologies) {
+	function handleFilterClick(option: Technologies) {
 		const newFilter = [...filter];
 		if (newFilter.includes(option)) {
 			const indexToRemove = newFilter.indexOf(option);
@@ -183,7 +86,7 @@ function SortBox({
 					<div>
 						<h3>Filter by:</h3>
 						<div className='sortOptions'>
-							{allTechnologies.map((option, index) => {
+							{TECHNOLOGIES.map((option, index) => {
 								let color = document.body.style.backgroundColor;
 								if (filter.includes(option)) {
 									color = "#666eff";
@@ -230,10 +133,12 @@ function ProjectCard({
 	projectName,
 	handleClick,
 	size,
+	projectObject,
 }: {
 	projectName: string;
 	handleClick: Function;
 	size: number;
+	projectObject: Projects;
 }) {
 	const [show, setShow] = useState(true);
 	const [description, setDescription] = useState(false);
@@ -249,6 +154,7 @@ function ProjectCard({
 		}
 	}
 
+	
 	return (
 		<motion.li
 			transition={{
@@ -272,7 +178,7 @@ function ProjectCard({
 				// <div style={{ height: "105%", width: "150%", cursor: "pointer" }} onClick={() => clicked()} />
 				null
 			) : (
-				<motion.img src={project.image} onClick={() => clicked()} alt='Project' className='projectImg' layout/>
+				<motion.img src={urlFor(project.image).url()} onClick={() => clicked()} alt='Project' className='projectImg' layout/>
 			)}
 			{size === 2 ? (
 				<motion.div
@@ -291,18 +197,18 @@ function ProjectCard({
 					<div className='projectLinks'>
 						{project.liveLink ? (
 							<span className="resumeLink">
-								<a href={project.liveLink}>Live</a>{" "}
+								<a href={project.liveLink.href}>Live</a>{" "}
 							</span>
 						) : null}
 						{project.githubLink ? (
 						<span className="resumeLink">
 							{" "}
-							<a href={project.githubLink}>Github</a>{" "}
+							<a href={project.githubLink.href}>Github</a>{" "}
 						</span>) : null }
 						{project.blogLink ? (
 						<span className="resumeLink">
 							{" "}
-							<a href={project.blogLink}>Writeup</a>{" "}
+							<a href={project.blogLink.href}>Writeup</a>{" "}
 						</span>):null}
 					</div>
 				</motion.div>
@@ -312,7 +218,7 @@ function ProjectCard({
 }
 
 
-function ProjectGrid({ titles }: { titles: string[] }) {
+function ProjectGrid({ titles, projectObject }: { titles: string[], projectObject: Projects }) {
 	const [selected, setSelected] = useState<string>("");
 
 	// When an item is clicked, set it to the selected item
@@ -348,6 +254,7 @@ function ProjectGrid({ titles }: { titles: string[] }) {
 							projectName={item}
 							size={titlesSize[index]}
 							handleClick={setSelected}
+							projectObject={projectObject}
 						/>
 					))}
 				</AnimatePresence>
@@ -357,7 +264,14 @@ function ProjectGrid({ titles }: { titles: string[] }) {
 }
 
 function Projects() {
-	const [filter, setFilter] = useState<technologies[]>([]);
+	const data = useContext(SanityContext)
+	const projectArray = data?.projects;
+	let projectObject: Projects = {};
+	if (projectArray) {
+		projectObject = convertArrayToObject(projectArray)
+	}
+	
+	const [filter, setFilter] = useState<Technologies[]>([]);
 	const [sort, setSort] = useState<string>("Pride");
 	const [selected, setSelected] = useState(0);
 	const mobile = useMediaQuery("(max-width:900px)");
@@ -392,9 +306,9 @@ function Projects() {
 		if (sort === "Pride") {
 			return projectA.number - projectB.number;
 		} else if (sort === "New") {
-			return projectB.date.getTime() - projectA.date.getTime();
+			return new Date(projectB.date).getTime() - new Date(projectA.date).getTime();
 		} else if (sort === "Old") {
-			return projectA.date.getTime() - projectB.date.getTime();
+			return new Date(projectA.date).getTime() - new Date(projectB.date).getTime();
 		} else if (sort === "Alphabetical") {
 			return projectA.title > projectB.title ? 1 : -1;
 		} else {
@@ -413,7 +327,7 @@ function Projects() {
 
 			<SortBox filter={filter} setFilter={setFilter} sort={sort} setSort={setSort} />
 
-			<ProjectGrid titles={titles} />
+			<ProjectGrid titles={titles} projectObject={projectObject} />
 		</div>
 	);
 }

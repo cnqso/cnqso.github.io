@@ -1,24 +1,18 @@
 /** @format */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import "./styles/Home.css";
-import { projectObject } from "./Projects";
-import type { PostPreview } from "../types";
+import type { PostPreview, Project} from "../types";
 import NavButton from "../components/NavButton";
-import sanityClient from "../client";
+import {sanityClient, urlFor} from "../client";
+import { SanityContext} from "../App";
 
 function Home() {
-	const projectKeys = Object.keys(projectObject).slice(0, 3);
-	const [titles, setTitles] = useState<PostPreview[]>([]);
+	const data = useContext(SanityContext);
+	const recentPosts = data?.posts.sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()).slice(0, 3);
+	const recentProjects = data?.projects.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).slice(0, 3);
 	
-	useEffect(() => {
-		console.log("fetching");
-		sanityClient
-			.fetch(`*[_type == "post"] | order(_createdAt desc)[0..2]`)
-			.then((data) => setTitles(data))
-			.catch(console.error);
-	}, []);
 	// Intro blurb (I'm a programmer bla bla bla)
 	// Links (maybe all of this can be shared with Hire Me, make it stay in place on that change)
 
@@ -49,17 +43,17 @@ function Home() {
 			<hr />
 			<div className='homeTitle'>Recent projects</div>
 			<div className='ProjectsPreview'>
-				{projectKeys.map((key: string) => {
+				{recentProjects?.map((project: Project) => {
 					return (
-						<div key={key}>
-							<Link
+						<div key={project.title}>
+							<a
 							
-								to={projectObject[key].blogLink}
+								href={project?.blogLink?.href}
 								className='card homeCard'
 								style={{ padding: 5, textAlign: "center" }}>
-								<img className='projectImg' src={projectObject[key].image} />
-								{projectObject[key].title}
-							</Link>
+								<img className='projectImg' src={urlFor(project.image).url()} />
+								{project.title}
+							</a>
 						</div>
 					);
 				})}
@@ -67,7 +61,7 @@ function Home() {
 			<br />
 			<div className='homeTitle'>Recent posts</div>
 			<div className='BlogPreview'>
-				{titles.map((post: PostPreview) => {
+				{recentPosts?.map((post: PostPreview) => {
 					return (
 						<Link key={post.title} to={"/Blog/post/" + post.slug.current} className='homeCard'>
 							<li className='postTitle'>{post.title}</li>

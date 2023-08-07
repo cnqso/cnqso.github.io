@@ -24,7 +24,11 @@
     margin-bottom:0.3em;
 }
 
+
 .footnote {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
 	font-size: 0.95em;
 	padding-left: 5%;
 	padding-right: 5%;
@@ -32,10 +36,24 @@
 	max-height: 100%;
     margin: 0px;
 }
+
+
 .footnoteButton {
 	cursor: pointer;
 }
 
+.footnoteCloser b {
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.footnoteCloser {
+	cursor: pointer;
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+}
 
 .BlogPost img {
     max-width: 100%;

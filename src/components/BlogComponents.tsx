@@ -6,14 +6,11 @@ import c from 'refractor/lang/c'
 import ts from 'refractor/lang/typescript'
 import "../pages/styles/prism.css";
 import { PortableText } from "@portabletext/react";
-import client from "../client";
-import imageUrlBuilder from '@sanity/image-url'
+import {urlFor} from "../client";
+import type {PortableTextReactComponents} from "@portabletext/react";
 
-const builder = imageUrlBuilder(client)
 
-function urlFor(source: any) {
-  return builder.image(source)
-}
+
 
 // Then register them
 Refractor.registerLanguage(js)
@@ -104,6 +101,7 @@ Refractor.registerLanguage(ts)
 		setShow(false);
 	};
 
+
 	return (
 		<>
 			<span
@@ -118,11 +116,11 @@ Refractor.registerLanguage(ts)
 			<Collapse in={show} timeout='auto' unmountOnExit>
 				<span className='footnote'>
 					<span
-						className='footnoteButton'
+						className='footnoteCloser'
 						onClick={() => {
 							setShow(false);
 						}}
-						style={{ textAlign: "center", marginTop: 0, fontSize: "2em" }}>
+						style={{ marginTop: 0, fontSize: "2em", textAlign: "center" }}>
 						<b>^</b>
 					</span>
 
@@ -136,9 +134,7 @@ Refractor.registerLanguage(ts)
 	)
 }
 
-
-
- const components = {
+ const components: Partial<PortableTextReactComponents> = {
 	types: {
 		codeblock: (props: any) => {
 			return (
@@ -154,17 +150,30 @@ Refractor.registerLanguage(ts)
 			return (
 				<img style={{margin: "0 auto"}} src={urlFor(props.value).url()}/>
 			)
-		}
+		},
+
 	},
 	marks: {
-		footnote: Footnote
-	}
+		footnote: Footnote,
+		center: (props: any) => {
+			return (
+				<div style={{textAlign: 'center', letterSpacing: 0, lineHeight: '1.2em'}}>
+					{props.children}
+				</div>
+			)
+		}
+	},
+	block: {
+		normal: ({children}) => <div style={{marginBlock: "22px"}}>{children}</div>,
+	},
 };
 
 
 export default function CustomPortableText ({body}: {body: any}) {
 	return (
+		<div className="textBlock">
 		<PortableText value={body} components={components} />
+		</div>
 	)
 }
 

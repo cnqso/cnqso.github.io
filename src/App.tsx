@@ -1,58 +1,67 @@
 /** @format */
 
-import { useState, createContext } from "react";
-import { ThemeProvider } from 'styled-components';
-import { GlobalStyle, lightTheme, darkTheme } from './assets/theme';
+import { useState, createContext, useEffect } from "react";
+import { ThemeProvider } from "styled-components";
+import { GlobalStyle, lightTheme, darkTheme } from "./assets/theme";
 import NavButton from "./components/NavButton";
 import NavBar from "./components/NavBar";
 import { useLocation, HashRouter as Router } from "react-router-dom";
 import { MainRoutes } from "./Routes";
 import { motion } from "framer-motion";
 import "./App.css";
-
-export type PageContextType = "" | "Projects" | "Blog" | "Hire Me" | "Contact";
-export type technologies =
-	| "Javascript"
-	| "Python"
-	| "React"
-	| "Typescript"
-	| "GCP"
-	| "OpenAI APIs"
-	| "NoSQL"
-	| "Firebase"
-	| "Node"
-	| "Material UI"
-	| "NLP"
-	| "SQL";
+import type { PageContextType, Technologies, SanityContextProps, PostPreview, Project, Resume } from "./types";
+import {sanityClient} from "./client";
 
 export const PageContext = createContext<PageContextType>("");
+export const SanityContext = createContext<SanityContextProps | undefined>(undefined);
 
 function App() {
-
 	const [theme, setTheme] = useState(lightTheme);
 
 	const toggleTheme = () => {
 		setTheme(theme === lightTheme ? darkTheme : lightTheme);
-	  };
-	//React router might be needed
+	};
 
-	//Reintegrate home into App.jsx
-	// If home selected, send "home" to all components which will make them render small
-	// If a page's name is selected, that app takes up the whole screen
-	// If a page's name AND home are not selected, they are not shown
-	// useEffect for animations on select and deselect
+	const [posts, setPosts] = useState<PostPreview[]>([]);
+	const [projects, setProjects] = useState<Project[]>([] as Project[]);
+	const [resume, setResume] = useState<Resume>({} as Resume);
+
+	const fetchData = async () => {
+		console.log("fetching");
+		sanityClient
+			.fetch(
+				`*[_type == "post"]{
+					title, publishedAt, slug}`
+			)
+			.then((data) => setPosts(data))
+			.catch(console.error);
+		sanityClient
+			.fetch(
+				`*[_type == "project"]`
+			)
+			.then((data) => setProjects(data))
+			.catch(console.error);
+
+	};
+
+	useEffect(() => {
+		fetchData();
+	}, []);
+
 	return (
 		<ThemeProvider theme={theme}>
-      <GlobalStyle />
-		<div className="fullWidth">
-			<div className='App'>
-				<Router>
-					<NavBar toggleTheme={toggleTheme}/>
+			<GlobalStyle />
+			<SanityContext.Provider value={{ posts, projects, resume, fetchData }}>
+				<div className='fullWidth'>
+					<div className='App'>
+						<Router>
+							<NavBar toggleTheme={toggleTheme} />
 
-					<MainRoutes />
-				</Router>
-			</div>
-		</div>
+							<MainRoutes />
+						</Router>
+					</div>
+				</div>
+			</SanityContext.Provider>
 		</ThemeProvider>
 	);
 }

@@ -1,12 +1,13 @@
 /** @format */
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
+import { SanityContext } from "../App";
 import { motion } from "framer-motion";
 import "./styles/Blog.css";
 import { Routes, Route, useLocation, Link } from "react-router-dom";
 import type { BlogPost, PostPreview } from "../types";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import sanityClient from "../client";
+import {sanityClient} from "../client";
 import { PortableText } from "@portabletext/react";
 import { createClient } from "@sanity/client";
 import CustomPortableText from "../components/BlogComponents";
@@ -21,13 +22,14 @@ function BlogHome() {
 	return <h1>Blog</h1>;
 }
 
-
 function BlogPost() {
 	const location = useLocation().pathname.replace("%20", " ").split("/")[3];
 
 	const [blogPost, setBlogPost] = useState<BlogPost | null>(null);
 	const [loading, setLoading] = useState<boolean>(true);
+	const [fourohfour, setFourohfour] = useState<boolean>(false);
 	useEffect(() => {
+		setFourohfour(false);
 		setLoading(true);
 		console.log("fetching");
 		sanityClient
@@ -39,36 +41,44 @@ function BlogPost() {
 					body
 				  }`
 			)
-			.then((data) => setBlogPost(data[0]))
+			.then((data) => {
+				if (data[0] === undefined) {
+					setFourohfour(true);
+				}
+				setBlogPost(data[0]);
+			})
 			.catch(console.error);
 		setLoading(false);
 	}, [location]);
 
-	
-
-	return blogPost && !loading ? (
+	return (
 		<Routes>
 			<Route
-				path={blogPost.slug.current}
+				path={location}
 				element={
-					<div className='BlogBody'>
-						<h1 className='postTitle'>{blogPost.title}</h1>
-						<div className='postDate'>
-							{new Date(blogPost.publishedAt).toLocaleString("default", {
-								month: "long",
-								day: "numeric",
-								year: "numeric",
-							})}
-						</div>
-						<CustomPortableText body={blogPost.body}/>
-					</div>
+					<>
+						{blogPost ? (
+							<div className='BlogBody'>
+								<h1 className='postTitle'>{blogPost.title}</h1>
+								<div className='postDate'>
+									{new Date(blogPost.publishedAt).toLocaleString("default", {
+										month: "long",
+										day: "numeric",
+										year: "numeric",
+									})}
+								</div>
+								<CustomPortableText body={blogPost?.body} />
+							</div>
+						) : fourohfour ? (
+							<h1>I never wrote anything with that title</h1>
+						) : (
+							<h1>...</h1>
+						)}
+					</>
 				}
 				key={blogPost?.slug?.current}
 			/>
-			<Route path='*' element={<h1>I never wrote anything with that title</h1>} />
 		</Routes>
-	) : (
-		<h1>Loading...</h1>
 	);
 }
 
@@ -152,17 +162,11 @@ function Blog() {
 	const mobile = useMediaQuery("(max-width: 900px)");
 	const showNav = mobile && location !== "/Blog/" ? false : true;
 
-	const [titles, setTitles] = useState<PostPreview[]>([]);
-	useEffect(() => {
-		console.log("fetching");
-		sanityClient
-			.fetch(
-				`*[_type == "post"]{
-					title, publishedAt, slug}`
-			)
-			.then((data) => setTitles(data))
-			.catch(console.error);
-	}, []);
+	const data = useContext(SanityContext);
+
+	if (!data || !data.posts) {
+		return <h1>...</h1>;
+	}
 
 	return (
 		<div className={css}>
@@ -171,7 +175,7 @@ function Blog() {
 				<Route path={"post/*"} element={<BlogPost />} />;
 			</Routes>
 			{showNav ? (
-				<BlogNav titles={titles} />
+				<BlogNav titles={data.posts} />
 			) : (
 				<Link className='blogPostBtn' to={"/Blog/"} key={"Back"}>
 					Back
