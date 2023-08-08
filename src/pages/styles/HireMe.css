@@ -44,7 +44,7 @@
 
 /* Style for the section content subtitle */
 .sectionContentSubtitle {
-	font-size: 16px;
+	font-size: 1.1em;
 	margin-bottom: 10px;
 	/* color: #555; */
 }
@@ -65,10 +65,15 @@
 
 /* Style for the section content prose */
 .sectionContentProse {
-	font-size: 16px;
-	/* color: #333; */
-	line-height: 1.5;
+	margin-top: 10px;
+	margin-bottom: 0px;
 }
+.sectionContentBullets {
+	margin: 0px;
+	font-size: 1.1em;
+	padding-left: 32px;
+}
+
 .resumeLinks {
 	display: flex;
 	justify-content: center;
@@ -78,9 +83,27 @@
 
 .resumeLink {
 	margin: 0 1em;
-	text-decoration: none;
 	font-size: 1.2em;
 	cursor: pointer;
+}
+
+.projectLink {
+	cursor: pointer;
+	text-align: right;
+	margin-left: 1em;
+}
+
+.sectionContentLinks {
+	margin-right: 1em;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: right;
+
+}
+
+.projectTechnologies {
+	display: flex;
+	flex-wrap: wrap;
 }
 
 /* .resumeLink:hover {
@@ -89,20 +112,53 @@
 
 .sectionContentTime {
 	font-size: 0.9em;
-	margin-right: 10px;
+	margin-right: 20px;
+	margin-left: 25px;
+	white-space: nowrap;
 	/* color: #333; */
 }
+
+
 
 .resumeSection {
 	display: grid;
 	grid-template-columns: auto;
 }
 
+.skills {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.skill {
+	cursor: pointer;
+	margin: 0.12em 0.2em;
+	padding: 0.08em 0.3em;
+	border-radius: 5px;
+}
+
+.largeSkill {
+	cursor: pointer;
+	margin: 0.3em 0.2em;
+	padding: 0.25em 0.4em;
+	border-radius: 5px;
+}
+
+
+
+/* .skill {
+	background-color: rgb(252, 234, 255);
+	margin: 0.3em 0.2em;
+	padding: 0.2em 0.3em;
+	border-radius: 5px;
+} */
+
 @media (min-width: 1200px) {
 	.resumeSection {
 		grid-template-columns: 15% auto 15%;
 		grid-template-rows: 1fr;
-		grid-gap: 20px;
+		grid-row-gap: 10px;
+		grid-column-gap: 20px;
 		width: 140%;
 		margin-left: -15%;
 	}
@@ -120,5 +176,50 @@
 		border: 15px solid transparent;
 		margin-left: 20%;
 		margin-right: 20%;
+	}
+}
+
+@media (max-width: 900px) {
+	.sectionContentTime {
+		font-size: 0.85em;
+		margin-right: 0px;
+	}
+	.sectionContentLinks {
+		margin-right: 0px;
+	}
+}
+
+@media (max-width: 500px) {
+	.resumeSection {
+		grid-template-columns: auto;
+		grid-template-rows: 1fr;
+		grid-row-gap: 10px;
+		grid-column-gap: 20px;
+		width: 100%;
+		margin-left: 0%;
+	}
+	.sectionContent {
+		grid-column: 1;
+		margin-block: 7px;
+	}
+
+	.sectionTitle {
+		margin-top: 0;
+		text-align: center;
+	}
+
+	.HireMe hr {
+		border: 15px solid transparent;
+		margin-left: 20%;
+		margin-right: 20%;
+	}
+	.sectionContentLinks {
+		font-size: 0.7em;
+	}
+	.sectionContentTime {
+		font-size: 0.75em;
+	}
+	.projectLink {
+		margin-left: 1em;
 	}
 }

@@ -12,7 +12,7 @@ function Home() {
 	const data = useContext(SanityContext);
 	const recentPosts = data?.posts.sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()).slice(0, 3);
 	const recentProjects = data?.projects.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).slice(0, 3);
-	
+	const resume = data?.resume
 	// Intro blurb (I'm a programmer bla bla bla)
 	// Links (maybe all of this can be shared with Hire Me, make it stay in place on that change)
 
@@ -24,18 +24,18 @@ function Home() {
 			<div className='blurb'>I am a programmer </div>
 
 			<div className='resumeLinks'>
-				<span className='resumeLink'>
-					<a href='https://github.com/cnqso' target='_blank'>
+				<span className='resumeLink fancyLink'>
+					<a href={resume?.github} target='_blank'>
 						Github
 					</a>
 				</span>
-				<span className='resumeLink'>
-					<a href='https://www.linkedin.com/in/william-kelly-715756242/' target='_blank'>
+				<span className='resumeLink fancyLink'>
+					<a href={resume?.linkedin} target='_blank'>
 						LinkedIn
 					</a>
 				</span>
-				<span className='resumeLink'>
-					<a href='/#/Contact' target='_blank'>
+				<span className='resumeLink fancyLink'>
+					<a href={resume?.contact} target='_blank'>
 						Contact
 					</a>
 				</span>
@@ -48,7 +48,7 @@ function Home() {
 						<div key={project.title}>
 							<a
 							
-								href={project?.blogLink?.href}
+								href={project?.blogLink}
 								className='card homeCard'
 								style={{ padding: 5, textAlign: "center" }}>
 								<img className='projectImg' src={urlFor(project.image).url()} />

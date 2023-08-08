@@ -17,10 +17,10 @@ function NavBar({toggleTheme}: {toggleTheme: () => void}) {
 
 			<motion.div layout className='NavBar'>
 				<PageContext.Provider value={selected}>
-					<NavButton key='' destination='' />
-					<NavButton key='Projects' destination='Projects' />
-					<NavButton key='Blog' destination='Blog' />
-					<NavButton key='Hire Me' destination='Hire Me' />
+					<NavButton destination='' />
+					<NavButton destination='Projects' />
+					<NavButton destination='Blog' />
+					<NavButton destination='Hire Me' />
 				</PageContext.Provider>
 			</motion.div>
 			{resumeTitle ? <motion.h1 layout layoutId="title" onClick={toggleTheme} style={{cursor: "pointer"}}>William Kelly</motion.h1> : null}

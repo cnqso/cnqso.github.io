@@ -14,19 +14,19 @@ export interface Project {
 	number: number;
 	image: string;
 	description: string;
-	technologies: Technologies[];
+	technologies: Technology[];
 	date: Date;
-	liveLink?: URL;
-	githubLink?: URL;
-	blogLink?: URL;
+	liveLink?: string;
+	githubLink?: string;
+	blogLink?: string;
+	_id: string;
 }
 export interface Projects {
 	[key: string]: Project;
 }
 
 export type PageContextType = "" | "Projects" | "Blog" | "Hire Me" | "Contact";
-export const TECHNOLOGIES = [
-	, "Javascript"
+export const TECHNOLOGIES = ["Javascript"
 	, "Python"
 	, "React"
 	, "Typescript"
@@ -44,7 +44,7 @@ export const TECHNOLOGIES = [
 	, "DynamoDB"
 	, "Stripe"] as const;
 
-export type Technologies = typeof TECHNOLOGIES[number];
+export type Technology = typeof TECHNOLOGIES[number];
 
 export type Education = {
 	school: string;
@@ -63,19 +63,21 @@ export type Experience = {
 	bulletPoints: string[];
 };
 
-export type Resume = {
+export interface Resume {
 	name: string;
-	byline: string;
+	byline: string[];
 	email: string;
 	phone: string;
-	website: URL;
-	github: URL;
-	linkedin: URL;
-	contact: URL;
-	projects: Projects;
+	website: string;
+	github: string;
+	linkedin: string;
+	contact: string;
+	projectRefs: {_ref: string};
+	projects: Project[];
 	skills: string[];
 	education: Education[];
 	experience: Experience[];
+	_id: string;
 };
 
 export interface SanityContextProps {

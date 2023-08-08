@@ -9,21 +9,11 @@ import { Collapse } from "@mui/material";
 import "./styles/Projects.css";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { styled, createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
-import ProjectImage from "../assets/4n2.png";
-import ReadabilityImage from "../assets/ReadabilityImage.png";
-import SpiralsImage from "../assets/SpiralsImage.png";
-import CommonsImage from "../assets/CommonsImage.png";
-import WordleViewerImage from "../assets/WordleViewerImage.png";
-import ThisWebsiteImage from "../assets/ThisWebsiteImage.png";
-import ReverseWordleImage from "../assets/ReverseWordleImage.png";
-import OldSiteImage from "../assets/OldSiteImage.png";
-import type {Project, Projects, Technologies} from "../types";
+import type {Project, Projects, Technology} from "../types";
 import {TECHNOLOGIES} from "../types";
 import {urlFor} from "../client";
 import {SanityContext} from "../App";
-
-
+import { useLocation } from 'react-router-dom';
 
 const colors = [
 	"rgb(102, 110, 255)",
@@ -33,11 +23,17 @@ const colors = [
 	"rgb(120, 200, 180)",
 ];
 
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
+
 function convertArrayToObject(projects: Project[]): Record<string, Project> {
 	const result: Record<string, Project> = {};
   
 	projects.forEach(project => {
-	  const key = `Project${project.number}`;
+	  const key = `${project._id}`;
 	  result[key] = project;
 	});
   
@@ -50,15 +46,18 @@ function SortBox({
 	sort,
 	setSort,
 }: {
-	filter: Technologies[];
-	setFilter: (filter: Technologies[]) => void;
+	filter: Technology[];
+	setFilter: (filter: Technology[]) => void;
 	sort: string;
 	setSort: (sort: string) => void;
 }) {
+	const query = useQuery();
+	
+	
 	const sortOptions: string[] = ["Pride", "New", "Old", "Alphabetical"];
-	const [show, setShow] = useState<boolean>(false);
+	const [show, setShow] = useState<boolean>(query.get("tech") !== null);
 
-	function handleFilterClick(option: Technologies) {
+	function handleFilterClick(option: Technology) {
 		const newFilter = [...filter];
 		if (newFilter.includes(option)) {
 			const indexToRemove = newFilter.indexOf(option);
@@ -197,18 +196,18 @@ function ProjectCard({
 					<div className='projectLinks'>
 						{project.liveLink ? (
 							<span className="resumeLink">
-								<a href={project.liveLink.href}>Live</a>{" "}
+								<a href={project.liveLink}>Live</a>{" "}
 							</span>
 						) : null}
 						{project.githubLink ? (
 						<span className="resumeLink">
 							{" "}
-							<a href={project.githubLink.href}>Github</a>{" "}
+							<a href={project.githubLink}>Github</a>{" "}
 						</span>) : null }
 						{project.blogLink ? (
 						<span className="resumeLink">
 							{" "}
-							<a href={project.blogLink.href}>Writeup</a>{" "}
+							<a href={project.blogLink}>Writeup</a>{" "}
 						</span>):null}
 					</div>
 				</motion.div>
@@ -270,11 +269,14 @@ function Projects() {
 	if (projectArray) {
 		projectObject = convertArrayToObject(projectArray)
 	}
+
+	const query = useQuery();
 	
-	const [filter, setFilter] = useState<Technologies[]>([]);
+	const tech: Technology[] = query.get("tech") ? [query.get("tech") as Technology] : [];
+	const [filter, setFilter] = useState<Technology[]>(tech);
+
 	const [sort, setSort] = useState<string>("Pride");
 	const [selected, setSelected] = useState(0);
-	const mobile = useMediaQuery("(max-width:900px)");
 	function onClick(item: number) {
 		if (selected === item) {
 			setSelected(0);

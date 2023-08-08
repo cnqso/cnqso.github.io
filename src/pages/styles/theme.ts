@@ -11,6 +11,9 @@ export const lightTheme: any = {
   accentDark: "#535bf2",
   accentLight: "#7a7aff",
   accentLighter: "#b3b3ff",
+  accentLightest: "#ece5ff",
+  halo: "#e7dfff",
+  haloHover: "#b3b3ff",
 };
 
 export const darkTheme: any = {
@@ -21,8 +24,12 @@ export const darkTheme: any = {
     textSecondary: "#adadad",
     accent: "#666eff",
     accentDark: "#535bf2",
+    accentDarkDesat: "#3a3fa8",
     accentLight: "#7a7aff",
     accentLighter: "#b3b3ff",
+    accentLightest: "#b3b3ff",
+    halo: "#3a3fa8",
+    haloHover: "#535bf2",
 };
 
 export const GlobalStyle = createGlobalStyle<any>`
@@ -216,6 +223,24 @@ export const GlobalStyle = createGlobalStyle<any>`
 .blogNavPost > .blogPostBtn {
     display: block;
 }
+
+
+
+/** Hire me */
+
+.skill, .largeSkill {
+	background-color: ${(props) => props.theme.halo};
+  color: ${(props) => props.theme.text};
+}
+
+.skill:hover, .largeSkill:hover {
+  background-color: ${(props) => props.theme.haloHover};
+  transition: background-color 0.3s ease-out;
+  color: ${(props) => props.theme.text};
+}
+
+
+
 
 @media (max-width: 1200px) {
     .BlogPost {

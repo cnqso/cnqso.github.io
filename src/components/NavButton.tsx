@@ -1,11 +1,13 @@
 /** @format */
 
 import { useState, useContext } from "react";
-import { PageContext, PageContextType } from "../App";
+import { PageContext } from "../App";
+import type {PageContextType} from "../types";
 import { Link, useLocation } from "react-router-dom";
 
 function NavButton({ destination }: { destination: PageContextType }) {
 	const location = useLocation().pathname.replace("%20", " ");
+
 	const fontColor = location === `/${destination}/` ? "#c3c3ff" : "";
 
 	return (
