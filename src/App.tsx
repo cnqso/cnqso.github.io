@@ -70,7 +70,6 @@ function App() {
 		<ThemeProvider theme={theme}>
 			<GlobalStyle />
 			<SanityContext.Provider value={{ posts, projects, resume, fetchData }}>
-				<div className='fullWidth'>
 					<div className='App'>
 						<Router>
 							<NavBar toggleTheme={toggleTheme} />
@@ -78,7 +77,6 @@ function App() {
 							<MainRoutes />
 						</Router>
 					</div>
-				</div>
 			</SanityContext.Provider>
 		</ThemeProvider>
 	);

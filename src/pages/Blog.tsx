@@ -158,9 +158,9 @@ function BlogNav({ titles }: { titles: PostPreview[] }) {
 
 function Blog() {
 	const location = useLocation().pathname;
-	const css = location === "/Blog/" ? "BlogHome" : "BlogPost";
+	const css = location === "/Blog" ? "BlogHome" : "BlogPost";
 	const mobile = useMediaQuery("(max-width: 900px)");
-	const showNav = mobile && location !== "/Blog/" ? false : true;
+	const showNav = mobile && location !== "/Blog" ? false : true;
 
 	const data = useContext(SanityContext);
 
@@ -177,7 +177,7 @@ function Blog() {
 			{showNav ? (
 				<BlogNav titles={data.posts} />
 			) : (
-				<Link className='blogPostBtn' to={"/Blog/"} key={"Back"}>
+				<Link className='blogPostBtn' to={"/Blog"} key={"Back"}>
 					Back
 				</Link>
 			)}

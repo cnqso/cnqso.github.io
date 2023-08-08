@@ -29,6 +29,10 @@ function useQuery() {
 }
 
 
+
+
+
+
 function convertArrayToObject(projects: Project[]): Record<string, Project> {
 	const result: Record<string, Project> = {};
   
@@ -45,17 +49,43 @@ function SortBox({
 	setFilter,
 	sort,
 	setSort,
+	allTitles,
+	projectObject,
+
 }: {
 	filter: Technology[];
 	setFilter: (filter: Technology[]) => void;
 	sort: string;
 	setSort: (sort: string) => void;
+	allTitles: string[];
+	projectObject: Record<string, Project>;
 }) {
 	const query = useQuery();
-	
-	
 	const sortOptions: string[] = ["Pride", "New", "Old", "Alphabetical"];
 	const [show, setShow] = useState<boolean>(query.get("tech") !== null);
+
+	const getFilteredTitles = (currentFilters: Technology[]): string[] => {
+		if (currentFilters.length === 0) {
+		  return allTitles;
+		} else {
+		  return allTitles.filter((title) => {
+			const project = projectObject[title];
+			const technologies = project.technologies;
+			for (let i = 0; i < currentFilters.length; i++) {
+			  if (!technologies.includes(currentFilters[i])) {
+				return false;
+			  }
+			}
+			return true;
+		  });
+		}
+	  };
+	
+	const isValidFilter = (tech: Technology, currentFilters: Technology[]): boolean => {
+	  const testFilters = [...currentFilters, tech];
+	  const filteredTitles = getFilteredTitles(testFilters);
+	  return filteredTitles.length > 0;
+	};
 
 	function handleFilterClick(option: Technology) {
 		const newFilter = [...filter];
@@ -76,31 +106,34 @@ function SortBox({
 		setShow(!show);
 	}
 
+	
+
 	return (
 		<>
-			<button onClick={showButton}>Filter and Sort</button>
+			<button className="largeSkill" style={{border: "none", outline: "none", background: show ? "#666eff" : "", padding:"5px"}} onClick={showButton}>Filter and Sort</button>
 
 			<Collapse in={show} timeout='auto' unmountOnExit>
 				<div className='sortBox'>
 					<div>
 						<h3>Filter by:</h3>
-						<div className='sortOptions'>
-							{TECHNOLOGIES.map((option, index) => {
+						<motion.div className='sortOptions' layout layoutRoot>
+							{TECHNOLOGIES.filter((option) => isValidFilter(option, filter)).map((option, index) => {
 								let color = document.body.style.backgroundColor;
 								if (filter.includes(option)) {
 									color = "#666eff";
 								}
 								return (
-									<span
+									<motion.span
 										key={option}
 										onClick={() => handleFilterClick(option)}
 										style={{ background: color }}
-										className='sortOption'>
+										className='skill'
+										layout>
 										{option}
-									</span>
+									</motion.span>
 								);
 							})}
-						</div>
+						</motion.div>
 					</div>
 					<div>
 						<h3>Sort by:</h3>
@@ -115,7 +148,7 @@ function SortBox({
 										key={option}
 										onClick={() => handleSortClick(option)}
 										style={{ background: color }}
-										className='sortOption'>
+										className='skill'>
 										{option}
 									</span>
 								);
@@ -177,7 +210,11 @@ function ProjectCard({
 				// <div style={{ height: "105%", width: "150%", cursor: "pointer" }} onClick={() => clicked()} />
 				null
 			) : (
-				<motion.img src={urlFor(project.image).url()} onClick={() => clicked()} alt='Project' className='projectImg' layout/>
+				<motion.img src={urlFor(project.image).url()} onClick={() => clicked()} alt='Project' className='projectImg'initial={{ scaleX: 0 }}
+				animate={{
+					scaleX: 1,
+					transition: { duration: 0.25 }
+				}}  layout/>
 			)}
 			{size === 2 ? (
 				<motion.div
@@ -195,17 +232,17 @@ function ProjectCard({
 					<div>{project.description}</div>
 					<div className='projectLinks'>
 						{project.liveLink ? (
-							<span className="resumeLink">
+							<span className="resumeLink fancyLink">
 								<a href={project.liveLink}>Live</a>{" "}
 							</span>
 						) : null}
 						{project.githubLink ? (
-						<span className="resumeLink">
+						<span className="resumeLink fancyLink">
 							{" "}
 							<a href={project.githubLink}>Github</a>{" "}
 						</span>) : null }
 						{project.blogLink ? (
-						<span className="resumeLink">
+						<span className="resumeLink fancyLink">
 							{" "}
 							<a href={project.blogLink}>Writeup</a>{" "}
 						</span>):null}
@@ -318,16 +355,19 @@ function Projects() {
 		}
 	});
 
-	// SORT COMPONENT:
-	// Start small, "Sort by:" and then a dropdown cabinet
-	// Give a list of all the technologies. When each is clicked, it gets highlighted and it sorts. Allow sorting by multiple
-	// Maybe also organize order: personal favorite, newest, oldest, name
+	
+
+
+
+
+
+
 
 	return (
 		<div className='container Projects'>
 			<h1> Projects </h1>
 
-			<SortBox filter={filter} setFilter={setFilter} sort={sort} setSort={setSort} />
+			<SortBox filter={filter} setFilter={setFilter} sort={sort} setSort={setSort} allTitles={allTitles} projectObject={projectObject} />
 
 			<ProjectGrid titles={titles} projectObject={projectObject} />
 		</div>

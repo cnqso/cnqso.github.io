@@ -45,16 +45,17 @@ function Home() {
 			<div className='ProjectsPreview'>
 				{recentProjects?.map((project: Project) => {
 					return (
-						<div key={project.title}>
+						
 							<a
-							
+								key={project.title}
 								href={project?.blogLink}
 								className='card homeCard'
-								style={{ padding: 5, textAlign: "center" }}>
+								style={{ padding: 10, textAlign: "center" }}>
 								<img className='projectImg' src={urlFor(project.image).url()} />
+								<br/>
 								{project.title}
 							</a>
-						</div>
+
 					);
 				})}
 			</div>
@@ -63,7 +64,7 @@ function Home() {
 			<div className='BlogPreview'>
 				{recentPosts?.map((post: PostPreview) => {
 					return (
-						<Link key={post.title} to={"/Blog/post/" + post.slug.current} className='homeCard'>
+						<Link key={post.title} to={"/Blog/post" + post.slug.current} className='blogCard'>
 							<li className='postTitle'>{post.title}</li>
 						</Link>
 					);

@@ -2,17 +2,24 @@
 
 import { useState, useContext } from "react";
 import { PageContext } from "../App";
-import type {PageContextType} from "../types";
+import type { PageContextType } from "../types";
 import { Link, useLocation } from "react-router-dom";
 
 function NavButton({ destination }: { destination: PageContextType }) {
-	const location = useLocation().pathname.replace("%20", " ");
+	const loc = useLocation().pathname.replace("%20", " ");
 
-	const fontColor = location === `/${destination}/` ? "#c3c3ff" : "";
+	const fontColor = destination
+		? `/${destination}` === loc
+			? "#c3c3ff"
+			: ""
+		: loc === "" || loc === "/"
+		? "#c3c3ff"
+		: "";
+	// Functional!
 
 	return (
-		<Link to={`${destination}/`} className='NavButton card' style={{color: fontColor}}>
-			 {destination ? destination : "Home"}
+		<Link to={`${destination}`} className='NavButton card' style={{ color: fontColor }}>
+			{destination ? destination : "Home"}
 		</Link>
 	);
 }

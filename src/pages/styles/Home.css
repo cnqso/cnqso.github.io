@@ -1,39 +1,79 @@
+/** @format */
+
 .Home .homeTitle {
 	font-size: 2em;
 	margin-bottom: 0px;
-    color: "#fff";
-
+	color: "#fff";
 }
 .Home .homeTitle:hover {
-    color: "#000";
-
+	color: "#000";
 }
 
 .Home .ProjectsPreview {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    align-content: center;
-
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+	align-content: center;
 }
 
 .Home .homeCard {
-    font-size: 1.1em;
+	font-size: 1.1em;
+	flex: 1 1 0px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin: 0px;
 }
 
 .Home .BlogPreview {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+	display: flex;
+	flex-direction: column;
+}
 
+.Home .blogCard {
+	font-size: 1em;
+	margin-left: 15px;
+	padding-left: 15px;
+}
+
+.blogCard .postTitle {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .Home .postTitle {
-    float: left;
-    font-size: 1.35em;
-    margin-bottom: 5px;
+	float: left;
+	font-size: 1.35em;
+	margin-bottom: 5px;
+    max-width: 100%;
+}
 
+.homeCard .projectImg {
+	cursor: pointer;
+	max-width: min(256px, 99%);
+	max-height: min(100px, 100%);
+	margin-bottom: -5px;
+	float: none;
+}
+
+@media screen and (max-width: 400px) {
+    
+    .Home .homeTitle {
+        font-size: 1.5em;
+    }
+    .Home .ProjectsPreview {
+        display: block;
+        text-align: center;
+    }
+    .Home .blogCard {
+        margin-left: 0px;
+        padding-left: 0px;
+    }
+    .blogCard .postTitle {
+        font-size: 1em;
+        margin-left: 0px;
+    }
 }

@@ -25,14 +25,16 @@
   
 }
 
-.fullWidth {
-  width: 100vw;
-}
-
 .App {
   overflow: visible;
   font-family: 'Roboto', sans-serif;
   width: 850px;
   margin: 0 auto;
   
+}
+
+@media screen and (max-width: 410px) {
+  #root {
+    padding: 0.5rem;
+  }
 }

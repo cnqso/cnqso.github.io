@@ -136,7 +136,7 @@ export const GlobalStyle = createGlobalStyle<any>`
 }
 
 
-.Home .homeCard:hover {
+.Home .homeCard:hover, .Home .blogCard:hover {
     font-style: oblique;
     background-color: ${(props) => props.theme.paper};
     transition: background-color 0.3s ease-out;

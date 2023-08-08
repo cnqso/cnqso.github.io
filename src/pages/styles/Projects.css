@@ -95,7 +95,7 @@
     margin-right: auto;
     margin-block: 9px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -103,8 +103,8 @@
   padding: 4px;
   background-color: var(--background);
   color: #a1a6ff;
-  border-radius: 10px;
-  padding-inline: 10px;
+  border-radius: 5px;
+  padding-inline: 6px;
 
   font-size: 1.1em;
 }
@@ -171,7 +171,7 @@
   }
 
   .projectLinks span {
-    flex: 1;
+    flex: 0.7;
     font-size: 1em;
   }
 
