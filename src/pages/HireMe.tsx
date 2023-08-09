@@ -1,15 +1,14 @@
 /** @format */
 
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import "./styles/HireMe.css";
-import { motion } from "framer-motion";
 import { SanityContext } from "../App";
-import type { Project, Resume, Technology, Education, Experience } from "../types";
-import {Link} from "react-router-dom";
+import type { Project, Education, Experience } from "../types";
+import { Link } from "react-router-dom";
 
 function Skills({ items, large }: { items: string[]; large?: boolean }) {
 	return (
-		<div className="skills">
+		<div className='skills'>
 			{items.map((skill: string) => (
 				<Link to={`/Projects?tech=${skill}`} className={large ? "largeSkill" : "skill"} key={skill}>
 					{skill}
@@ -49,7 +48,7 @@ function ProjectEntry({ project }: { project: Project }) {
 				</div>
 			</div>
 
-				<Skills items={project.technologies} />
+			<Skills items={project.technologies} />
 
 			<div className='sectionContentProse'>{project.description}</div>
 		</div>

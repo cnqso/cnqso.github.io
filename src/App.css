@@ -1,40 +1,39 @@
+/** @format */
+
 :root {
-  --background: #242424;
-  --paper: #2e2e2e;
-  --text: #fff;
-  --text-secondary: #aaa;
-  --accent: #666eff;
-  --accent-dark: #535bf2;
-  --accent-light: #7a7aff;
-  --accent-lighter: #b3b3ff;
+	--background: #242424;
+	--paper: #2e2e2e;
+	--text: #fff;
+	--text-secondary: #aaa;
+	--accent: #666eff;
+	--accent-dark: #535bf2;
+	--accent-light: #7a7aff;
+	--accent-lighter: #b3b3ff;
 }
 
 .MuiTextField-root {
-  background-color: #fff !important;
-  border-radius: 4px;
-  
+	background-color: #fff !important;
+	border-radius: 4px;
 }
 
 #root {
-  /* max-width: 1280px; */
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-  width: 100vw;
-  overflow: hidden;
-  
+	/* max-width: 1280px; */
+	margin: 0 auto;
+	padding: 2rem;
+	text-align: center;
+	width: 100vw;
+	overflow: hidden;
 }
 
 .App {
-  overflow: visible;
-  font-family: 'Roboto', sans-serif;
-  width: 850px;
-  margin: 0 auto;
-  
+	overflow: visible;
+	font-family: "Roboto", sans-serif;
+	width: 850px;
+	margin: 0 auto;
 }
 
 @media screen and (max-width: 410px) {
-  #root {
-    padding: 0.5rem;
-  }
+	#root {
+		padding: 0.5rem;
+	}
 }

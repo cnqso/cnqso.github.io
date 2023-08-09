@@ -1,18 +1,20 @@
 /** @format */
-import { useState, useEffect, useContext } from "react";
-import { motion } from "framer-motion";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./styles/Home.css";
-import type { PostPreview, Project} from "../types";
-import NavButton from "../components/NavButton";
-import {sanityClient, urlFor} from "../client";
-import { SanityContext} from "../App";
+import type { PostPreview, Project } from "../types";
+import { urlFor } from "../client";
+import { SanityContext } from "../App";
 
 function Home() {
 	const data = useContext(SanityContext);
-	const recentPosts = data?.posts.sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()).slice(0, 3);
-	const recentProjects = data?.projects.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).slice(0, 3);
-	const resume = data?.resume
+	const recentPosts = data?.posts
+		.sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+		.slice(0, 3);
+	const recentProjects = data?.projects
+		.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+		.slice(0, 3);
+	const resume = data?.resume;
 	// Intro blurb (I'm a programmer bla bla bla)
 	// Links (maybe all of this can be shared with Hire Me, make it stay in place on that change)
 
@@ -45,17 +47,15 @@ function Home() {
 			<div className='ProjectsPreview'>
 				{recentProjects?.map((project: Project) => {
 					return (
-						
-							<a
-								key={project.title}
-								href={project?.blogLink}
-								className='card homeCard'
-								style={{ padding: 10, textAlign: "center" }}>
-								<img className='projectImg' src={urlFor(project.image).url()} />
-								<br/>
-								{project.title}
-							</a>
-
+						<a
+							key={project.title}
+							href={project?.blogLink}
+							className='card homeCard'
+							style={{ padding: 10, textAlign: "center" }}>
+							<img className='projectImg' src={urlFor(project.image).url()} />
+							<br />
+							{project.title}
+						</a>
 					);
 				})}
 			</div>

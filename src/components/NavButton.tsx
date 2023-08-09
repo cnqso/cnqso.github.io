@@ -1,7 +1,5 @@
 /** @format */
 
-import { useState, useContext } from "react";
-import { PageContext } from "../App";
 import type { PageContextType } from "../types";
 import { Link, useLocation } from "react-router-dom";
 

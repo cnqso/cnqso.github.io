@@ -26,25 +26,27 @@ export interface Projects {
 }
 
 export type PageContextType = "" | "Projects" | "Blog" | "Hire Me" | "Contact";
-export const TECHNOLOGIES = ["Javascript"
-	, "Python"
-	, "React"
-	, "Typescript"
-	, "GCP"
-	, "OpenAI APIs"
-	, "NoSQL"
-	, "Firebase"
-	, "Node"
-	, "Material UI"
-	, "NLP"
-	, "SQL"
-	, "Sanity"
-	, "Django"
-	, "AWS"
-	, "DynamoDB"
-	, "Stripe"] as const;
+export const TECHNOLOGIES = [
+	"Javascript",
+	"Python",
+	"React",
+	"Typescript",
+	"GCP",
+	"OpenAI APIs",
+	"NoSQL",
+	"Firebase",
+	"Node",
+	"Material UI",
+	"NLP",
+	"SQL",
+	"Sanity",
+	"Django",
+	"AWS",
+	"DynamoDB",
+	"Stripe",
+] as const;
 
-export type Technology = typeof TECHNOLOGIES[number];
+export type Technology = (typeof TECHNOLOGIES)[number];
 
 export type Education = {
 	school: string;
@@ -72,17 +74,23 @@ export interface Resume {
 	github: string;
 	linkedin: string;
 	contact: string;
-	projectRefs: {_ref: string};
+	projectRefs: { _ref: string };
 	projects: Project[];
 	skills: string[];
 	education: Education[];
 	experience: Experience[];
 	_id: string;
-};
+}
 
 export interface SanityContextProps {
 	posts: PostPreview[];
 	projects: Project[];
 	resume: Resume;
 	fetchData: () => void;
+}
+
+export interface IFormInput {
+	name: string;
+	email: string;
+	message: string;
 }

@@ -1,19 +1,15 @@
 /** @format */
 
-import { useState, useEffect, useContext } from "react";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Unstable_Grid2";
-import { motion, Reorder, AnimatePresence } from "framer-motion";
-import { Collapse } from "@mui/material";
+import { useState, useContext } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { UnmountClosed } from "react-collapse";
 import "./styles/Projects.css";
 
-import useMediaQuery from "@mui/material/useMediaQuery";
-import type {Project, Projects, Technology} from "../types";
-import {TECHNOLOGIES} from "../types";
-import {urlFor} from "../client";
-import {SanityContext} from "../App";
-import { useLocation } from 'react-router-dom';
+import type { Project, Projects, Technology } from "../types";
+import { TECHNOLOGIES } from "../types";
+import { urlFor } from "../client";
+import { SanityContext } from "../App";
+import { useLocation } from "react-router-dom";
 
 const colors = [
 	"rgb(102, 110, 255)",
@@ -23,26 +19,20 @@ const colors = [
 	"rgb(120, 200, 180)",
 ];
 
-
 function useQuery() {
-  return new URLSearchParams(useLocation().search);
+	return new URLSearchParams(useLocation().search);
 }
-
-
-
-
-
 
 function convertArrayToObject(projects: Project[]): Record<string, Project> {
 	const result: Record<string, Project> = {};
-  
-	projects.forEach(project => {
-	  const key = `${project._id}`;
-	  result[key] = project;
+
+	projects.forEach((project) => {
+		const key = `${project._id}`;
+		result[key] = project;
 	});
-  
+
 	return result;
-  }
+}
 
 function SortBox({
 	filter,
@@ -51,7 +41,6 @@ function SortBox({
 	setSort,
 	allTitles,
 	projectObject,
-
 }: {
 	filter: Technology[];
 	setFilter: (filter: Technology[]) => void;
@@ -66,25 +55,25 @@ function SortBox({
 
 	const getFilteredTitles = (currentFilters: Technology[]): string[] => {
 		if (currentFilters.length === 0) {
-		  return allTitles;
+			return allTitles;
 		} else {
-		  return allTitles.filter((title) => {
-			const project = projectObject[title];
-			const technologies = project.technologies;
-			for (let i = 0; i < currentFilters.length; i++) {
-			  if (!technologies.includes(currentFilters[i])) {
-				return false;
-			  }
-			}
-			return true;
-		  });
+			return allTitles.filter((title) => {
+				const project = projectObject[title];
+				const technologies = project.technologies;
+				for (let i = 0; i < currentFilters.length; i++) {
+					if (!technologies.includes(currentFilters[i])) {
+						return false;
+					}
+				}
+				return true;
+			});
 		}
-	  };
-	
+	};
+
 	const isValidFilter = (tech: Technology, currentFilters: Technology[]): boolean => {
-	  const testFilters = [...currentFilters, tech];
-	  const filteredTitles = getFilteredTitles(testFilters);
-	  return filteredTitles.length > 0;
+		const testFilters = [...currentFilters, tech];
+		const filteredTitles = getFilteredTitles(testFilters);
+		return filteredTitles.length > 0;
 	};
 
 	function handleFilterClick(option: Technology) {
@@ -106,33 +95,38 @@ function SortBox({
 		setShow(!show);
 	}
 
-	
-
 	return (
 		<>
-			<button className="largeSkill" style={{border: "none", outline: "none", background: show ? "#666eff" : "", padding:"5px"}} onClick={showButton}>Filter and Sort</button>
+			<button
+				className='largeSkill'
+				style={{ border: "none", outline: "none", background: show ? "#666eff" : "", padding: "5px" }}
+				onClick={showButton}>
+				Filter and Sort
+			</button>
 
-			<Collapse in={show} timeout='auto' unmountOnExit>
+			<UnmountClosed isOpened={show}>
 				<div className='sortBox'>
 					<div>
 						<h3>Filter by:</h3>
 						<motion.div className='sortOptions' layout layoutRoot>
-							{TECHNOLOGIES.filter((option) => isValidFilter(option, filter)).map((option, index) => {
-								let color = document.body.style.backgroundColor;
-								if (filter.includes(option)) {
-									color = "#666eff";
+							{TECHNOLOGIES.filter((option) => isValidFilter(option, filter)).map(
+								(option, index) => {
+									let color = document.body.style.backgroundColor;
+									if (filter.includes(option)) {
+										color = "#666eff";
+									}
+									return (
+										<motion.span
+											key={option}
+											onClick={() => handleFilterClick(option)}
+											style={{ background: color }}
+											className='skill'
+											layout>
+											{option}
+										</motion.span>
+									);
 								}
-								return (
-									<motion.span
-										key={option}
-										onClick={() => handleFilterClick(option)}
-										style={{ background: color }}
-										className='skill'
-										layout>
-										{option}
-									</motion.span>
-								);
-							})}
+							)}
 						</motion.div>
 					</div>
 					<div>
@@ -156,7 +150,7 @@ function SortBox({
 						</div>
 					</div>
 				</div>
-			</Collapse>
+			</UnmountClosed>
 		</>
 	);
 }
@@ -172,10 +166,7 @@ function ProjectCard({
 	size: number;
 	projectObject: Projects;
 }) {
-	const [show, setShow] = useState(true);
-	const [description, setDescription] = useState(false);
 	const project = projectObject[projectName];
-	const itemNumber = project.number;
 	const widths = ["thin", "normal", "wide"];
 	const widthClass = `projectCard ${widths[size]}`;
 	function clicked() {
@@ -186,7 +177,6 @@ function ProjectCard({
 		}
 	}
 
-	
 	return (
 		<motion.li
 			transition={{
@@ -204,17 +194,23 @@ function ProjectCard({
 				scale: 0,
 				transition: { duration: 0.1 },
 			}}
-			onClick={() => widthClass === "projectCard thin" && clicked() }
+			onClick={() => widthClass === "projectCard thin" && clicked()}
 			layout>
-			{size === 0 ? (
-				// <div style={{ height: "105%", width: "150%", cursor: "pointer" }} onClick={() => clicked()} />
-				null
-			) : (
-				<motion.img src={urlFor(project.image).url()} onClick={() => clicked()} alt='Project' className='projectImg'initial={{ scaleX: 0 }}
-				animate={{
-					scaleX: 1,
-					transition: { duration: 0.25 }
-				}}  layout/>
+			{size ===
+			0 ? // <div style={{ height: "105%", width: "150%", cursor: "pointer" }} onClick={() => clicked()} />
+			null : (
+				<motion.img
+					src={urlFor(project.image).url()}
+					onClick={() => clicked()}
+					alt='Project'
+					className='projectImg'
+					initial={{ scaleX: 0 }}
+					animate={{
+						scaleX: 1,
+						transition: { duration: 0.25 },
+					}}
+					layout
+				/>
 			)}
 			{size === 2 ? (
 				<motion.div
@@ -225,27 +221,29 @@ function ProjectCard({
 					exit={{
 						opacity: 0,
 						transition: {},
-					}} >
+					}}>
 					<h1>
 						<b>{project.title}</b>
 					</h1>
 					<div>{project.description}</div>
 					<div className='projectLinks'>
 						{project.liveLink ? (
-							<span className="resumeLink fancyLink">
+							<span className='resumeLink fancyLink'>
 								<a href={project.liveLink}>Live</a>{" "}
 							</span>
 						) : null}
 						{project.githubLink ? (
-						<span className="resumeLink fancyLink">
-							{" "}
-							<a href={project.githubLink}>Github</a>{" "}
-						</span>) : null }
+							<span className='resumeLink fancyLink'>
+								{" "}
+								<a href={project.githubLink}>Github</a>{" "}
+							</span>
+						) : null}
 						{project.blogLink ? (
-						<span className="resumeLink fancyLink">
-							{" "}
-							<a href={project.blogLink}>Writeup</a>{" "}
-						</span>):null}
+							<span className='resumeLink fancyLink'>
+								{" "}
+								<a href={project.blogLink}>Writeup</a>{" "}
+							</span>
+						) : null}
 					</div>
 				</motion.div>
 			) : null}
@@ -253,8 +251,7 @@ function ProjectCard({
 	);
 }
 
-
-function ProjectGrid({ titles, projectObject }: { titles: string[], projectObject: Projects }) {
+function ProjectGrid({ titles, projectObject }: { titles: string[]; projectObject: Projects }) {
 	const [selected, setSelected] = useState<string>("");
 
 	// When an item is clicked, set it to the selected item
@@ -300,27 +297,19 @@ function ProjectGrid({ titles, projectObject }: { titles: string[], projectObjec
 }
 
 function Projects() {
-	const data = useContext(SanityContext)
+	const data = useContext(SanityContext);
 	const projectArray = data?.projects;
 	let projectObject: Projects = {};
 	if (projectArray) {
-		projectObject = convertArrayToObject(projectArray)
+		projectObject = convertArrayToObject(projectArray);
 	}
 
 	const query = useQuery();
-	
+
 	const tech: Technology[] = query.get("tech") ? [query.get("tech") as Technology] : [];
 	const [filter, setFilter] = useState<Technology[]>(tech);
 
 	const [sort, setSort] = useState<string>("Pride");
-	const [selected, setSelected] = useState(0);
-	function onClick(item: number) {
-		if (selected === item) {
-			setSelected(0);
-		} else {
-			selected === item ? setSelected(0) : setSelected(item);
-		}
-	}
 	const allTitles = Object.keys(projectObject);
 	let titles: string[] = [];
 
@@ -355,19 +344,18 @@ function Projects() {
 		}
 	});
 
-	
-
-
-
-
-
-
-
 	return (
 		<div className='container Projects'>
 			<h1> Projects </h1>
 
-			<SortBox filter={filter} setFilter={setFilter} sort={sort} setSort={setSort} allTitles={allTitles} projectObject={projectObject} />
+			<SortBox
+				filter={filter}
+				setFilter={setFilter}
+				sort={sort}
+				setSort={setSort}
+				allTitles={allTitles}
+				projectObject={projectObject}
+			/>
 
 			<ProjectGrid titles={titles} projectObject={projectObject} />
 		</div>

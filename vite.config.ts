@@ -1,8 +1,15 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+/** @format */
+
+import { PluginOption, defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import {visualizer} from "rollup-plugin-visualizer";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: './',
-  plugins: [react()],
-})
+	base: "./",
+	plugins: [
+		react(),
+		visualizer({open: true,
+			gzipSize: true,}) as PluginOption,
+	],
+});

@@ -98,7 +98,6 @@
 	display: flex;
 	flex-wrap: nowrap;
 	justify-content: right;
-
 }
 
 .projectTechnologies {
@@ -117,8 +116,6 @@
 	white-space: nowrap;
 	/* color: #333; */
 }
-
-
 
 .resumeSection {
 	display: grid;
@@ -143,8 +140,6 @@
 	padding: 0.25em 0.4em;
 	border-radius: 5px;
 }
-
-
 
 /* .skill {
 	background-color: rgb(252, 234, 255);

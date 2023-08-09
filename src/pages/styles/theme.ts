@@ -241,6 +241,32 @@ export const GlobalStyle = createGlobalStyle<any>`
 
 
 
+/** Contact */
+
+/* Styles for the error messages */
+.form-error {
+  color: red;
+}
+
+/* Style for the submit button */
+.form-submit {
+  background-color: ${(props) => props.theme.halo};
+  color: ${(props) => props.theme.text};
+  transition: background-color 0.3s;
+
+  &:disabled {
+    background-color: #adadad;
+    cursor: not-allowed;
+  }
+
+  &:hover:enabled {
+    background-color: ${(props) => props.theme.accentLight};
+  }
+}
+
+
+
+
 
 @media (max-width: 1200px) {
     .BlogPost {

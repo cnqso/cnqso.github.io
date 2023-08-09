@@ -1,17 +1,12 @@
 /** @format */
 
-import { useState, useEffect, useRef, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { SanityContext } from "../App";
-import { motion } from "framer-motion";
 import "./styles/Blog.css";
 import { Routes, Route, useLocation, Link } from "react-router-dom";
 import type { BlogPost, PostPreview } from "../types";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import {sanityClient} from "../client";
-import { PortableText } from "@portabletext/react";
-import { createClient } from "@sanity/client";
+import { sanityClient } from "../client";
 import CustomPortableText from "../components/BlogComponents";
-import { Collapse } from "@mui/material";
 
 // Posts can be contained in a specific type of text block
 // BlogHome is a list of all posts followed by an infinite scroll of posts.
@@ -159,8 +154,6 @@ function BlogNav({ titles }: { titles: PostPreview[] }) {
 function Blog() {
 	const location = useLocation().pathname;
 	const css = location === "/Blog" ? "BlogHome" : "BlogPost";
-	const mobile = useMediaQuery("(max-width: 900px)");
-	const showNav = mobile && location !== "/Blog" ? false : true;
 
 	const data = useContext(SanityContext);
 
@@ -174,13 +167,13 @@ function Blog() {
 				<Route index element={<BlogHome />} />
 				<Route path={"post/*"} element={<BlogPost />} />;
 			</Routes>
-			{showNav ? (
+
 				<BlogNav titles={data.posts} />
-			) : (
-				<Link className='blogPostBtn' to={"/Blog"} key={"Back"}>
+
+				<Link className='blogPostBtn blogPostBack' to={"/Blog"} key={"Back"}>
 					Back
 				</Link>
-			)}
+
 		</div>
 	);
 }

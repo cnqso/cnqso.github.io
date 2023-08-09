@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
-import Collapse from "@mui/material/Collapse";
+import { useRef, useState } from "react";
+import {UnmountClosed} from "react-collapse";
 import Refractor from "react-refractor";
-import js from 'refractor/lang/javascript'
+// import js from 'refractor/lang/javascript'
 import c from 'refractor/lang/c'
-import ts from 'refractor/lang/typescript'
+// import ts from 'refractor/lang/typescript'
 import "../pages/styles/prism.css";
 import { PortableText } from "@portabletext/react";
 import {urlFor} from "../client";
@@ -13,13 +13,14 @@ import type {PortableTextReactComponents} from "@portabletext/react";
 
 
 // Then register them
-Refractor.registerLanguage(js)
+// Refractor.registerLanguage(js)
 Refractor.registerLanguage(c)
-Refractor.registerLanguage(ts)
+// Refractor.registerLanguage(ts)
 
 
 // The footnote component can accept any JSX element or string as a child
 // No longer used since migrating to a CMS with portable text, but the code was nice while it lasted
+
 // export function Footnote({
 // 	children,
 // 	num,
@@ -113,7 +114,7 @@ Refractor.registerLanguage(ts)
 					{props.text}
 				</sup>
 			</span>
-			<Collapse in={show} timeout='auto' unmountOnExit>
+			<UnmountClosed isOpened={show}>
 				<span className='footnote'>
 					<span
 						className='footnoteCloser'
@@ -129,7 +130,7 @@ Refractor.registerLanguage(ts)
 				<span style={{ padding: "30px", cursor: "pointer" }} onClick={scrollBack}>
 					<hr style={{ borderTop: "1px solid #de731d" }} />
 				</span>
-			</Collapse>
+			</UnmountClosed>
 			</>
 	)
 }
