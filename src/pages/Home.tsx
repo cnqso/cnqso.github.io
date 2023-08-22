@@ -64,7 +64,7 @@ function Home() {
 			<div className='BlogPreview'>
 				{recentPosts?.map((post: PostPreview) => {
 					return (
-						<Link key={post.title} to={"/Blog/post" + post.slug.current} className='blogCard'>
+						<Link key={post.title} to={"/Blog/post/" + post.slug.current} className='blogCard'>
 							<li className='postTitle'>{post.title}</li>
 						</Link>
 					);
