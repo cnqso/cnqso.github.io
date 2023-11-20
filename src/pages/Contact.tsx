@@ -9,7 +9,7 @@ function PhoneNumber() {
 	const [items, setItems] = useState([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
 	const [confettied, setConfettied] = useState<boolean>(false);
 	const itemKeys = [0, 1, 3, 3, 5, 6, 6, 6, 6, 8];
-	// No cheating
+	// I know
 	const answer = [0, 5, 8, 6, 3, 3, 6, 6, 1, 6];
 	const { reward, isAnimating } = useReward("rewardId", "confetti");
 	for (let i = 0; i < 10; i++) {

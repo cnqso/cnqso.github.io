@@ -7,6 +7,14 @@ import js from "refractor/lang/javascript";
 import c from "refractor/lang/c";
 import ts from "refractor/lang/typescript";
 import tsx from "refractor/lang/tsx";
+import go from "refractor/lang/go";
+import rust from "refractor/lang/rust";
+import yaml from "refractor/lang/yaml";
+import bash from "refractor/lang/bash";
+import shellSession from "refractor/lang/shell-session";
+import python from "refractor/lang/python";
+import json from "refractor/lang/json";
+import docker from "refractor/lang/docker";
 import "../pages/styles/prism.css";
 import { PortableText } from "@portabletext/react";
 import { urlFor } from "../client";
@@ -19,6 +27,14 @@ Refractor.registerLanguage(js);
 Refractor.registerLanguage(c);
 Refractor.registerLanguage(ts);
 Refractor.registerLanguage(tsx);
+Refractor.registerLanguage(go);
+Refractor.registerLanguage(rust);
+Refractor.registerLanguage(yaml);
+Refractor.registerLanguage(bash);
+Refractor.registerLanguage(shellSession);
+Refractor.registerLanguage(python);
+Refractor.registerLanguage(json);
+Refractor.registerLanguage(docker);
 
 // The footnote component can accept any JSX element or string as a child
 // No longer used since migrating to a CMS with portable text, but the code was nice while it lasted
