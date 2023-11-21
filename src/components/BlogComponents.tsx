@@ -97,6 +97,9 @@ function CodeBlock({ code, language = "c" }: { code: string; language?: string }
 	if (language === "csharp") {
 		language = "c";
 	}
+	if (language === "sh") {
+		language = "bash";
+	}
 	return (
 		<Refractor
 			// In this example, `props` is the value of a `code` field
