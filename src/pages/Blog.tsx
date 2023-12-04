@@ -8,19 +8,13 @@ import type { BlogPost, PostPreview } from "../types";
 import { sanityClient } from "../client";
 import CustomPortableText from "../components/BlogComponents";
 
-function BlogHome() {
-	return <h1>Blog</h1>;
-}
-
 function BlogPost() {
 	const location = useLocation().pathname.replace("%20", " ").split("/")[3];
 
 	const [blogPost, setBlogPost] = useState<BlogPost | null>(null);
-	const [loading, setLoading] = useState<boolean>(true);
 	const [fourohfour, setFourohfour] = useState<boolean>(false);
 	useEffect(() => {
 		setFourohfour(false);
-		setLoading(true);
 		console.log("fetching");
 		sanityClient
 			.fetch(
@@ -38,7 +32,6 @@ function BlogPost() {
 				setBlogPost(data[0]);
 			})
 			.catch(console.error);
-		setLoading(false);
 	}, [location]);
 
 	return (
@@ -159,7 +152,7 @@ function Blog() {
 	return (
 		<div className={css}>
 			<Routes>
-				<Route index element={<BlogHome />} />
+				<Route index element={<hr/>} />
 				<Route path={"post/*"} element={<BlogPost />} />;
 			</Routes>
 

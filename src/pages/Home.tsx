@@ -15,15 +15,10 @@ function Home() {
 		.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 		.slice(0, 3);
 	const resume = data?.resume;
-	// Intro blurb (I'm a programmer bla bla bla)
-	// Links (maybe all of this can be shared with Hire Me, make it stay in place on that change)
-
-	// Projects - basic list
-	// Blog - basic list
 
 	return (
 		<div className='container Home' style={{ textAlign: "left" }}>
-			<div className='blurb'>I am a programmer </div>
+			<div className='blurb'>I am a developer </div>
 
 			<div className='resumeLinks'>
 				<span className='resumeLink fancyLink'>
