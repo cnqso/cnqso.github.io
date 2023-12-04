@@ -15,7 +15,7 @@
      word-spacing: normal;
      word-break: normal;
      word-wrap: normal;
-     line-height: 1.5;
+     line-height: 1;
  
      -moz-tab-size: 4;
      -o-tab-size: 4;
@@ -25,6 +25,8 @@
      -moz-hyphens: none;
      -ms-hyphens: none;
      hyphens: none;
+
+     font-size : 0.8em;
  }
  
  /* Code blocks */

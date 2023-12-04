@@ -102,7 +102,6 @@ function CodeBlock({ code, language = "c" }: { code: string; language?: string }
 	}
 	return (
 		<Refractor
-			// In this example, `props` is the value of a `code` field
 			language={language}
 			value={code}
 		/>
