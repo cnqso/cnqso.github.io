@@ -8,11 +8,6 @@ import type { BlogPost, PostPreview } from "../types";
 import { sanityClient } from "../client";
 import CustomPortableText from "../components/BlogComponents";
 
-// Posts can be contained in a specific type of text block
-// BlogHome is a list of all posts followed by an infinite scroll of posts.
-// These might be best as snippets. Maybe show top comments
-// BlogPost is a single post with comments and a comment box. Sidebar with list of posts
-
 function BlogHome() {
 	return <h1>Blog</h1>;
 }

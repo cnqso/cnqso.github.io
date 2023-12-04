@@ -9,11 +9,20 @@ import { Link } from "react-router-dom";
 function Skills({ items, large }: { items: string[]; large?: boolean }) {
 	return (
 		<div className='skills'>
-			{items.map((skill: string) => (
-				<Link to={`/Projects?tech=${skill}`} className={large ? "largeSkill" : "skill"} key={skill}>
-					{skill}
-				</Link>
-			))}
+			{items.map((skill: string) => {
+				if (skill === "Go" || skill === "Docker" || skill === "OpenTelemetry") {
+					return (
+						<Link to={`/Blog/post/opentelemetry-collector-builder-api`} className={large ? "largeSkill" : "skill"} key={skill}>
+							{skill}
+						</Link>
+					);
+				}
+				return (
+					<Link to={`/Projects?tech=${skill}`} className={large ? "largeSkill" : "skill"} key={skill}>
+						{skill}
+					</Link>
+				);
+			})}
 		</div>
 	);
 }
@@ -141,6 +150,27 @@ function HireMe() {
 						</a>
 					</span>
 				</div>
+
+				<hr />
+
+				<div className='resumeSection'>
+					<div className='sectionTitle'>Experience</div>
+					{resume.experience.map((job: Experience) => (
+						<ExperienceEntry key={job.title} job={job} />
+					))}
+				</div>
+
+				<hr />
+
+				<div className='resumeSection'>
+					<div className='sectionTitle'>Skills</div>
+					<div className='sectionContent'>
+						<div className='skills'>
+							<Skills items={resume.skills} large={true} />
+						</div>
+					</div>
+				</div>
+
 				<hr />
 
 				<div className='resumeSection'>
@@ -154,29 +184,9 @@ function HireMe() {
 				<hr />
 
 				<div className='resumeSection'>
-					<div className='sectionTitle'>Skills</div>
-					<div className='sectionContent'>
-						{/* <div className='sectionContentTitle'>Technologies</div> */}
-						<div className='skills'>
-							<Skills items={resume.skills} large={true} />
-						</div>
-					</div>
-				</div>
-				<hr />
-
-				<div className='resumeSection'>
 					<div className='sectionTitle'>Education</div>
 					{resume.education.map((education: Education) => (
 						<EducationEntry key={education.degree} education={education} />
-					))}
-				</div>
-
-				<hr />
-
-				<div className='resumeSection'>
-					<div className='sectionTitle'>Experience</div>
-					{resume.experience.map((job: Experience) => (
-						<ExperienceEntry key={job.title} job={job} />
 					))}
 				</div>
 
